@@ -1,4 +1,5 @@
-package com.btlweb.server.tapket;
+package com.btlweb.server.Repository;
+import com.btlweb.server.Model.DiemTapKetModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

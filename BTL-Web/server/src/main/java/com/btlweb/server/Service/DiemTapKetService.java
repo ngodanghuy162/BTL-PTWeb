@@ -1,8 +1,9 @@
-package com.btlweb.server.tapket;
+package com.btlweb.server.Service;
+import com.btlweb.server.Model.DiemTapKetModel;
+import com.btlweb.server.Repository.DiemTapKetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DiemTapKetService {

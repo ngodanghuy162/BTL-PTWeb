@@ -1,5 +1,8 @@
-package com.btlweb.server.tapket;
+package com.btlweb.server.Controller;
 
+import com.btlweb.server.Model.DiemTapKetModel;
+import com.btlweb.server.Repository.DiemTapKetRepository;
+import com.btlweb.server.Service.DiemTapKetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,16 +27,4 @@ public class DiemTapKetController {
     }
 
 
-//    @DeleteMapping(path = "{studentID}")
-//    public void deleteStd(@PathVariable("studentID") Long id) {
-//        dtkService.deleteStd(id);
-//    }
-//
-//    @PutMapping(path = "{studentID}")
-//    public void updateStd(@PathVariable("studentID") Long id,
-//                          @RequestParam(required = false) String name,
-//                          @RequestParam(required = false) String email,
-//                          @RequestParam(required = false) String date) {
-//        dtkService.updateStd(id,name,email,date);
-//    }
 }
