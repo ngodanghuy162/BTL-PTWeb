@@ -1,5 +1,6 @@
 package com.btlweb.server.Controller;
 
+import com.btlweb.server.Model.DiemGiaoDichModel;
 import com.btlweb.server.Model.DiemTapKetModel;
 import com.btlweb.server.Repository.DiemTapKetRepository;
 import com.btlweb.server.Service.DiemTapKetService;
@@ -14,17 +15,22 @@ import java.util.List;
 public class DiemTapKetController {
     private  final DiemTapKetService dtkService;
 
-    private DiemTapKetRepository dtkRepository;
 
     @Autowired
     public DiemTapKetController(DiemTapKetService diemTapKetService) {
         this.dtkService = diemTapKetService;
     }
 
-    @GetMapping
+    //lay tk diem tk
+    @GetMapping(path = "/all")
     public List<DiemTapKetModel> diemTapKetList() {
         return dtkService.getAllDtk();
     }
 
+    //lay tat ca diem giao dich bang id tket
+    @GetMapping("/allgiaodich/{id}")
+    public List<DiemGiaoDichModel> diemGiaoDich(@PathVariable long id) {
+        return dtkService.getAllDgd(id);
+    }
 
 }

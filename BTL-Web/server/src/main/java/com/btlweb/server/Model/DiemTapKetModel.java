@@ -1,7 +1,9 @@
 package com.btlweb.server.Model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.List;
 public class DiemTapKetModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "name")
     private String name;
@@ -26,8 +28,9 @@ public class DiemTapKetModel {
 //    private AdminModel admin;
 
 
-    @OneToMany(mappedBy = "diemtapket",fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @OneToMany(mappedBy = "diemTapKet",fetch = FetchType.LAZY)
+    //JsonManagedReference
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     private List<DiemGiaoDichModel> diemGiaoDichModelList;
 
     public List<DiemGiaoDichModel> getDiemGiaoDichModelList() {
@@ -41,17 +44,17 @@ public class DiemTapKetModel {
     public DiemTapKetModel() {
     }
 
-    public DiemTapKetModel(Long id, String name, String province) {
+    public DiemTapKetModel(long id, String name, String province) {
         this.id = id;
         this.name = name;
         this.province = province;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

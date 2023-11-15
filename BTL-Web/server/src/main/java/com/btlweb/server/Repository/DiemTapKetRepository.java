@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface DiemTapKetRepository extends JpaRepository<DiemTapKetModel,Integer>{
+public interface DiemTapKetRepository extends JpaRepository<DiemTapKetModel,Long>{
 
     // select * from studentmodel where email = ?
 //    @Query(value = "SELECT s from web-dtb.student_model s where s.email= ?1")

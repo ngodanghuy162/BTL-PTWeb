@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class StaffModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     private String name;
 
@@ -16,13 +16,13 @@ public class StaffModel {
     private String phoneNumber;
     private String workPlace;
     private boolean is_tapket;
-    private String id_work;
+    private long id_work;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -74,15 +74,15 @@ public class StaffModel {
         this.is_tapket = is_tapket;
     }
 
-    public String getId_work() {
+    public long getId_work() {
         return id_work;
     }
 
-    public void setId_work(String id_work) {
+    public void setId_work(long id_work) {
         this.id_work = id_work;
     }
 
-    public StaffModel(Long id, String name, String username, String password, String phoneNumber, String workPlace, boolean is_tapket, String id_work) {
+    public StaffModel(long id, String name, String username, String password, String phoneNumber, String workPlace, boolean is_tapket, long id_work) {
         this.id = id;
         this.name = name;
         this.username = username;

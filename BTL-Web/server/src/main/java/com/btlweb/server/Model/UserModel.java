@@ -10,13 +10,13 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class UserModel {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+        private long id;
 
         private String name;
 
         private String username;
 
-    public UserModel(Long id, String name, String username, String password, String phoneNumber, String email) {
+    public UserModel(long id, String name, String username, String password, String phoneNumber, String email) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -33,11 +33,11 @@ public class UserModel {
 
         // getters and setters
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

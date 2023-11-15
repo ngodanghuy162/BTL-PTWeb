@@ -9,7 +9,7 @@ public class AdminModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     private int id_role;
     private String name;
@@ -24,7 +24,7 @@ public class AdminModel {
         // Hàm tạo không tham số mặc định
     }
 
-    public AdminModel(Long id, int id_role, String name, String username, String password, String role) {
+    public AdminModel(long id, int id_role, String name, String username, String password, String role) {
         this.id = id;
         this.id_role = id_role;
         this.name = name;
@@ -33,7 +33,7 @@ public class AdminModel {
         this.role = role;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -58,7 +58,7 @@ public class AdminModel {
     }
 
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
