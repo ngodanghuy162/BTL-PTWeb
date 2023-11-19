@@ -1,0 +1,55 @@
+// Colors (dark-theme)
+@mixin dark-theme {
+    --first-color: hsl(var(--hue), var(--sat), 60%);
+    --first-color-lighten: hsl(var(--hue), var(--sat), 80%);
+    --first-color-alt: hsl(var(--hue), var(--sat), 53%);
+    --text-color-light: hsl(var(--hue), 4%, 65%);
+    --black-color: #1a1a1a;
+    --white-color: #fff;
+    --first-color-light: hsl(var(--hue), var(--sat), 75%);
+    --title-color: hsl(var(--hue), 4%, 95%);
+    --text-color: hsl(var(--hue), 4%, 80%);
+    --body-color: hsl(var(--hue), 8%, 13%);
+    --container-color: hsl(var(--hue), 8%, 16%);
+    --scroll-bar-color: hsl(var(--hue), 4%, 32%);
+    --scroll-thumb-color: hsl(var(--hue), 4%, 24%);
+
+    #footer {
+        background-color: var(--container-color);
+    }
+}
+
+
+body {
+    margin: var(--header-height) 0 0 0;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+    transition: 0.4s;
+
+    &.dark-theme {
+        @include dark-theme;
+    }
+}
+
+h1,
+h2,
+h3 {
+    font-weight: var(--font-semi-bold);
+    color: var(--title-color);
+    line-height: 1.5;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
