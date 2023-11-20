@@ -4,7 +4,7 @@ import LandingPage from "../pages/Landing";
 import AdminPage from "../pages/Admin";
 import LoginPage from "../pages/Account/Login/index";
 import SignupPage from "../pages/Account/SignUp/index";
-import SearchPage from "../pages/Order/Search/index";
+import SearchPage from "../pages/Order/index";
 
 const AppRoutes = () => {
   return (

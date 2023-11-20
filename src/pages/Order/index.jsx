@@ -1,5 +1,5 @@
-import Input from "./Input.jsx"
-import styles from './Input.module.scss';
+import Input from "./Search/Input.jsx"
+import styles from './Search/Input.module.scss';
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import ScrollUp from "@/components/ScrollUp/ScrollUp";
