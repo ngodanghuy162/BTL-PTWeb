@@ -82,6 +82,9 @@ public class StaffModel {
         this.id_work = id_work;
     }
 
+    public StaffModel() {
+    }
+
     public StaffModel(long id, String name, String username, String password, String phoneNumber, String workPlace, boolean is_tapket, long id_work) {
         this.id = id;
         this.name = name;

@@ -34,7 +34,11 @@ public class StaffController {
     //cap tk cho nvien giao dich
     @PostMapping("/captaikhoangiaodichvien/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> addStudent(@RequestBody StaffModel staff,@PathVariable long id) {
-        return staffService.capTaiKhoan(staff,id);
+    public ResponseEntity<String> addStaffGdgAcount(@RequestBody StaffModel staff,@PathVariable(required = false) Long id) {
+        if(id != null) {
+            return staffService.capTaiKhoan(staff,id);
+        }
+         else
+             return staffService.capTaiKhoan(staff,-1L);
     }
 }

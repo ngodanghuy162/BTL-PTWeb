@@ -15,23 +15,26 @@ public class DiemGiaoDichModel {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "district")
-    private String district;
+    @Column(name = "address")
+    private String address;
 
     @JoinColumn(name = "id_tapket")
     @ManyToOne
     //@JsonBackReference
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonBackReference
     private DiemTapKetModel diemTapKet;
+
+    public DiemGiaoDichModel() {
+    }
 
     public long getId() {
         return id;
     }
 
-    public DiemGiaoDichModel(long id, String name, String district, DiemTapKetModel diemTapKet) {
+    public DiemGiaoDichModel(long id, String name, String address, DiemTapKetModel diemTapKet) {
         this.id = id;
         this.name = name;
-        this.district = district;
+        this.address = address;
         this.diemTapKet = diemTapKet;
     }
 
@@ -47,12 +50,12 @@ public class DiemGiaoDichModel {
         this.name = name;
     }
 
-    public String getDistrict() {
-        return district;
+    public String getaddress() {
+        return address;
     }
 
-    public void setDistrict(String district) {
-        this.district = district;
+    public void setaddress(String address) {
+        this.address = address;
     }
 
     public DiemTapKetModel getDiemTapKet() {

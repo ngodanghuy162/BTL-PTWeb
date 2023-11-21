@@ -1,17 +1,21 @@
 package com.btlweb.server.Model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Table;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
-@Table(name = "order")
 @Entity
+@Table(name = "donhang")
 public class OrderModel {
     @Id
-    @Column(name = "mavandon") // Đặt tên cột là "mavandon"
+    @Column(name = "mavandon")
+    // Đặt tên cột là "mavandon"
     private String mavandon;
 
     private String name;
@@ -22,6 +26,7 @@ public class OrderModel {
 
     @ManyToOne
     @JoinColumn(name = "id_diemgdgui")
+    @JsonIgnore
     private DiemGiaoDichModel diemGiaoDichGui;
 
     public DiemGiaoDichModel getDiemGiaoDichGui() {
@@ -32,17 +37,12 @@ public class OrderModel {
         this.diemGiaoDichGui = diemGiaoDichGui;
     }
 
-    public DiemGiaoDichModel getDiemGiaoDichNhan() {
-        return diemGiaoDichNhan;
+
+
+    public OrderModel() {
     }
 
-    public void setDiemGiaoDichNhan(DiemGiaoDichModel diemGiaoDichNhan) {
-        this.diemGiaoDichNhan = diemGiaoDichNhan;
-    }
 
-    @ManyToOne
-    @JoinColumn(name = "id_diemgdnhan")
-    private DiemGiaoDichModel diemGiaoDichNhan;
 
     private String diaChiGui;
 
@@ -62,35 +62,10 @@ public class OrderModel {
     @Column(name = "date_receive")
     private Date dateReceive;
 
+
+    @OneToMany(mappedBy = "donhangchinh")
     @JsonManagedReference
-    public List<StatusOrderModel> getStatusOrder() {
-        return statusOrder;
-    }
-
-    public OrderModel(String name, String sender, String receiver, DiemGiaoDichModel diemGiaoDichGui, String diaChiGui, String diaChiNhan, Float weight, String status, String type, Date dateSend, Date dateReceive, List<StatusOrderModel> statusOrder, long cost) {
-        this.mavandon = generateOrderMavandon();
-        this.name = name;
-        this.sender = sender;
-        this.receiver = receiver;
-        this.diemGiaoDichGui = diemGiaoDichGui;
-        this.diaChiGui = diaChiGui;
-        this.diaChiNhan = diaChiNhan;
-        this.weight = weight;
-        this.status = status;
-        this.type = type;
-        this.dateSend = dateSend;
-        this.dateReceive = dateReceive;
-        this.statusOrder = statusOrder;
-        this.cost = cost;
-    }
-
-    public void setStatusOrder(List<StatusOrderModel> statusOrder) {
-        this.statusOrder = statusOrder;
-    }
-
-    @OneToMany
-    @JsonManagedReference
-    private List<StatusOrderModel> statusOrder;
+    private List<StatusDonHangModel> statusDonHangModelList;
 
     private long cost;
 
@@ -201,7 +176,8 @@ public class OrderModel {
     }
 
 
-    public OrderModel(String name, String sender, String receiver, DiemGiaoDichModel diemGiaoDichGui, String diaChiGui, String diaChiNhan, Float weight, String status, String type, Date dateSend, Date dateReceive, long cost) {
+
+    public OrderModel(String name, String sender, String receiver, DiemGiaoDichModel diemGiaoDichGui, String diaChiGui, String diaChiNhan, Float weight, String status, String type, Date dateSend, Date dateReceive, List<StatusDonHangModel> statusDonHang, long cost) {
         this.mavandon = generateOrderMavandon();
         this.name = name;
         this.sender = sender;
@@ -214,25 +190,36 @@ public class OrderModel {
         this.type = type;
         this.dateSend = dateSend;
         this.dateReceive = dateReceive;
+        this.statusDonHangModelList = statusDonHang;
         this.cost = cost;
     }
 
-    public OrderModel(String mavandon, String name, String sender, String receiver, DiemGiaoDichModel diemGiaoDichGui, DiemGiaoDichModel diemGiaoDichNhan, String diaChiGui, String diaChiNhan, Float weight, String status, String type, Date dateSend, Date dateReceive, List<StatusOrderModel> statusOrder, long cost) {
-        this.mavandon = mavandon;
+    public OrderModel(String name, String sender, String receiver, String diaChiGui, String diaChiNhan, Float weight, String type, Date dateSend, long cost) {
+        this.mavandon = generateOrderMavandon();
         this.name = name;
         this.sender = sender;
         this.receiver = receiver;
-        this.diemGiaoDichGui = diemGiaoDichGui;
-        this.diemGiaoDichNhan = diemGiaoDichNhan;
         this.diaChiGui = diaChiGui;
         this.diaChiNhan = diaChiNhan;
         this.weight = weight;
-        this.status = status;
         this.type = type;
         this.dateSend = dateSend;
-        this.dateReceive = dateReceive;
-        this.statusOrder = statusOrder;
         this.cost = cost;
+    }
+
+    public OrderModel(CreateOrderFormat createOrderFormat) {
+        this.mavandon = generateOrderMavandon();
+        this.name = createOrderFormat.getName();
+        this.sender = createOrderFormat.getSender();
+        this.receiver = createOrderFormat.getReceiver();
+        this.diaChiGui = createOrderFormat.getDiaChiGui();
+        this.diaChiNhan = createOrderFormat.getDiaChiNhan();
+        this.weight = createOrderFormat.getWeight();
+        this.type = createOrderFormat.getType();
+        this.dateSend = createOrderFormat.getDateSend();
+        this.cost = createOrderFormat.getCost();
+        this.dateReceive = null;
+        this.diemGiaoDichGui = null;
     }
 
     private String generateOrderMavandon() {

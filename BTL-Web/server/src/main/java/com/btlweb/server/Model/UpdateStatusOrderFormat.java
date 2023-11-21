@@ -6,6 +6,9 @@ public class UpdateStatusOrderFormat {
     private Date timeReceive;
     private String status;
 
+    public UpdateStatusOrderFormat() {
+    }
+
     public Date getTimeReceive() {
         return timeReceive;
     }

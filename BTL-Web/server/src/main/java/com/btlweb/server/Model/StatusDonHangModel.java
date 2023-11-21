@@ -3,10 +3,13 @@ package com.btlweb.server.Model;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
+
 @Entity
-@Table(name = "statusorder")
-public class StatusOrderModel {
+@Table(name = "statusdonhang")
+public class StatusDonHangModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -26,37 +29,57 @@ public class StatusOrderModel {
     private int id_receivePlace;
 
     @Transient
-    private String mavandon;
-
-    public StatusOrderModel() {
-    }
+    private String mavandonNotCol;
 
     @ManyToOne
     @JoinColumn(name = "mavandon")
-    @JsonBackReference
-    private OrderModel order;
+    @JsonIgnore
+    private OrderModel donhangchinh;
 
-    public StatusOrderModel(long id, Date timeSend, Date timeReceive, String type, int id_sendPlace, int id_receivePlace, OrderModel order, String status) {
+    public StatusDonHangModel() {
+    }
+    public StatusDonHangModel(long id, Date timeSend, Date timeReceive, String type, int id_sendPlace, int id_receivePlace, OrderModel donhangchinh, String status) {
         this.id = id;
         this.timeSend = timeSend;
         this.timeReceive = timeReceive;
         this.type = type;
         this.id_sendPlace = id_sendPlace;
         this.id_receivePlace = id_receivePlace;
-        this.order = order;
+        this.donhangchinh = donhangchinh;
         this.status = status;
     }
 
-    public StatusOrderModel(long id, Date timeSend, Date timeReceive, String type, int id_sendPlace, int id_receivePlace, String mavandon, OrderModel order, String status) {
-        this.id = id;
+    public StatusDonHangModel(Date timeSend, Date timeReceive, String type, int id_sendPlace, int id_receivePlace, String status) {
         this.timeSend = timeSend;
         this.timeReceive = timeReceive;
         this.type = type;
         this.id_sendPlace = id_sendPlace;
         this.id_receivePlace = id_receivePlace;
-        this.mavandon = mavandon;
-        this.order = order;
         this.status = status;
+    }
+
+    public StatusDonHangModel(Date timeSend, String type, int id_sendPlace, int id_receivePlace, String status) {
+        this.timeSend = timeSend;
+        this.timeReceive = null;
+        this.type = type;
+        this.id_sendPlace = id_sendPlace;
+        this.id_receivePlace = id_receivePlace;
+        this.status = status;
+    }
+
+    public String getMavandonNotCol() {
+        if(donhangchinh != null) {
+            return donhangchinh.getMaVanDon();
+        }
+        return mavandonNotCol;
+    }
+
+    public void setMavandonNotCol(String mavandonNotCol) {
+        if(donhangchinh != null) {
+            this.mavandonNotCol =  donhangchinh.getMaVanDon();
+        } else {
+            this.mavandonNotCol = mavandonNotCol;
+        }
     }
 
     public int getId_sendPlace() {
@@ -75,27 +98,13 @@ public class StatusOrderModel {
         this.id_receivePlace = id_receivePlace;
     }
 
-    public String getMavandon() {
-        if(this.order != null) {
-            return order.getMaVanDon();
-        }
-        return mavandon;
+
+    public OrderModel getDonhangchinh() {
+        return donhangchinh;
     }
 
-    public void setMavandon(String mavandon) {
-        if(order != null) {
-            this.mavandon = order.getMaVanDon();
-        } else {
-            this.mavandon = mavandon;
-        }
-    }
-
-    public OrderModel getOrder() {
-        return order;
-    }
-
-    public void setOrder(OrderModel order) {
-        this.order = order;
+    public void setDonhangchinh(OrderModel donhangchinh) {
+        this.donhangchinh = donhangchinh;
     }
 
     private String status;
@@ -149,13 +158,6 @@ public class StatusOrderModel {
         this.id_receivePlace = receivePlace;
     }
 
-    public OrderModel getorder() {
-        return order;
-    }
-
-    public void setorder(OrderModel order) {
-        this.order = order;
-    }
 
     public String getStatus() {
         return status;

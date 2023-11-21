@@ -1,9 +1,6 @@
 package com.btlweb.server.Controller;
 
-import com.btlweb.server.Model.OrderModel;
-import com.btlweb.server.Model.StaffModel;
-import com.btlweb.server.Model.StatusOrderModel;
-import com.btlweb.server.Model.UpdateStatusOrderFormat;
+import com.btlweb.server.Model.*;
 import com.btlweb.server.Repository.OrderRepository;
 import com.btlweb.server.Repository.StatusOrderRepository;
 import com.btlweb.server.Service.OrderService;
@@ -17,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="/donhang")
+@RequestMapping(path="/order")
 public class OrderController {
     private final StatusOrderService statusOrderService;
     private final OrderService orderService;
@@ -35,6 +32,8 @@ public class OrderController {
     }
 
 
+
+
     //thong ke tat ca cac don hang (ldao moi dc vao)
     @GetMapping("/thongkeorder/all")
     public List<OrderModel> getAllOrders() {
@@ -50,30 +49,36 @@ public class OrderController {
 
 
     //thong ke hang den cac dtk. type la hanggui  hoac nhan(truong dtk,ldao)
+    //thong ke dua vao status order
     @GetMapping("/thongkestatusOrder/dtk")
-    public List<StatusOrderModel> getAllOrdersDtkByType(@RequestParam(name = "id_dtk") long id_dtk,@RequestParam(name = "type") String type) {
+    public List<StatusDonHangModel> getAllOrdersDtkByType(@RequestParam(name = "id_dtk") long id_dtk,@RequestParam(name = "type") String type) {
         return orderService.getAllOrdersDtkByType(id_dtk,type);
     }
 
     //thong ke hang den cac dgd.type la hanggui  hoac nhan (truong dgd,truong dtk)
+    //thong ke dua vao status order
     @GetMapping("/thongkestatusOrder/dgd")
-    public List<StatusOrderModel> getAllOrdersDgdByType(@RequestParam(name = "id_dgd") long id_dgd,@RequestParam(name = "type") String type) {
+    public List<StatusDonHangModel> getAllOrdersDgdByType(@RequestParam(name = "id_dgd") long id_dgd,@RequestParam(name = "type") String type) {
         return orderService.getAllOrdersDgdByType(id_dgd,type);
     }
 
     //tao don hang gui di
     //staff co the tủy cap
-    @PostMapping("createstatus")
+    @PostMapping("createstatus/{mavandon}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> createOrderStatus(@RequestBody StatusOrderModel statusOrder, @RequestParam String mavandon) {
-        return orderService.createOrderStatus(statusOrder,mavandon);
+    public ResponseEntity<String> createOrderStatus(@RequestBody StatusDonHangModel statusOrder, @PathVariable(required = false) String mavandon) {
+       if(mavandon != null) {
+           return orderService.createOrderStatus(statusOrder,mavandon);
+       } else {
+           return orderService.createOrderStatus(statusOrder,"No");
+       }
     }
 
     //create order, xac nhan don hang nguoi gui
     @PostMapping("createorder")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> acceptAndCreateOrder(@RequestBody OrderModel orderModel) {
-        return orderService.createOrder(orderModel);
+    public ResponseEntity<String> acceptAndCreateOrder(@RequestBody CreateOrderFormat createOrderFormat) {
+        return orderService.createOrder(createOrderFormat);
     }
 
     //xac nhan don hang tai dtk

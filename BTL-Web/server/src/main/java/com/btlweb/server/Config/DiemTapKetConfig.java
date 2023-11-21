@@ -7,11 +7,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DiemTapKetConfig {
 
-    @Bean
-    CommandLineRunner commandLineRunner(DiemTapKetRepository diemTapKetRepository) {
-        return args -> {
-            diemTapKetRepository.findAll();
-        };
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunner(DiemTapKetRepository diemTapKetRepository) {
+//        return args -> {
+//            diemTapKetRepository.findAll();
+//        };
+//    }
 
 }

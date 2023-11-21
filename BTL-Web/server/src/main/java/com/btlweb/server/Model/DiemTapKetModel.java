@@ -19,8 +19,8 @@ public class DiemTapKetModel {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "province")
-    private String province;
+    @Column(name = "address")
+    private String address;
 
 //    @OneToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "id_leader_acc",referencedColumnName = "id")
@@ -30,7 +30,7 @@ public class DiemTapKetModel {
 
     @OneToMany(mappedBy = "diemTapKet",fetch = FetchType.LAZY)
     //JsonManagedReference
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonManagedReference
     private List<DiemGiaoDichModel> diemGiaoDichModelList;
 
     public List<DiemGiaoDichModel> getDiemGiaoDichModelList() {
@@ -44,10 +44,10 @@ public class DiemTapKetModel {
     public DiemTapKetModel() {
     }
 
-    public DiemTapKetModel(long id, String name, String province) {
+    public DiemTapKetModel(long id, String name, String address) {
         this.id = id;
         this.name = name;
-        this.province = province;
+        this.address = address;
     }
 
     public long getId() {
@@ -66,12 +66,12 @@ public class DiemTapKetModel {
         this.name = name;
     }
 
-    public String getProvince() {
-        return province;
+    public String getaddress() {
+        return address;
     }
 
-    public void setProvince(String province) {
-        this.province = province;
+    public void setaddress(String address) {
+        this.address = address;
     }
 
 }

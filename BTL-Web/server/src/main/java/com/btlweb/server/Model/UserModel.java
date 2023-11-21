@@ -37,6 +37,9 @@ public class UserModel {
         return id;
     }
 
+    public UserModel() {
+    }
+
     public void setId(long id) {
         this.id = id;
     }

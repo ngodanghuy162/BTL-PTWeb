@@ -22,9 +22,11 @@ public class StaffService {
         return staffRepository.findStaffByDtkID(id_tapket);
     }
 
-    public ResponseEntity<String> capTaiKhoan(StaffModel staff,long id) {
+    public ResponseEntity<String> capTaiKhoan(StaffModel staff,Long id) {
         try {
-            staff.setId_work(id);
+            if(id != -1L) {
+                staff.setId_work(id);
+            }
             staff.setIs_tapket(false);
             staffRepository.saveAndFlush(staff);
             return new ResponseEntity<String>("Them tai khoan thanh cong",HttpStatus.OK);
