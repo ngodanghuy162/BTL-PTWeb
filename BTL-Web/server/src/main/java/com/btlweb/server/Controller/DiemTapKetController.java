@@ -24,7 +24,7 @@ public class DiemTapKetController {
         this.dtkService = diemTapKetService;
     }
 
-    //lay tk diem tk
+    //lay tat ca diem tk
     @GetMapping(path = "/all")
     public List<DiemTapKetModel> diemTapKetList() {
         return dtkService.getAllDtk();
