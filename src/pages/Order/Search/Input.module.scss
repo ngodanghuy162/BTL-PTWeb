@@ -44,3 +44,14 @@
     line-height: 24px;
     width: 150px;
 }
+
+.contentLogs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.BillInformation td {
+    // border: 1px solid rgba(49,49,49);
+}

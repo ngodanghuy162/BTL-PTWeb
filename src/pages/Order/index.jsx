@@ -7,10 +7,10 @@ import ScrollUp from "@/components/ScrollUp/ScrollUp";
 const Search = () => {
     return (
         <div className={styles['Search']}>
-            <Header />
+            {/* <Header /> */}
             <Input/>
-            <Footer />
-            <ScrollUp />
+            {/* <Footer /> */}
+            {/* <ScrollUp /> */}
         </div>
     )
 }
