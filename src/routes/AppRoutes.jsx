@@ -5,6 +5,7 @@ import AdminPage from "../pages/Admin";
 import LoginPage from "../pages/Account/Login/index";
 import SignupPage from "../pages/Account/SignUp/index";
 import SearchPage from "../pages/Order/index";
+import Data from "../pages/Order/pdf";
 
 const AppRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const AppRoutes = () => {
       <Route path="/login" element={<LoginPage />}></Route>
       <Route path="/signup" element={<SignupPage />}></Route>
       <Route path="/search" element={<SearchPage />}></Route>
+      <Route path="/data" element={<Data />}></Route>
       {/* <Route path="*" element={<NotFoundPage />}></Route> */}
     </Routes>
   );

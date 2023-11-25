@@ -5,25 +5,35 @@ import orderApi from '../../../assets/api/OrderApi';
 const Input = () => {
     const [isDivVisible, setIsDivVisible] = useState(false);
 
+    const [orderData, setOrderData] = useState(null);
+
+    const [trackingCode, setTrackingCode] = useState('');
+
     const handleButtonClick = () => {
         if(!isDivVisible)
             setIsDivVisible(!isDivVisible);
     };
 
-    const [orderData, setOrderData] = useState([]);
+    const handleInputChange = (event) => {
+        setTrackingCode(event.target.value);
+      };
     
   useEffect(() => {
-    const fetchProduct = async () => {
+    const fetchData = async () => {
         try {
-            const response = await orderApi.getDataSearch();
+            const response = await orderApi.getDataSearch('1HWC1700386580181');
             setOrderData(response);
         } catch (error) {
         console.error('Error fetching data:', error);
       }
-
     };
-    fetchProduct();
+    fetchData();
   }, []);
+
+    const handleReloadData = () => {
+        //fetchData();
+    };
+
 
   const formatDateTime = (dateTimeString) => {
     const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
@@ -38,13 +48,13 @@ const Input = () => {
             </div>
             
             <div className={styles['formInput']}>
-                <input className={styles['inputSearch']} type="text" placeholder='Nhập mã bưu gửi' />
-                <button className={styles['buttonSearch']}  onClick={handleButtonClick}>Tìm kiếm</button>
+                <input className={styles['inputSearch']}  type="text" value={trackingCode} onChange={handleInputChange} placeholder='Nhập mã bưu gửi' />
+                <button className={styles['buttonSearch']}  onClick={handleReloadData()}>Tìm kiếm</button>
             </div>
 
-            {orderData && (
+            {orderData ? (
                 <div className={styles['contentLogs']}>
-                <h1>Thông tin vận đơn</h1>
+                <h1>Thông tin vận đơn {orderData.maVanDon}</h1>
                     <table className={styles['BillInformation']}>
                         <tbody>
                             <tr>
@@ -81,7 +91,7 @@ const Input = () => {
                         </>
                     )}
                 </div>
-            )}    
+            ) : (<div></div>)}    
     </div>
     )
 }
