@@ -10,7 +10,7 @@ class DownloadPDFButton extends React.Component {
     html2canvas(input)
       .then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
-        const imgWidth = 40; // Chiều rộng của ảnh trang (A4)
+        const imgWidth = 40; // Chiều rộng của ảnh
         const imgHeight = (canvas.height * imgWidth) / canvas.width; // Chiều cao theo tỉ lệ
 
         pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
@@ -22,7 +22,6 @@ class DownloadPDFButton extends React.Component {
     return (
       <div>
         <button onClick={this.downloadPDF}>Tải xuống PDF</button>
-        {/* Thêm bảng cần xuất dữ liệu */}
         <table id="table-to-export">
           <thead>
             <tr>
@@ -37,7 +36,6 @@ class DownloadPDFButton extends React.Component {
               <td>Nguyễn</td>
               <td>Văn A</td>
             </tr>
-            {/* Thêm dữ liệu khác nếu cần */}
           </tbody>
         </table>
       </div>
