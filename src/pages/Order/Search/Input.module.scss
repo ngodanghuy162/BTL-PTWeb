@@ -1,0 +1,57 @@
+.Search {
+}
+
+.contentSearch {
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.iconContent, .ListContent {
+    display: flex;
+    justify-content: center;
+}
+
+.textSearch {
+    font-size: 16px;
+    line-height: 24px;
+    color: #313131;
+}
+
+.formInput {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.inputSearch {
+    width: 60%;
+    border: 1px solid rgba(49,49,49,.3);
+    border-radius: 4px;
+    padding: 13px 20px;
+}
+
+.buttonSearch {
+    padding: 10px 15px 10px 15px;
+    margin-top: 10px;
+    margin-left: 20px;
+    color: #fff;
+    background: #f7941e;
+    border-radius: 6px;
+    border: none;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    width: 150px;
+}
+
+.contentLogs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.BillInformation td {
+    // border: 1px solid rgba(49,49,49);
+}
