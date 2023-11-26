@@ -8,6 +8,18 @@ import classNames from "classnames";
 
 const Sidebar = () => {
     const [selected, setSelected] = useState(0);
+    // let classNames = classnames(styles.menuItem, {
+    //     [style.active]: selected === index,
+    // });
+    const sidebarVariants = {
+        true: {
+            left: "0",
+        },
+        false: {
+            left: "-60%",
+        },
+    };
+    console.log(window.innerWidth);
 
     return (
         <>
@@ -19,15 +31,13 @@ const Sidebar = () => {
                     </span>
                 </div>
 
-                <div className={style.menu}>
+                <div className={style["menu"]}>
                     {SidebarCategory.map((item, index) => {
                         return (
                             <div
-                                className={
-                                    selected === index
-                                        ? style["menuItem--active"]
-                                        : style["menuItem"]
-                                }
+                                className={classNames(style.menuItem, {
+                                    [style.active]: index === selected,
+                                })}
                                 key={index}
                                 onClick={() => setSelected(index)}
                             >

@@ -1,5 +1,3 @@
-import "@/styles/global.scss";
-
 import style from "./Landing.module.scss";
 
 import Header from "@/components/header/Header";
@@ -9,7 +7,7 @@ import ScrollUp from "@/components/ScrollUp/ScrollUp";
 
 const LandingPage = () => {
     return (
-        <div>
+        <div className={style}>
             <Header />
             <Main />
             <Footer />

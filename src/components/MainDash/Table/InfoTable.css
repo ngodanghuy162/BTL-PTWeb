@@ -1,0 +1,8 @@
+.MuiTableRow-root > * {
+    padding: 10px;
+  }
+  
+  .MuiTableRow-root.MuiTableRow-head > * {
+    font-weight: bold !important;
+  }
+  
