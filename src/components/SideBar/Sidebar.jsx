@@ -27,7 +27,7 @@ const Sidebar = () => {
                 <div className={style.logo}>
                     <img src={Logo} alt="logo" />
                     <span>
-                        <span>ad</span>min
+                        <span>magic</span> admin
                     </span>
                 </div>
 

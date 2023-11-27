@@ -57,12 +57,12 @@ const InfoTable = () => {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Order</TableCell>
-                            <TableCell align="left">Noi Gui</TableCell>
-                            <TableCell align="left">Noi Nhan</TableCell>
-                            <TableCell align="left">Trong Luong</TableCell>
-                            <TableCell align="left">Loai Hang</TableCell>
-                            <TableCell align="left">Tinh Trang</TableCell>
+                            <TableCell>Order Id</TableCell>
+                            <TableCell align="left">Sender Address</TableCell>
+                            <TableCell align="left">Receiver Address</TableCell>
+                            <TableCell align="left">Weight</TableCell>
+                            <TableCell align="left">Type</TableCell>
+                            <TableCell align="left">Status</TableCell>
                             <TableCell align="left"></TableCell>
                         </TableRow>
                     </TableHead>
