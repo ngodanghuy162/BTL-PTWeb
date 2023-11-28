@@ -1,6 +1,6 @@
 import styles from './Input.module.scss';
 import React, { useState, useEffect } from 'react';
-import orderApi from '../../../assets/api/OrderApi';
+import orderApi from '../../../api/OrderApi';
 
 const Input = () => {
     const [isDivVisible, setIsDivVisible] = useState(false);

@@ -99,7 +99,7 @@ function Header() {
           <i className="bx bx-grid-alt" />
         </div>
         <a
-          href="/admin"
+          href="/login"
           className={classNames([layout.button], {
             [layout.hidden]: width < 960,
           })}

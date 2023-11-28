@@ -59,7 +59,7 @@ const FormLogin = () => {
                 </button>
                 <span className={styles['hasAccount']}>
                         Bạn chưa có tài khoản?
-                        <Link className={styles['hasAccountLink']} to={'/sign-up'}> Đăng ký</Link>
+                        <Link className={styles['hasAccountLink']} to={'/signup'}> Đăng ký</Link>
                 </span>
             </div>
         </form>
