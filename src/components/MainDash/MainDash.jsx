@@ -3,12 +3,18 @@ import style from "./MainDash.module.scss";
 import Cards from "./Cards/Cards";
 import InfoTable from "./Table/InfoTable";
 
-const MainDash = () => {
+const MainDash = ({ selected, onSelected }) => {
     return (
         <div className={style.MainDash}>
-            <h1>Dashboard</h1>
-            <Cards />
-            <InfoTable />
+            {selected === 0 ? (
+                <>
+                    <h1>Dashboard</h1>
+                    <Cards />
+                    <InfoTable />
+                </>
+            ) : (
+                <h1>{selected}</h1>
+            )}
         </div>
     );
 };

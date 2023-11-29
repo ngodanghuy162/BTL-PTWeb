@@ -6,11 +6,7 @@ import { UilSignOutAlt } from "@iconscout/react-unicons";
 import { SidebarCategory } from "./Category/Category";
 import classNames from "classnames";
 
-const Sidebar = () => {
-    const [selected, setSelected] = useState(0);
-    // let classNames = classnames(styles.menuItem, {
-    //     [style.active]: selected === index,
-    // });
+const Sidebar = ({ selected, onSelected }) => {
     const sidebarVariants = {
         true: {
             left: "0",
@@ -39,7 +35,7 @@ const Sidebar = () => {
                                     [style.active]: index === selected,
                                 })}
                                 key={index}
-                                onClick={() => setSelected(index)}
+                                onClick={() => onSelected(index)}
                             >
                                 <item.icon />
                                 <span>{item.heading}</span>
