@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Header.module.scss';
+import { IoMdSearch } from "react-icons/io";
 
 function Header() {
   return (
@@ -7,7 +8,10 @@ function Header() {
       <div className={styles['inner']}>
         <img src='src\assets\images\logo.png' className={styles['img']} alt='logo' />
 
-        <input type="text"  className={styles['input']}/>
+        <div>
+          <input type="text"  className={styles['input']}/>
+          <IoMdSearch />
+        </div>
 
         <div className={styles['action']}></div>
       </div>

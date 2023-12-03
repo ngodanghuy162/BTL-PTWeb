@@ -1,6 +1,6 @@
 import axiosClient from "./AxiosClient";
 
-const OrderApi = {
+class OrderApi {
     getDataSearch(params) {
         // const url = `/products`;
         
@@ -13,4 +13,4 @@ const OrderApi = {
     // }
 }
 
-export default OrderApi;
+export default new OrderApi;

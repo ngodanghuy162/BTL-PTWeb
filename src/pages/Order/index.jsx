@@ -1,5 +1,5 @@
-import Input from "./Search/Input.jsx"
-import styles from './Search/Input.module.scss';
+import Input from "./Search/index.jsx"
+import styles from './Search/Search.module.scss';
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import ScrollUp from "@/components/ScrollUp/ScrollUp";
@@ -7,10 +7,10 @@ import ScrollUp from "@/components/ScrollUp/ScrollUp";
 const Search = () => {
     return (
         <div className={styles['Search']}>
-            {/* <Header /> */}
+            <Header />
             <Input/>
-            {/* <Footer /> */}
-            {/* <ScrollUp /> */}
+            <Footer />
+            <ScrollUp />
         </div>
     )
 }

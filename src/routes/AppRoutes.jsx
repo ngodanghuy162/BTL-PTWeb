@@ -7,6 +7,7 @@ import SignupPage from "../pages/Account/SignUp/index";
 import SearchPage from "../pages/Order/index";
 import Data from "../pages/Order/pdf";
 import Employee from "../pages/Employee/index";
+import Test from "../pages/Order/Search/test"
 
 const AppRoutes = () => {
   return (
@@ -18,6 +19,7 @@ const AppRoutes = () => {
       <Route path="/search" element={<SearchPage />}></Route>
       <Route path="/data" element={<Data />}></Route>
       <Route path="/employee" element={<Employee />}></Route>
+      <Route path="/test" element={<Test />}></Route>
       {/* <Route path="*" element={<NotFoundPage />}></Route> */}
     </Routes>
   );
