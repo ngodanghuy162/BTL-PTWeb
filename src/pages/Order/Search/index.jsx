@@ -7,6 +7,7 @@ import orderApi from '../../../api/OrderApi';
 const OrderTracking = () => {
   const [mavandon, setMavandon] = useState('');
   const [orderData, setOrderData] = useState(null);
+  const [isDivVisible, setIsDivVisible] = useState(false);
 
   const getData = async () => {
     try {
@@ -20,6 +21,11 @@ const OrderTracking = () => {
 
   const handleButtonClick = () => {
     getData();
+    setIsDivVisible(!isDivVisible);
+};
+
+const handleClose = () => {
+  setIsDivVisible(!isDivVisible);
 };
 
 const formatDateTime = (dateTimeString) => {
@@ -45,44 +51,12 @@ const formatDateTime = (dateTimeString) => {
         <button className={styles['buttonSearch']} onClick={handleButtonClick}>Tìm kiếm</button>
 
     </div>
-  {orderData && (<div className={styles['contentLogs']}>
-              <h1>Thông tin vận đơn {orderData.maVanDon}</h1>
-                  <table className={styles['BillInformation']}>
-                      <thead>
-                          <tr>
-                              <td className={styles['in4Left']}>Người nhận</td>
-                              <td className={styles['in4Right']}>{orderData.name}</td>
-                          </tr>
-                          <tr>
-                              <td className={styles['in4Left']}>Địa chỉ</td>
-                              <td className={styles['in4Right']}>{orderData.diaChiGui}</td>
-                          </tr>
-                          <tr>
-                              <td className={styles['in4Left']}>Người gửi</td>
-                              <td className={styles['in4Right']}>{orderData.receiver}</td>
-                          </tr>
-                          <tr>
-                              <td className={styles['in4Left']}>Địa chỉ</td>
-                              <td className={styles['in4Right']}>{orderData.diaChiNhan}</td>
-                          </tr>
-                      </thead>
-                  </table>
-                  {orderData.statusDonHangModelList && orderData.statusDonHangModelList.length > 0 && (
-                      <>
-                      <h2>Order Status History</h2>
-                      <ul className={styles['Log']}>
-                          {orderData.statusDonHangModelList.map((statusItem) => (
-                          <li className={styles['Status']} key={statusItem.id}>
-                              <p>Type: {statusItem.type}</p>
-                              <p>Status: {statusItem.status}</p>
-                              <p>Time Send: {formatDateTime(statusItem.timeSend)}</p>
-                              <p>Time Receive: {statusItem.timeReceive ? formatDateTime(statusItem.timeReceive) : 'Not received yet'}</p>
-                          </li>
-                          ))}
-                      </ul>
-                      </>
-                  )}
-              </div>   )}
+    {isDivVisible && orderData && (
+                    <div>
+                        <div onClick={handleClose} className={styles['list-hidden_background']}></div>
+                        <Detail dataSearch = {orderData} onClose={handleClose}/>
+                    </div>
+                )}
     </div>
   );
 };

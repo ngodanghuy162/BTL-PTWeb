@@ -1,12 +1,14 @@
 import styles from './Search.module.scss'
 import React, { useState, useEffect } from 'react';
+import { IoMdCloseCircleOutline } from "react-icons/io";
 import orderApi from '../../../api/OrderApi';
-const Detail = (dataSearch) => {
-    const [isDivVisible, setIsDivVisible] = useState(false);
+const Detail = ({dataSearch, onClose }) => {
 
-    const handleClick = () => {
-        setIsDivVisible(!isDivVisible);
+    const handleClose = () => {
+        onClose();
       };
+
+      
 
 
   const formatDateTime = (dateTimeString) => {
@@ -16,9 +18,11 @@ const Detail = (dataSearch) => {
 
     return (
         <div className={styles['list-hidden_content']}>
-            <div className={styles['content']}>
-                <h1>Thông tin vận đơn </h1>
+            <div className={styles['hidden_header']}>
+                <h1 className={styles['hidden_header-text']}>Tra cứu vận đơn {dataSearch.maVanDon}</h1>
+                <IoMdCloseCircleOutline className={styles['hidden_header-icon']}  onClick={handleClose}/>
             </div>
+
             <div className={styles['contentLogs']}>
                 <h1>Thông tin vận đơn {dataSearch.maVanDon}</h1>
                     <table className={styles['BillInformation']}>
