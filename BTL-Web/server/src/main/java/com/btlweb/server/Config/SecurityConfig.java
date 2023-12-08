@@ -12,18 +12,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class SecurityConfig implements WebMvcConfigurer {
+public class SecurityConfig {
 
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .anyRequest().permitAll();
-    }
+//    //cors config
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**")
+//                .allowedOrigins("http://localhost:5173") // Thay đổi địa chỉ origin của frontend của bạn
+//                .allowedMethods("GET", "POST", "PUT", "DELETE")
+//                .allowCredentials(true);
+//    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -33,17 +36,6 @@ public class SecurityConfig implements WebMvcConfigurer {
                         .anyRequest().permitAll()
                 );
         return http.build();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails user = User.builder()
-                .username("user")
-                .password(passwordEncoder().encode("password"))
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(user);
     }
 
     @Bean
