@@ -3,7 +3,7 @@ import Logo from "@/assets/images/logo.png";
 
 import style from "./Sidebar.module.scss";
 import { UilSignOutAlt } from "@iconscout/react-unicons";
-import { SidebarCategory } from "./Category/Category";
+import { SidebarCategory } from "./Category";
 import classNames from "classnames";
 
 const Sidebar = ({ selected, onSelected }) => {
@@ -15,7 +15,6 @@ const Sidebar = ({ selected, onSelected }) => {
             left: "-60%",
         },
     };
-    console.log(window.innerWidth);
 
     return (
         <>
