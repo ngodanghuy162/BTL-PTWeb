@@ -1,0 +1,183 @@
+.Search {
+}
+
+.contentSearch {
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.iconContent, .ListContent {
+    display: flex;
+    justify-content: center;
+}
+
+.textSearch {
+    font-size: 16px;
+    line-height: 24px;
+    color: #313131;
+}
+
+.formInput {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.inputSearch {
+    width: 60%;
+    border: 1px solid rgba(49,49,49,.3);
+    border-radius: 4px;
+    padding: 13px 20px;
+}
+
+.buttonSearch {
+    padding: 10px 15px 10px 15px;
+    margin-top: 10px;
+    margin-left: 20px;
+    color: #fff;
+    background: #f7941e;
+    border-radius: 6px;
+    border: none;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    width: 150px;
+}
+
+.list-hidden_background {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    opacity: 0.2;
+}
+
+.list-hidden_content {
+    position: fixed;
+    z-index: 2;
+    width: 80%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 0 10px 0;
+    border: 1px solid rgba(49,49,49);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: #fff;
+    opacity: 1 !important;
+}
+
+.list-hidden_content {
+    /* Thiết lập chiều dài cố định cho phần tử */
+    max-height: 800px; /* Hoặc chiều dài mong muốn */
+  
+    /* Thiết lập thanh cuộn khi nội dung vượt quá chiều dài cố định */
+    overflow-y: auto;
+  
+    /* Thêm độ mềm mại cho thanh cuộn */
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+  }
+  
+  /* Thiết lập kiểu dáng cho thanh cuộn trên trình duyệt WebKit (như Chrome, Safari) */
+  .list-hidden_content::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  .list-hidden_content::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+  }
+  
+  .list-hidden_content::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+
+.hidden_header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    background-color: #007200;
+    margin-bottom: 10px;
+}
+
+.hidden_header-text {
+    color: white;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.hidden_header-icon {
+    color: white;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.contentName {
+    width: 100%;
+    height: 40px;
+    background-color: aquamarine;
+    border-radius: 10px;
+}
+
+.content h1{
+    color: #ccc;
+}
+
+.buttonClick {
+    position: fixed;
+    z-index: 2;
+}
+
+.contentLogs {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.contentText {
+    color: white !important;
+}
+
+.contentLogs h1 {
+    margin: auto;
+    font-size: 25px;
+}
+
+.BillInformation {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+table, td, th {
+    border: 1px solid rgba(49,49,49);
+    border-collapse: collapse;
+}
+
+.in4Left {
+    padding: 6px 20px;
+}
+
+.in4Right {
+    padding: 6px 20px;
+}
+
+.Log {
+    width: 100%;
+}
+
+.Log li {
+    border:  1px solid rgba(49,49,49);
+}
