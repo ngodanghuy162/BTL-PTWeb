@@ -1,0 +1,44 @@
+.wrapper {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.container {
+  // margin-top: 60px;
+  width: 1150px;
+  display: flex;
+  height: 100%;
+}
+
+.scrollbarContent {
+  /* Thiết lập chiều dài cố định cho phần tử */
+  max-height: 100%; /* Hoặc chiều dài mong muốn */
+
+  /* Thiết lập thanh cuộn khi nội dung vượt quá chiều dài cố định */
+  overflow-y: auto;
+
+  /* Thêm độ mềm mại cho thanh cuộn */
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+/* Thiết lập kiểu dáng cho thanh cuộn trên trình duyệt WebKit (như Chrome, Safari) */
+.scrollbarContent::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scrollbarContent::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 6px;
+}
+
+.scrollbarContent::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.content {
+  flex: 1;
+  // height: 100000px;
+}

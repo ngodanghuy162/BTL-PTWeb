@@ -1,0 +1,35 @@
+.wrapper {
+    // margin-top: 60px;
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+    // right: 0;
+    max-width: 356px;
+    height: 100%;
+}
+
+ul {
+    padding: 0;
+}
+
+h5 {
+    display: inline-block;
+}
+
+.menu {
+    padding: 10px 5px 10px 5px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.menuContent {
+}
+
+.menuContentChild > li {
+    padding: 10px 5px 10px 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+
+}

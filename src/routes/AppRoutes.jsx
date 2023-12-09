@@ -5,14 +5,16 @@ import AdminPage from "../pages/Admin/Admin";
 import LoginPage from "../pages/Account/Login/index";
 import SignupPage from "../pages/Account/SignUp/index";
 import SearchPage from "../pages/Order/index";
-import Data from "../pages/Order/Bill/index";
-import Employee from "../pages/Employee/index";
+import Data from "../pages/Order/Bill/pdf";
+import Employee from "../pages/Employee/Edit/index";
 import Test from "../pages/Order/Search/test"
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />}></Route>
+      <Route path="/" element={<LandingPage />}
+      
+      ></Route>
       <Route path="/admin" element={<AdminPage />}></Route>
       <Route path="/login" element={<LoginPage />}></Route>
       <Route path="/signup" element={<SignupPage />}></Route>

@@ -7,9 +7,28 @@ footer {
     text-align: center;
 }
 
+h4 {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+p {
+    margin: 0;
+}
+
+label {
+    display: flex;
+}
+
+h4, p, label {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 .Bill {
     width: 800px;
     margin: auto;
+    font-size: 12px;
 }
 
 .BillHeader {
@@ -17,6 +36,7 @@ footer {
     justify-content: center;
     align-items: center;
     justify-content: space-between;
+    margin: 2% 10%;
 }
 
 .QrImg {
@@ -29,6 +49,11 @@ footer {
 
 .BillContentFirst {
     width: 50%;
+}
+
+.BillAddress {
+    padding-bottom: 20px;
+    word-wrap: break-word;
 }
 
 .BorderTop {
@@ -52,6 +77,50 @@ footer {
     border-left: none;
 }
 
-.FullHeight {
-    height: 100%;
+.BorderBottom {
+    border-bottom: 1px solid black;
+}
+
+.BorderRight {
+    border-right: 1px solid black;
+}
+
+.ListInput p {
+    font-size: 9px;
+}
+
+.UpContent {
+    vertical-align: top;
+}
+
+.Width60 {
+    width: 60%;
+}
+
+.ContentNumber {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Contenttext {
+    text-align: center;
+}
+
+
+.StylesSignature {
+    height: 100px;
+}
+
+.ListInput {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.List8 {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 50px;
+    margin-bottom: 20px;
 }
