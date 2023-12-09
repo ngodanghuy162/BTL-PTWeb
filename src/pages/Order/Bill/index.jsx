@@ -40,7 +40,7 @@ const Export = () => {
                         <td className={`${styles.BillContentFirst} ${styles.BorderNone}`}>
                             <div className={styles['UpContent']}>
                                 <h4>3. Loại hàng gửi</h4>
-                                <div  className={styles['ContentNumber']}>
+                                <div className={`${styles.ContentNumber} ${styles.Margin5}`}>
                                     <label>
                                         <input type="checkbox" />
                                         <p>Tài liệu</p>
