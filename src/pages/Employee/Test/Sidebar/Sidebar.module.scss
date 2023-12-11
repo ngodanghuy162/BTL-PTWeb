@@ -6,6 +6,7 @@
     // right: 0;
     max-width: 356px;
     height: 100%;
+    border-right: 1px solid black;
 }
 
 ul {
@@ -17,14 +18,22 @@ h5 {
 }
 
 .menu {
-    padding: 10px 5px 10px 5px;
+    padding: 10px 5px;
+    width: 180px;
     border: 1px solid #ccc;
     display: flex;
     justify-content: space-between;
     cursor: pointer;
+    align-items: center;
 }
 
 .menuContent {
+    display: flex;
+    align-items: center;
+}
+
+.menuIcon {
+    margin-right: 2px;
 }
 
 .menuContentChild > li {

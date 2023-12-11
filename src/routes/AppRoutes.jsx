@@ -5,9 +5,9 @@ import AdminPage from "../pages/Admin/Admin";
 import LoginPage from "../pages/Account/Login/index";
 import SignupPage from "../pages/Account/SignUp/index";
 import SearchPage from "../pages/Order/index";
-import Data from "../pages/Order/Bill/pdf";
+import Data from "../pages/Order/Bill/index";
 import Employee from "../pages/Employee/Edit/index";
-import Test from "../pages/Order/Search/test"
+import Test from "../pages/Employee/Test/index"
 
 const AppRoutes = () => {
   return (

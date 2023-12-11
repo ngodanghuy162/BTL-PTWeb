@@ -22,35 +22,35 @@ function Sidebar() {
       <ul>
         <li className={styles["menu"]}>
           <div className={styles["menuContent"]}>
-            <CiStickyNote />
+            <CiStickyNote className={styles["menuIcon"]} />
             <h5>Tổng quan</h5>
           </div>
-          </li>
+        </li>
         <li className={styles["menu"]}>
           <div className={styles["menuContent"]}>
-            <CiShop />
+            <CiShop className={styles["menuIcon"]} />
             <h5>Shop</h5>
           </div>
-          </li>
+        </li>
         <li className={styles["menu"]}>
           <div className={styles["menuContent"]}>
-            <MdOutlineProductionQuantityLimits />
+            <MdOutlineProductionQuantityLimits className={styles["menuIcon"]} />
             <h5>Sản phẩm</h5>
           </div>
-          </li>
+        </li>
         <li className={styles["menu"]}>
           <div className={styles["menuContent"]}>
-            <FaClipboardList />
+            <FaClipboardList className={styles["menuIcon"]} />
             <h5>Quản lý mua hàng</h5>
           </div>
-          </li>
+        </li>
         <li>
           <div className={styles["menu"]} onClick={toggleList}>
             <div className={styles["menuContent"]}>
-              <FaBoxes />
+              <FaBoxes className={styles["menuIcon"]} />
               <h5>Tạo đơn</h5>
             </div>
-            <FaCaretDown/>
+            <FaCaretDown className={styles["menuIcon"]} />
           </div>
           {isListVisible && (
             <ul className={styles["menuContentChild"]}>
@@ -59,19 +59,19 @@ function Sidebar() {
               <li>Item 3</li>
             </ul>
           )}
-          </li>
+        </li>
         <li className={styles["menu"]}>
           <div className={styles["menuContent"]}>
-            <FaBox />
+            <FaBox className={styles["menuIcon"]} />
             <h5>Đơn hàng</h5>
           </div>
-          </li>
+        </li>
         <li className={styles["menu"]}>
           <div>
-            <CiShoppingTag />
+            <CiShoppingTag className={styles["menuIcon"]} />
             <h5>Kênh bán</h5>
           </div>
-          </li>
+        </li>
       </ul>
     </aside>
   );
