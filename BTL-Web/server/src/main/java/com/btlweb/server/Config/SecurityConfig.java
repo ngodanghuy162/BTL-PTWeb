@@ -25,7 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final   JwtAuthencationFilter jwtAuthencationFilter;
+    private final JwtAuthencationFilter jwtAuthencationFilter;
 
 
     private final AuthenticationProvider authenticationProvider;
@@ -51,16 +51,8 @@ public class SecurityConfig {
         return http.build();
     }
 
-    //tạo ra và cung cấp một AuthenticationManager Bean. khi muon inject vao cai khac
 
-    // cung cấp thông tin xác thực cho AuthenticationManager.
- /*   @Bean
-    public AuthenticationProvider authProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(passwordEncoder());
-        return provider;
-    }*/
+
 
 }
 

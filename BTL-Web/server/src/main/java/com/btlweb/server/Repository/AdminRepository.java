@@ -18,4 +18,5 @@ public interface AdminRepository extends JpaRepository<AdminModel,Long> {
     AdminModel findAdminByIdAndRole(@Param("id") long id, @Param("role") String role);
 
 
+    AdminModel findByUsername(String username);
 }

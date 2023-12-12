@@ -16,7 +16,8 @@ public class ApplicationConfig {
 
     @Autowired
     private UserDetailsService userDetailsService;
-    
+
+    // cung cấp thông tin xác thực cho AuthenticationManager.
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
