@@ -1,10 +1,13 @@
 package com.btlweb.server.Model;
 
+import com.btlweb.server.Security.Role;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "staff")
 public class StaffModel {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -14,8 +17,10 @@ public class StaffModel {
     private String username;
     private String password;
     private String phoneNumber;
-    private String workPlace;
-    private boolean is_tapket;
+
+    private String workPlaceName;
+
+    private String role;
     private long id_work;
 
     public long getId() {
@@ -58,20 +63,12 @@ public class StaffModel {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getWorkPlace() {
-        return workPlace;
+    public String getWorkPlaceName() {
+        return workPlaceName;
     }
 
-    public void setWorkPlace(String workPlace) {
-        this.workPlace = workPlace;
-    }
-
-    public boolean isIs_tapket() {
-        return is_tapket;
-    }
-
-    public void setIs_tapket(boolean is_tapket) {
-        this.is_tapket = is_tapket;
+    public void setWorkPlaceName(String workPlace) {
+        this.workPlaceName = workPlace;
     }
 
     public long getId_work() {
@@ -85,14 +82,21 @@ public class StaffModel {
     public StaffModel() {
     }
 
-    public StaffModel(long id, String name, String username, String password, String phoneNumber, String workPlace, boolean is_tapket, long id_work) {
-        this.id = id;
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public StaffModel(String name, String username, String password, String phoneNumber, String workPlaceName, String role, long id_work) {
         this.name = name;
         this.username = username;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.workPlace = workPlace;
-        this.is_tapket = is_tapket;
+        this.workPlaceName = workPlaceName;
+        this.role = role;
         this.id_work = id_work;
     }
 }

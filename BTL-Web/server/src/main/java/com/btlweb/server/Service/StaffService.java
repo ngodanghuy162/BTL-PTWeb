@@ -27,7 +27,7 @@ public class StaffService {
             if(id != -1L) {
                 staff.setId_work(id);
             }
-            staff.setIs_tapket(false);
+            staff.setRole("NVGD");
             staffRepository.saveAndFlush(staff);
             return new ResponseEntity<String>("Them tai khoan thanh cong",HttpStatus.OK);
         } catch (Exception e) {
