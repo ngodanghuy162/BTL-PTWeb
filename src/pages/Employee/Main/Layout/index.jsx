@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Header from './Header/MainHeader/Header';
 import MiniHeader from "./Header/MiniHeader/index"
 import Sidebar from './Sidebar/Sidebar';
-import Content from './Content/Content';
-import styles from './App.module.scss';
+import styles from './Layout.module.scss';
 
 
-function Layout() {
+function Layout({children}) {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -44,7 +43,7 @@ function Layout() {
           </div>
         )}
         <div className={`${styles['scrollbarContent']} ${styles['content']}`}>
-          <Content />
+        {children}
         </div>
       </div>
     </div>

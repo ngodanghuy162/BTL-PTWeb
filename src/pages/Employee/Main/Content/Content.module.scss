@@ -10,7 +10,7 @@ h3 {
 
 .MainList {
     margin-right: 20px;
-    width: 45%;
+    width: 48%;
 }
 
 .Content {
@@ -86,4 +86,13 @@ width: 120px;
 .InputContent > input {
 width: 70%;
 height: 25px;
+}
+
+.Submit {
+    width: 100px;
+    height: 30px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
 }

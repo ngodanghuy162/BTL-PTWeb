@@ -57,10 +57,10 @@ const FormLogin = () => {
                 <button type='submit' className={styles['submitLogin']}>
                     Đăng nhập
                 </button>
-                <span className={styles['hasAccount']}>
+                {/* <span className={styles['hasAccount']}>
                         Bạn chưa có tài khoản?
                         <Link className={styles['hasAccountLink']} to={'/signup'}> Đăng ký</Link>
-                </span>
+                </span> */}
             </div>
         </form>
     );

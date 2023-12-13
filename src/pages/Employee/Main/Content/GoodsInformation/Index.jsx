@@ -25,27 +25,18 @@ function GoodsInformation() {
                     <div className={myStyles['MainContentCenter']}>
                         <div className={myStyles['ListMainContent']}>
                             <div className={styles['InputContent']}>
-                                <p>Mã đơn hàng</p>
+                                <p>Loại hàng</p>
                                 <input type="text" />
                             </div>
 
                             <div className={styles['InputContent']}>
                                 <p>Tên hàng</p>
-                                <input type="text" />
-                            </div>
-
-                            <div className={styles['InputContent']}>
-                                <p>Số lượng</p>
-                                <input type="text" />
+                                <input type="text"  placeholder="Ghi chú về tên mặt hàng"/>
                             </div>
 
                             <div className={styles['InputContent']}>
                                 <p>Trọng lượng</p>
-                                <input type="text" />
-                            </div>
-                            <div className={styles['InputContent']}>
-                                <p>Giá trị</p>
-                                <input type="text" />
+                                <input type="text"  placeholder="Gam"/>
                             </div>
 
                             {/* <div  className={myStyles['InputContent']}>

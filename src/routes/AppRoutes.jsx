@@ -7,7 +7,7 @@ import SignupPage from "../pages/Account/SignUp/index";
 import SearchPage from "../pages/Order/index";
 import Data from "../pages/Order/Bill/index";
 import Employee from "../pages/Employee/Edit/index";
-import Test from "../pages/Employee/Test/index"
+import Test from "../pages/Employee/Main//Content/Content"
 
 const AppRoutes = () => {
   return (
