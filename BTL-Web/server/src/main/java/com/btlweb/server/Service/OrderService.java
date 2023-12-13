@@ -8,11 +8,12 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class OrderService {
@@ -43,7 +44,7 @@ public class OrderService {
     public List<StatusDonHangModel> getAllOrdersDtkByType(long id,String status) {
         if(status.equals("hanggui")) {
             return statusOrderRepository.findAllOrderDtkSendByTypeAndId(id);
-        } else
+        }
         return statusOrderRepository.findAllOrderDtkReceiveByTypeAndId(id);
     }
 
@@ -52,17 +53,17 @@ public class OrderService {
     }
 
     @Transactional
-    public ResponseEntity<String> xacnhanStatusOrder(long idTapKet, String maVanDon, UpdateStatusOrderFormat updateStatusOrderFormat) {
+    public ResponseEntity<String> xacnhanStatusOrder(long idTapKet, String maVanDon, String status) {
         try {
             StatusDonHangModel updateStatus = statusOrderRepository.findByIdReceivePlaceAndMaVanDon(idTapKet,maVanDon);
-            updateStatus.setTimeReceive(updateStatusOrderFormat.getTimeReceive());
-            updateStatus.setStatus(updateStatus.getStatus());
+            updateStatus.setTimeReceive(new Date());
+            updateStatus.setStatus(status);
             statusOrderRepository.save(updateStatus);
-            return new ResponseEntity<String>("Xac nhan don hang " + updateStatus.getDonhangchinh().getMaVanDon() + " thanh cong" , HttpStatus.OK);
+            return new ResponseEntity<>("Xac nhan don hang " + updateStatus.getDonhangchinh().getMaVanDon() + " thanh cong", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new ResponseEntity<String>("Failed update don hang", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Failed update don hang", HttpStatus.BAD_REQUEST);
     }
 
     public ResponseEntity<String> createOrderStatus(StatusDonHangModel statusOrder, String mavandon) {
@@ -70,11 +71,11 @@ public class OrderService {
             OrderModel order = orderRepository.findByMavandon(mavandon);
             statusOrder.setDonhangchinh(order);
             statusOrderRepository.save(statusOrder);
-            return new ResponseEntity<String>("Tao don hang(status) van chuyen thanh cong cho don hang co ma van don"  + order.getMaVanDon() , HttpStatus.OK);
+            return new ResponseEntity<>("Tao don hang(status) van chuyen thanh cong cho don hang co ma van don"  + order.getMaVanDon() , HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new ResponseEntity<String>("Failed tao don hang", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Failed tao don hang", HttpStatus.BAD_REQUEST);
     }
 
     public List<OrderModel> getAllOrderByStatus(long iddgd, String status) {
@@ -87,20 +88,17 @@ public class OrderService {
     }
 
     @Transactional
+    @PreAuthorize("hasRole('NVGD')")
     public ResponseEntity<String> createOrder(CreateOrderFormat createOrderFormat) {
         try {
             OrderModel newOrder = new OrderModel(createOrderFormat);
-            DiemGiaoDichModel dgdTaodon = diemGiaoDichRepository.findById(createOrderFormat.getId_diemgiaodichtao()).orElse(null);
-            if(dgdTaodon != null) {
-                newOrder.setDiemGiaoDichGui(dgdTaodon);
-            }
+            diemGiaoDichRepository.findById(createOrderFormat.getId_diemgiaodichtao()).ifPresent(newOrder::setDiemGiaoDichGui);
             orderRepository.saveAndFlush(newOrder);
-            return new ResponseEntity<String>("Tao don hang cho khach hang thanh cong,don hang co ma van don"  + newOrder.getMaVanDon() , HttpStatus.OK);
+            return new ResponseEntity<>("Tao don hang cho khach hang thanh cong,don hang co ma van don"  + newOrder.getMaVanDon() , HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new ResponseEntity<String>("Xac nhan don hang khach hang that bai", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Xac nhan don hang khach hang that bai", HttpStatus.BAD_REQUEST);
     }
-
 
 }

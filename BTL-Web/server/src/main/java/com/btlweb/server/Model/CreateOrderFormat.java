@@ -1,7 +1,15 @@
 package com.btlweb.server.Model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import java.util.Date;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CreateOrderFormat {
     private String name;
     private String sender;
@@ -12,7 +20,11 @@ public class CreateOrderFormat {
     private Float weight;
     private String type;
     private Date dateSend;
-    private long cost;
+    private long shipCost;
+
+    private long cod;
+
+    private boolean isSenderPayShip;
 
     public String getName() {
         return name;
@@ -86,24 +98,15 @@ public class CreateOrderFormat {
         this.dateSend = dateSend;
     }
 
-    public long getCost() {
-        return cost;
+    public long getShipCost() {
+        return shipCost;
     }
 
-    public void setCost(long cost) {
-        this.cost = cost;
+    public void setShipCost(long shipCost) {
+        this.shipCost = shipCost;
     }
 
-    public CreateOrderFormat(String name, String sender, String receiver, long id_diemgiaodichtao, String diaChiGui, String diaChiNhan, Float weight, String type, Date dateSend, long cost) {
-        this.name = name;
-        this.sender = sender;
-        this.receiver = receiver;
-        this.id_diemgiaodichtao = id_diemgiaodichtao;
-        this.diaChiGui = diaChiGui;
-        this.diaChiNhan = diaChiNhan;
-        this.weight = weight;
-        this.type = type;
-        this.dateSend = dateSend;
-        this.cost = cost;
+    public long getCod() {
+        return  this.cod;
     }
 }

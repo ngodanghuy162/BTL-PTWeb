@@ -9,6 +9,7 @@ import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class OrderController {
 
     //tra cuu don hang
     @GetMapping("/tracuu")
+    @PreAuthorize("permitAll()")
     public OrderModel getOrderByMaVanDon(@RequestParam(name = "mavandon") String mavandon) {
         return orderService.getOrderByMaVanDon(mavandon);
     }
@@ -65,6 +67,7 @@ public class OrderController {
     //tao don hang gui di
     //staff co the tủy cap
     @PostMapping("createstatus/{mavandon}")
+    @PreAuthorize("hasAuthority('NVTK') or hasAuthority('NVGD')")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> createOrderStatus(@RequestBody StatusDonHangModel statusOrder, @PathVariable(required = false) String mavandon) {
        if(mavandon != null) {
@@ -76,6 +79,7 @@ public class OrderController {
 
     //create order, xac nhan don hang nguoi gui
     @PostMapping("createorder")
+    @PreAuthorize("hasAuthority('NVGD')")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> acceptAndCreateOrder(@RequestBody CreateOrderFormat createOrderFormat) {
         return orderService.createOrder(createOrderFormat);
@@ -84,11 +88,12 @@ public class OrderController {
     //xac nhan don hang tai dtk
     //nvien staff co the truy cap
     @PutMapping("/xacnhandtk")
+    @PreAuthorize("hasAuthority('NVTK') or hasAuthority('NVGD')")
     public ResponseEntity<String> xacNhanStatusOrder(
             @RequestParam("id_tapket") long idTapKet,
             @RequestParam("mavandon") String maVanDon,
-            @RequestBody UpdateStatusOrderFormat updateStatusOrderFormat) {
-        return orderService.xacnhanStatusOrder(idTapKet,maVanDon,updateStatusOrderFormat);
+            @RequestBody String status) {
+        return orderService.xacnhanStatusOrder(idTapKet,maVanDon,status);
     }
 
 }
