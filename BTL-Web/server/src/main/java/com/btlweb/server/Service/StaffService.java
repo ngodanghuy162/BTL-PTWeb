@@ -22,14 +22,15 @@ public class StaffService {
         return staffRepository.findStaffByDtkID(id_tapket);
     }
 
-    public ResponseEntity<String> capTaiKhoan(StaffModel staff,Long id) {
+    public ResponseEntity<String> capTaiKhoan(StaffModel staff,String role) {
         try {
-            if(id != -1L) {
-                staff.setId_work(id);
+            if(role.equals("nvgd")) {
+                staff.setRole("NVGD");
+            } else {
+                staff.setRole("NVTK");
             }
-            staff.setRole("NVGD");
             staffRepository.saveAndFlush(staff);
-            return new ResponseEntity<String>("Them tai khoan thanh cong",HttpStatus.OK);
+            return new ResponseEntity<String>("Them tai khoan NV thanh cong",HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -38,5 +39,9 @@ public class StaffService {
 
     public List<StaffModel> getAllStaffDGD(long id_work) {
         return staffRepository.findStaffByDgdID(id_work);
+    }
+
+    public StaffModel getStaffInfo(String username) {
+        return staffRepository.findByUsername(username);
     }
 }

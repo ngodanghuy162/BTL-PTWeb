@@ -11,7 +11,9 @@ public class AdminModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private int id_role;
+
+    //id_role is id work place: gtk,dgd
+    private int id_workplace;
     private String name;
 
     private String username;
@@ -21,12 +23,11 @@ public class AdminModel {
     private String role;
 
     public AdminModel() {
-        // Hàm tạo không tham số mặc định
     }
 
-    public AdminModel(long id, int id_role, String name, String username, String password, String role) {
+    public AdminModel(long id, int id_workplace, String name, String username, String password, String role) {
         this.id = id;
-        this.id_role = id_role;
+        this.id_workplace = id_workplace;
         this.name = name;
         this.username = username;
         this.password = password;
@@ -53,8 +54,8 @@ public class AdminModel {
         this.role = role;
     }
 
-    public void setId_role(int id_role) {
-        this.id_role = id_role;
+    public void setId_workplace(int id_workplace) {
+        this.id_workplace = id_workplace;
     }
 
 
@@ -78,8 +79,8 @@ public class AdminModel {
         return role;
     }
 
-    public int getId_role() {
-        return id_role;
+    public int getId_workplace() {
+        return id_workplace;
     }
 
 

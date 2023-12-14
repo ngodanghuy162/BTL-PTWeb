@@ -1,5 +1,6 @@
 package com.btlweb.server.Service;
 
+import com.btlweb.server.FormatRequest.CreateOrderFormat;
 import com.btlweb.server.Model.*;
 import com.btlweb.server.Repository.DiemGiaoDichRepository;
 import com.btlweb.server.Repository.OrderRepository;
@@ -53,9 +54,9 @@ public class OrderService {
     }
 
     @Transactional
-    public ResponseEntity<String> xacnhanStatusOrder(long idTapKet, String maVanDon, String status) {
+    public ResponseEntity<String> cfStatusOrderInDtk(long idTapKet, String maVanDon, String status) {
         try {
-            StatusDonHangModel updateStatus = statusOrderRepository.findByIdReceivePlaceAndMaVanDon(idTapKet,maVanDon);
+            StatusDonHangModel updateStatus = statusOrderRepository.findByIdReceivePlaceAndMaVanDonInDtk(idTapKet,maVanDon);
             updateStatus.setTimeReceive(new Date());
             updateStatus.setStatus(status);
             statusOrderRepository.save(updateStatus);
@@ -101,4 +102,29 @@ public class OrderService {
         return new ResponseEntity<>("Xac nhan don hang khach hang that bai", HttpStatus.BAD_REQUEST);
     }
 
+    public ResponseEntity<String> cfStatusOrderInDgd(long idGd, String maVanDon, String status) {
+        try {
+            StatusDonHangModel updateStatus = statusOrderRepository.findByIdReceivePlaceAndMaVanDonInDgd(idGd,maVanDon);
+            updateStatus.setTimeReceive(new Date());
+            updateStatus.setStatus(status);
+            statusOrderRepository.save(updateStatus);
+            return new ResponseEntity<>("Xac nhan don hang " + updateStatus.getDonhangchinh().getMaVanDon() + " thanh cong", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>("Failed update don hang", HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity<String> updateOrderStatus(String status, String mavandon) {
+        try {
+            OrderModel orderModel = orderRepository.findByMavandon(mavandon);
+            orderModel.setDateReceive(new Date());
+            orderModel.setStatus(status);
+            orderRepository.save(orderModel);
+            return new ResponseEntity<>("Cap nhat don hang " + orderModel.getMaVanDon() + " thanh cong", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>("Failed update don hang", HttpStatus.BAD_REQUEST);
+    }
 }

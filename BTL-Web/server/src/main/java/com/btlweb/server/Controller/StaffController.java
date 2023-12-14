@@ -4,6 +4,7 @@ import com.btlweb.server.Service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,25 +21,32 @@ public class StaffController {
 
     // xem ds nhan vien diem tap ket
     @GetMapping("/qlnvtk/{id_tapket}")
+    @PreAuthorize("hasAuthority('LEADER') or hasAuthority('ADMINTK')")
     public List<StaffModel> getAllStaffDTK(@PathVariable(name = "id_tapket") long id_tapket) {
         return staffService.getAllStaffDTK(id_tapket);
     }
 
-    // xem ds nhan vien diem tap ket
+    //LAY THONG TIN TK
+    @GetMapping("/getinfo")
+    @PreAuthorize("hasAuthority('NVGD') or hasAuthority('NVTK')")
+    public StaffModel getAccInfo(@RequestParam(name = "username") String username) {
+        return staffService.getStaffInfo(username);
+    }
+
+    // xem ds nhan vien diem GD
     @GetMapping("/qlnvgd/{id_work}")
+    @PreAuthorize("hasAuthority('LEADER') or hasAuthority('ADMINGD')")
     public List<StaffModel> getAllStaffDGD(@PathVariable(name = "id_work") long id_work) {
         return staffService.getAllStaffDGD(id_work);
     }
 
 
-    //cap tk cho nvien giao dich
-    @PostMapping("/captaikhoangiaodichvien/{id}")
+    //cap tk cho nvien
+    @PostMapping("/captknv/{nvgd}")
+    @PreAuthorize("hasAuthority('ADMINGD') or hasAuthority('ADMINTK')")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> addStaffGdgAcount(@RequestBody StaffModel staff,@PathVariable(required = false) Long id) {
-        if(id != null) {
-            return staffService.capTaiKhoan(staff,id);
-        }
-         else
-             return staffService.capTaiKhoan(staff,-1L);
+    public ResponseEntity<String> addStaffAcc(@PathVariable(name = "role")String role, @RequestBody StaffModel staff) {
+        return staffService.capTaiKhoan(staff, role);
     }
+
 }

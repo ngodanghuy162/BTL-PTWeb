@@ -1,4 +1,4 @@
-package com.btlweb.server.Model;
+package com.btlweb.server.FormatRequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

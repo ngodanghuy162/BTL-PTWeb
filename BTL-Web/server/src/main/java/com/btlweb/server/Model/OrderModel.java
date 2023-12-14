@@ -1,12 +1,12 @@
 package com.btlweb.server.Model;
 
+import com.btlweb.server.FormatRequest.CreateOrderFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Table;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;

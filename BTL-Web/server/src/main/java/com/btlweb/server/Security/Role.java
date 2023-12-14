@@ -1,10 +1,10 @@
 package com.btlweb.server.Security;
 
 public enum Role {
-    ADMINDTK,
-    ADMINDGD,
+    ADMINTK,
+    ADMINGD,
     USER,
     NVTK,
     NVGD,
-    MANAGER
+    LEADER
 }

@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class DiemTapKetService {
+public class PointService {
     private final DiemTapKetRepository diemTapKetRepository;
 
 
     private final DiemGiaoDichRepository diemGiaoDichRepository;
     @Autowired
-    public DiemTapKetService(DiemTapKetRepository diemTapKetRepository,DiemGiaoDichRepository diemGiaoDichRepository) {
+    public PointService(DiemTapKetRepository diemTapKetRepository, DiemGiaoDichRepository diemGiaoDichRepository) {
         this.diemTapKetRepository = diemTapKetRepository;
         this.diemGiaoDichRepository = diemGiaoDichRepository;
     }
@@ -51,6 +51,10 @@ public class DiemTapKetService {
             e.printStackTrace();
         }
         return new ResponseEntity<String>("Failed add giao dich", HttpStatus.BAD_REQUEST);
+    }
+
+    public DiemGiaoDichModel getDgdById(long id) {
+        return diemGiaoDichRepository.findById(id).orElse(null);
     }
 }
 
