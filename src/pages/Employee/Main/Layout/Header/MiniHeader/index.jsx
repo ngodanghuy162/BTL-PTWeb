@@ -5,6 +5,8 @@ import { CgCloseR } from "react-icons/cg";
 import { LuBellRing } from "react-icons/lu";
 import { FaCircleUser } from "react-icons/fa6";
 import { FaBoxes } from "react-icons/fa";
+import { FaClipboardList } from "react-icons/fa";
+import { FaBox } from "react-icons/fa";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -53,8 +55,8 @@ function Header() {
             <strong><p>Bùi Thị Nhài</p></strong>
           </div>
           <div className={styles["MenuAction"]} onClick={onClickListStatus}>
-            <div>
-              <FaBoxes className={styles["menuIcon"]} />
+            <div className={styles["MenuClick"]}>
+              <FaClipboardList className={styles["menuIcon"]} />
               <h5>Cập nhật Status</h5>
             </div>
             {isListStatus && (
@@ -64,7 +66,7 @@ function Header() {
             )}
           </div>
           <div className={styles["MenuAction"]} onClick={toggleList}>
-            <div>
+            <div className={styles["MenuClick"]}>
               <FaBoxes className={styles["menuIcon"]}/>
               <h5>Tạo đơn</h5>
             </div>
@@ -75,8 +77,8 @@ function Header() {
             )}
           </div>
           <div className={styles["MenuAction"]} onClick={onClickListCf}>
-            <div>
-              <FaBoxes className={styles["menuIcon"]} />
+            <div className={styles["MenuClick"]}>
+              <FaBox className={styles["menuIcon"]} />
               <h5>Xác nhận đơn hàng</h5>
             </div>
             {isListCf && (

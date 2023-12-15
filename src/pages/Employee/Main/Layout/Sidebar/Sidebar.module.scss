@@ -6,6 +6,7 @@
     // right: 0;
     max-width: 356px;
     height: 100%;
+    background-color: #9ADAF8;
     border-right: 1px solid black;
 }
 
@@ -15,6 +16,7 @@ ul {
 
 h5 {
     display: inline-block;
+    color: black;
 }
 
 .menu {
@@ -33,10 +35,10 @@ h5 {
 }
 
 .menuIcon {
-    margin-right: 2px;
+    margin-right: 5px;
 }
 
-.menuContentChild > li {
+.menuContentChild li {
     padding: 10px 5px 10px 5px;
     border: 1px solid #ccc;
     cursor: pointer;

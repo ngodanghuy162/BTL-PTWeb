@@ -6,8 +6,8 @@ import LoginPage from "../pages/Account/Login/index";
 import SignupPage from "../pages/Account/SignUp/index";
 import SearchPage from "../pages/Order/index";
 import Data from "../pages/Order/Bill/index";
-import Employee from "../pages/Employee/Edit/index";
-import Test from "../pages/Employee/Main//Content/Content"
+import Employee from "../pages/Employee/Main/OrderCf/index";
+import AddOrder from "../pages/Employee/Main/Content/Content";
 
 const AppRoutes = () => {
   return (
@@ -20,8 +20,8 @@ const AppRoutes = () => {
       <Route path="/signup" element={<SignupPage />}></Route>
       <Route path="/search" element={<SearchPage />}></Route>
       <Route path="/data" element={<Data />}></Route>
-      <Route path="/employee" element={<Employee />}></Route>
-      <Route path="/test" element={<Test />}></Route>
+      <Route path="/employee" element={<AddOrder />}></Route>
+      <Route path="/employee/neworders" element={<Employee />}></Route>
       {/* <Route path="*" element={<NotFoundPage />}></Route> */}
     </Routes>
   );

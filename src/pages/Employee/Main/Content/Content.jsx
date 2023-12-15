@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./Content.module.scss"
-import Layout from '../index';
+import Layout from '../Layout/index';
 import Sender from "./Sender/index"
 import Receiver from "./Receiver/index"
 import Information from "./GoodsInformation/Index"

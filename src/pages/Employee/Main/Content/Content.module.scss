@@ -14,7 +14,7 @@ h3 {
 }
 
 .Content {
-    border: 1px solid #ccc;
+    border: 1px solid black;
     overflow: hidden;
     max-width: 600px;
     width: 100%;
@@ -25,7 +25,8 @@ h3 {
 
 @media (max-width: 800px) {
     .MainList {
-        width: 100%; /* Kích thước 100% khi màn hình thu nhỏ hơn 600px */
+        width: 100%;
+        /* Kích thước 100% khi màn hình thu nhỏ hơn 600px */
     }
 }
 
@@ -37,7 +38,7 @@ h3 {
     padding: 10px;
     margin-bottom: 20px;
     align-items: center;
-    background-color: white;
+    background-color: #4ea8de;
     border-bottom: 1px solid #ccc;
 }
 
@@ -47,12 +48,13 @@ h3 {
     align-items: center;
 }
 
-.ListContent > h3 {
+.ListContent>h3 {
     padding-left: 5px;
 }
 
-.ListContent > p {
+.ListContent>p {
     padding-right: 5px;
+    color: black;
 }
 
 .MainContent {
@@ -77,22 +79,29 @@ h3 {
 .InputContent {
     display: flex;
     margin-top: 10px;
-  }
-  
-.InputContent > p {
-width: 120px;
 }
 
-.InputContent > input {
-width: 70%;
-height: 25px;
+.InputContent>p {
+    width: 120px;
+    color: black;
+}
+
+.InputContent>input {
+    width: 70%;
+    height: 25px;
+    border-radius: 7px;
 }
 
 .Submit {
     width: 100px;
     height: 30px;
+    margin: auto;
+    margin-top: 20px;
     border-radius: 30px;
     display: flex;
     justify-content: center;
     cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    // background-color: #4ea8de;
 }

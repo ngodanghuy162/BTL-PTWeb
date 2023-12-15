@@ -13,7 +13,7 @@
 .inner {
     height: 100%;
     width: 100%;
-    background-color: white;
+    background-color: #4ea8de;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -34,9 +34,9 @@
     width: 100%;
     padding: 6px;
     border-radius: 5px;
-    border: none;
+    border: 1px solid black;
     outline: none;
-    background-color: #eaeaea;
+    background-color: white;
 }
 
 .inputSearch::placeholder {
@@ -45,13 +45,20 @@
 
 .iconHeader {
     font-size: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .iconSearch {
     margin-left: 5px;
+    color: black;
 }
 
 .UserAction {
     display: flex;
     margin-right: 20px;
+}
+
+.UserAction p {
+    color: black;
 }

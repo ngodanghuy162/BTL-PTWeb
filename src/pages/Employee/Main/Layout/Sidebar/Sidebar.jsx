@@ -37,8 +37,8 @@ function Sidebar() {
             <FaCaretDown className={styles["menuIcon"]} />
           </div>
           {isListStatus && (
-            <ul>
-              <Link to="/" className={styles["menuContentChild"]}>
+            <ul className={styles["menuContentChild"]}>
+              <Link to="/employee/neworders">
                 <li>Danh sách đơn hàng</li>
               </Link>
             </ul>
@@ -54,7 +54,9 @@ function Sidebar() {
           </div>
           {isListVisible && (
             <ul className={styles["menuContentChild"]}>
+            <Link to="/employee">
               <li>Đơn lẻ</li>
+              </Link>
             </ul>
           )}
         </li>
