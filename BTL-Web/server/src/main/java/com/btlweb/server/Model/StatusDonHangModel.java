@@ -58,14 +58,15 @@ public class StatusDonHangModel {
         this.status = status;
     }
 
-    public StatusDonHangModel(Date timeSend, String type, int id_sendPlace, int id_receivePlace, String status) {
-        this.timeSend = timeSend;
+    public StatusDonHangModel(String type, int id_sendPlace, int id_receivePlace, String status) {
+        this.timeSend = new Date();
         this.timeReceive = null;
         this.type = type;
         this.id_sendPlace = id_sendPlace;
         this.id_receivePlace = id_receivePlace;
         this.status = status;
     }
+
 
     public String getMavandonNotCol() {
         if(donhangchinh != null) {

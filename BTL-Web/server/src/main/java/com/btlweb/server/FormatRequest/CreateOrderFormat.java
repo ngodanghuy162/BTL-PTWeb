@@ -13,13 +13,16 @@ import java.util.Date;
 public class CreateOrderFormat {
     private String name;
     private String sender;
+
+    private String phoneSender;
+
+    private String phoneReceiver;
     private String receiver;
     private long id_diemgiaodichtao;
     private String diaChiGui;
     private String diaChiNhan;
     private Float weight;
     private String type;
-    private Date dateSend;
     private long shipCost;
 
     private long cod;
@@ -88,14 +91,6 @@ public class CreateOrderFormat {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public Date getDateSend() {
-        return dateSend;
-    }
-
-    public void setDateSend(Date dateSend) {
-        this.dateSend = dateSend;
     }
 
     public long getShipCost() {

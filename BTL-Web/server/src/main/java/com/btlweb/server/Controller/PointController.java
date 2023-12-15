@@ -33,6 +33,16 @@ public class PointController {
         return pointService.getAllDgd(id);
     }
 
+    @GetMapping("/tapket")
+    public ResponseEntity<DiemTapKetModel> getDtkById(@RequestParam(name = "idtk") long id) {
+        DiemTapKetModel dtk = pointService.getDtkById(id);
+        if(dtk == null) {
+            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(dtk, HttpStatus.OK);
+
+    }
+
     @GetMapping("/giaodich")
     public ResponseEntity<DiemGiaoDichModel> getDgdById(@RequestParam(name = "idgd") long id) {
         DiemGiaoDichModel diemGiaoDichModel = pointService.getDgdById(id);

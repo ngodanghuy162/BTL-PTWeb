@@ -43,7 +43,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/order/tracuu").permitAll()
-                .requestMatchers("/point").permitAll()
+                .requestMatchers("/point/**").permitAll()
                 .requestMatchers("/").hasAuthority("LEADER")
                 .anyRequest().authenticated()
                 .and()

@@ -34,19 +34,26 @@ public class StaffController {
     }
 
     // xem ds nhan vien diem GD
-    @GetMapping("/qlnvgd/{id_work}")
+    @GetMapping("/qlnvgd")
     @PreAuthorize("hasAuthority('LEADER') or hasAuthority('ADMINGD')")
-    public List<StaffModel> getAllStaffDGD(@PathVariable(name = "id_work") long id_work) {
+    public List<StaffModel> getAllStaffDGD(@RequestParam(name = "idwork") long id_work) {
         return staffService.getAllStaffDGD(id_work);
     }
 
 
     //cap tk cho nvien
-    @PostMapping("/captknv/{nvgd}")
+    @PostMapping("/captknv/{role}")
     @PreAuthorize("hasAuthority('ADMINGD') or hasAuthority('ADMINTK')")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> addStaffAcc(@PathVariable(name = "role")String role, @RequestBody StaffModel staff) {
         return staffService.capTaiKhoan(staff, role);
+    }
+
+    @DeleteMapping("/delete/{username}")
+    @PreAuthorize("hasAuthority('ADMINGD') or hasAuthority('ADMINTK')")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<String> deleteStaff(@PathVariable(name = "username") String username) {
+        return staffService.deleteStaffAcc(username);
     }
 
 }

@@ -9,11 +9,13 @@ import com.btlweb.server.Repository.DiemTapKetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 @Service
+
 public class AdminService {
     private final DiemTapKetRepository diemTapKetRepository;
 
@@ -21,11 +23,14 @@ public class AdminService {
 
     private final AdminRepository adminRepository;
 
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Autowired
-    public AdminService(DiemTapKetRepository diemTapKetRepository, DiemGiaoDichRepository diemGiaoDichRepository, AdminRepository adminRepository) {
+    public AdminService(DiemTapKetRepository diemTapKetRepository, DiemGiaoDichRepository diemGiaoDichRepository, AdminRepository adminRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.diemTapKetRepository = diemTapKetRepository;
         this.diemGiaoDichRepository = diemGiaoDichRepository;
         this.adminRepository = adminRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
 
@@ -59,6 +64,8 @@ public class AdminService {
 
     public ResponseEntity<String> addAdmin(AdminModel adminModel) {
         try {
+            String newHashpass = bCryptPasswordEncoder.encode(adminModel.getPassword());
+            adminModel.setPassword(newHashpass);
             adminRepository.save(adminModel);
             return new ResponseEntity<String>("Cap TK Thanh Cong", HttpStatus.OK);
         } catch (Exception e) {
@@ -85,8 +92,9 @@ public class AdminService {
             if(!format.getUsername().isEmpty()) {
                 adminM.setUsername(format.getUsername());
             }
-            if(!format.getPassword().isEmpty()) {
-                adminM.setPassword(format.getPassword());
+            if(!format.getPassword().isEmpty() && format.getPassword().length() > 0 && format.getPassword() != null) {
+                String newHashpass = bCryptPasswordEncoder.encode(format.getPassword());
+                adminM.setPassword(newHashpass);
             }
             adminRepository.saveAndFlush(adminM);
             return new ResponseEntity<>("Update OK", HttpStatus.OK);

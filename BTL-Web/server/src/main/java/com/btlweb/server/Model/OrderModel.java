@@ -29,6 +29,7 @@ public class OrderModel {
 
     private String receiver;
 
+    @Column(name = "cost")
     private long shipCost;
 
     private boolean canSeeWhenReceive;
@@ -183,27 +184,10 @@ public class OrderModel {
     }
 
 
-
-//    public OrderModel(String name, String sender, String receiver, DiemGiaoDichModel diemGiaoDichGui, String diaChiGui, String diaChiNhan, Float weight, String status, String type, Date dateSend, Date dateReceive, List<StatusDonHangModel> statusDonHang, long cost) {
-//        this.mavandon = generateOrderMavandon();
-//        this.name = name;
-//        this.sender = sender;
-//        this.receiver = receiver;
-//        this.diemGiaoDichGui = diemGiaoDichGui;
-//        this.diaChiGui = diaChiGui;
-//        this.diaChiNhan = diaChiNhan;
-//        this.weight = weight;
-//        this.status = status;
-//        this.type = type;
-//        this.dateSend = dateSend;
-//        this.dateReceive = dateReceive;
-//        this.statusDonHangModelList = statusDonHang;
-//        this.cost = cost;
-//    }
-
-
     public OrderModel(CreateOrderFormat createOrderFormat) {
         this.mavandon = generateOrderMavandon();
+        this.phoneSender = createOrderFormat.getPhoneSender();
+        this.phoneReceiver = createOrderFormat.getPhoneReceiver();
         this.name = createOrderFormat.getName();
         this.sender = createOrderFormat.getSender();
         this.receiver = createOrderFormat.getReceiver();
@@ -212,6 +196,7 @@ public class OrderModel {
         this.weight = createOrderFormat.getWeight();
         this.dateSend = new Date();
         this.shipCost = createOrderFormat.getShipCost();
+        this.type = createOrderFormat.getType();
         this.dateReceive = null;
         this.diemGiaoDichGui = null;
         this.isSenderPayShipment = createOrderFormat.isSenderPayShip();

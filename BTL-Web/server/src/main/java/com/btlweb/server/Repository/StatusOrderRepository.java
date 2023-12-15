@@ -25,11 +25,20 @@ public interface StatusOrderRepository extends JpaRepository<StatusDonHangModel,
     List<StatusDonHangModel> findAllOrderDtkReceiveByTypeAndId(@Param("id") long id_receivePlace);
 
 
-    @Query("SELECT a FROM StatusDonHangModel a WHERE a.id_receivePlace = :id " +
-            "AND a.order.getMaVanDon() = :maVanDon " +
-            "AND (a.type = 'TK-TK' OR a.type = 'GD-TK')")
-    StatusDonHangModel findByIdReceivePlaceAndMaVanDonInDtk(long id, String maVanDon);
+//    @Query("SELECT a FROM StatusDonHangModel a WHERE a.id_receivePlace = :id " +
+//            "AND a.order.getMaVanDon() = :maVanDon " +
+//            "AND (a.type = 'TK-TK' OR a.type = 'GD-TK')")
+    @Query(value = "SELECT * FROM statusdonhang " +
+            "WHERE id_receive_place = :id " +
+            "AND mavandon = :mavandon " +
+            "AND (type = 'TK-TK' OR type = 'GD-TK')", nativeQuery = true)
+    StatusDonHangModel findByIdReceivePlaceAndMaVanDonInDtk(@Param("id")long id,@Param("mavandon") String mavandon);
 
-    @Query("SELECT a FROM StatusDonHangModel a WHERE a.id_receivePlace = :id AND a.order.getMaVanDon() = :maVanDon AND a.type = 'TK-GD'")
-    StatusDonHangModel findByIdReceivePlaceAndMaVanDonInDgd(long id, String maVanDon);
+
+   // @Query("SELECT a FROM StatusDonHangModel a WHERE a.id_receivePlace = :id AND a.order.getMaVanDon() = :maVanDon AND a.type = 'TK-GD'")
+    @Query(value = "SELECT * FROM statusdonhang " +
+            "WHERE id_receive_place = :id " +
+            "AND mavandon = :mavandon " +
+            "AND type = 'TK-GD'", nativeQuery = true)
+    StatusDonHangModel findByIdReceivePlaceAndMaVanDonInDgd(@Param("id")long id,@Param("mavandon") String mavandon);
 }

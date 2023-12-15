@@ -38,7 +38,7 @@ public class OrderController {
         return orderService.getAllOrders();
     }
 
-    //thong ke cac don hang TAI DIEM GIAO DICH bang trang thai
+    //thong ke cac don hang TAI DIEM GIAO DICH bang trang thai ( hang ma gui tai diem giao dich)
     //nvien thong ke
     @GetMapping("/thongkeorder/dgd")
     @PreAuthorize("hasAuthority('NVGD') or hasAuthority('ADMINGD')")
@@ -47,11 +47,11 @@ public class OrderController {
     }
 
 
-    //thong ke hang den cac dtk. type la hanggui  hoac nhan(truong dtk,ldao)
+    //thong ke hang den cac dtk. type la hanggui  hoac nhan(truong dtk,nvtk,ldao)
     //thong ke dua vao status order
     @GetMapping("/thongkestatusorder/dtk")
-    @PreAuthorize("hasAuthority('NVTK') or hasAuthority('ADMINTK')")
-    public List<StatusDonHangModel> getAllOrdersDtkByType(@RequestParam(name = "id_dtk") long id_dtk,@RequestParam(name = "type") String type) {
+    @PreAuthorize("hasAuthority('NVTK') or hasAuthority('ADMINTK') or hasAuthority('LEADER')")
+    public List<StatusDonHangModel> getAllOrdersDtkByType(@RequestParam(name = "iddtk") long id_dtk,@RequestParam(name = "type") String type) {
         return orderService.getAllOrdersDtkByType(id_dtk,type);
     }
 
@@ -59,16 +59,16 @@ public class OrderController {
     //thong ke dua vao status order
     @GetMapping("/thongkestatusorder/dgd")
     @PreAuthorize("hasAuthority('NVGD') or hasAuthority('ADMINGD') or hasAuthority('ADMINTK')")
-    public List<StatusDonHangModel> getAllOrdersDgdByType(@RequestParam(name = "id_dgd") long id_dgd,@RequestParam(name = "type") String type) {
+    public List<StatusDonHangModel> getAllOrdersDgdByType(@RequestParam(name = "iddgd") long id_dgd,@RequestParam(name = "type") String type) {
         return orderService.getAllOrdersDgdByType(id_dgd,type);
     }
 
     //tao don hang gui di
     //staff co the tủy cap
-    @PostMapping("createstatus/{mavandon}")
+    @PostMapping("/createstatus/{mavandon}")
     @PreAuthorize("hasAuthority('NVTK') or hasAuthority('NVGD')")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> createOrderStatus(@RequestBody StatusDonHangModel statusOrder, @PathVariable(required = false) String mavandon) {
+    public ResponseEntity<String> createOrderStatus(@RequestBody StatusDonHangModel statusOrder, @PathVariable(required = true) String mavandon) {
        if(mavandon != null) {
            return orderService.createOrderStatus(statusOrder,mavandon);
        } else {
@@ -77,15 +77,15 @@ public class OrderController {
     }
 
     //cap nhat trang thai order
-    @PutMapping("updateorder/{mavandon}")
+    @PutMapping("/updateorder/{mavandon}")
     @PreAuthorize("hasAuthority('NVTK') or hasAuthority('NVGD')")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> updateOrderStatus(@RequestBody String status, @RequestParam(required = false) String mavandon) {
+    public ResponseEntity<String> updateOrderStatus(@RequestBody String status, @PathVariable(required = true) String mavandon) {
             return orderService.updateOrderStatus(status,mavandon);
     }
 
     //create order, xac nhan don hang nguoi gui
-    @PostMapping("createorder")
+    @PostMapping("/createorder")
     @PreAuthorize("hasAuthority('NVGD')")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> acceptAndCreateOrder(@RequestBody CreateOrderFormat createOrderFormat) {
@@ -97,7 +97,7 @@ public class OrderController {
     @PutMapping("/xacnhandtk")
     @PreAuthorize("hasAuthority('NVTK')")
     public ResponseEntity<String> cfOrderDtk(
-            @RequestParam("id_tapket") long idTapKet,
+            @RequestParam("idtk") long idTapKet,
             @RequestParam("mavandon") String maVanDon,
             @RequestBody String status) {
         return orderService.cfStatusOrderInDtk(idTapKet,maVanDon,status);
@@ -107,10 +107,10 @@ public class OrderController {
     @PutMapping("/xacnhandgd")
     @PreAuthorize("hasAuthority('NVGD')")
     public ResponseEntity<String> cfOrderDgd(
-            @RequestParam("id_gd") long idTapKet,
+            @RequestParam("idgd") long idgd,
             @RequestParam("mavandon") String maVanDon,
             @RequestBody String status) {
-        return orderService.cfStatusOrderInDgd(idTapKet,maVanDon,status);
+        return orderService.cfStatusOrderInDgd(idgd,maVanDon,status);
     }
 
 }

@@ -56,5 +56,9 @@ public class PointService {
     public DiemGiaoDichModel getDgdById(long id) {
         return diemGiaoDichRepository.findById(id).orElse(null);
     }
+
+    public DiemTapKetModel getDtkById(long id) {
+        return diemTapKetRepository.findById(id).get();
+    }
 }
 

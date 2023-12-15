@@ -49,7 +49,7 @@ public class AdminController {
     //lay tat ca tk admin gaio dich bang id diem tapket
     @GetMapping("/admingd/all")
     @PreAuthorize("hasAuthority('LEADER')")
-    public ResponseEntity<List<AdminModel>> getAdminGDOffDTK(@RequestParam long idtk) {
+    public ResponseEntity<List<AdminModel>> getAdminGDOffDTK(@RequestParam(name = "idtk") long idtk) {
         List<AdminModel> adminModels = adminService.getAllAdminGDByDTK(idtk);
         if(adminModels.size() ==0) {
             return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
@@ -83,20 +83,19 @@ public class AdminController {
     //cap tk
     @PostMapping("/captk")
     @PreAuthorize("hasAuthority('LEADER')")
-    public ResponseEntity<String> AddAdmin(AdminModel adminModel) {
+    public ResponseEntity<String> addAdmin(@RequestBody AdminModel adminModel) {
         return adminService.addAdmin(adminModel);
     }
 
-
     //delete admin acount by username( /delete/username)
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{username}")
     @PreAuthorize("hasAuthority('LEADER')")
     public ResponseEntity<String> deleteAdmin(@PathVariable(name = "username") String username) {
         return adminService.deleteAdmin(username);
     }
 
     //update admin acount by username( /update/username)
-    @PutMapping("/update")
+    @PutMapping("/update/{username}")
     @PreAuthorize("hasAuthority('LEADER')")
     public ResponseEntity<String> updateAdAccount(@PathVariable(name = "username") String username, @RequestBody UpdateAdminAccountFormat format) {
         return adminService.updateAdAccount(username,format);

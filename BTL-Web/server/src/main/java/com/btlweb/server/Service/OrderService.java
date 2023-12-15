@@ -81,7 +81,7 @@ public class OrderService {
 
     public List<OrderModel> getAllOrderByStatus(long iddgd, String status) {
         try {
-            return orderRepository.findAllByStatusAndIdReceive(iddgd,status);
+            return orderRepository.findAllByStatusAndIdSend(iddgd,status);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -89,13 +89,13 @@ public class OrderService {
     }
 
     @Transactional
-    @PreAuthorize("hasRole('NVGD')")
     public ResponseEntity<String> createOrder(CreateOrderFormat createOrderFormat) {
         try {
             OrderModel newOrder = new OrderModel(createOrderFormat);
+            newOrder.setDateSend(new Date());
             diemGiaoDichRepository.findById(createOrderFormat.getId_diemgiaodichtao()).ifPresent(newOrder::setDiemGiaoDichGui);
             orderRepository.saveAndFlush(newOrder);
-            return new ResponseEntity<>("Tao don hang cho khach hang thanh cong,don hang co ma van don"  + newOrder.getMaVanDon() , HttpStatus.OK);
+            return new ResponseEntity<>("Tao don hang cho khach hang thanh cong,don hang co ma van don:"  + newOrder.getMaVanDon() , HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
         }
