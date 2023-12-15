@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './Header.module.scss';
 import { IoMdSearch } from "react-icons/io";
 import { LuBellRing } from "react-icons/lu";
 import { FaCircleUser } from "react-icons/fa6";
 
 function Header() {
+
+  const [checkNotification, setCheckNotification] = useState(false);
+
+  const onClickCheck = () => {
+    setCheckNotification(!checkNotification);
+  }
+  
   return (
     <header className={styles['wrapper']}>
       <div className={styles['inner']}>
@@ -12,7 +19,14 @@ function Header() {
 
         <div className={styles['SearchContent']}>
           <input type="text"  className={styles['inputSearch']} placeholder="Tra cứu đơn hàng"/>
-          <IoMdSearch  className={`${styles.iconHeader} ${styles.iconSearch}`} />
+          <IoMdSearch onClick={onClickCheck} className={`${styles.iconHeader} ${styles.iconSearch}`} />
+          {checkNotification && (
+          <ul>
+            <li>Tin chuẩn</li>
+            <li>Tin chuẩn</li>
+            <li>Tin chuẩn</li>
+          </ul>
+          )}
         </div>
 
         <div className={styles['UserAction']}>

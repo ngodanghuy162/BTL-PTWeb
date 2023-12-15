@@ -43,6 +43,11 @@
     font-size: 18px;
     line-height: 24px;
     width: 150px;
+    cursor: pointer;
+}
+
+.formInput button::hover {
+    background: #6a3a00;
 }
 
 .list-hidden_background {
@@ -76,7 +81,7 @@
 
 .list-hidden_content {
     /* Thiết lập chiều dài cố định cho phần tử */
-    max-height: 800px; /* Hoặc chiều dài mong muốn */
+    max-height: 700px; /* Hoặc chiều dài mong muốn */
   
     /* Thiết lập thanh cuộn khi nội dung vượt quá chiều dài cố định */
     overflow-y: auto;
@@ -88,7 +93,7 @@
   
   /* Thiết lập kiểu dáng cho thanh cuộn trên trình duyệt WebKit (như Chrome, Safari) */
   .list-hidden_content::-webkit-scrollbar {
-    width: 12px;
+    width: 5px;
   }
   
   .list-hidden_content::-webkit-scrollbar-thumb {
