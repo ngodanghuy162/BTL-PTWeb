@@ -1,33 +1,35 @@
 import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import styles from "./Login.module.scss";
+import Login from "../../../api/Login";
 
 const FormLogin = () => {
+    var jwt;
     console.log("re-render login");
     const [showMess, setShowMess] = useState(false);
     const navigate = useNavigate();
     //const { handleLogin } = useAuth();
     const [formData, setFormData] = useState(
-        {email: '', password: ''}
+        {username: '', password: ''}
     );
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = {
-            email: formData.email,
-            password: formData.password
-        }
-
-        login.login(data).then((res) => {
-           /* if (res === 0) {
-                setShowMess(true);
-            } else {
-                handleLogin(res);
-                navigate('/');
-            }*/
-        })
-
     }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const data = {
+                username: formData.username,
+                password: formData.password
+            }
+        Login.login(data).then(response => {
+            jwt = response.data.token;
+        })
+        } catch (error) {
+          // Xử lý lỗi khi thực hiện request
+          console.error('Error:', error);
+          setShowMess(true);
+        }
+      };
 
     const handleChange = (event) => {
         setShowMess(false);
@@ -53,17 +55,12 @@ const FormLogin = () => {
                 Đăng nhập thất bại, email hoặc mật khẩu không đúng
             </span>}
             <div className={styles['footerLogin']}>
-                <span className={styles['fogotPassword']}>Bạn đã quên mật khẩu?</span>
                 <button type='submit' className={styles['submitLogin']}>
                     Đăng nhập
                 </button>
-                {/* <span className={styles['hasAccount']}>
-                        Bạn chưa có tài khoản?
-                        <Link className={styles['hasAccountLink']} to={'/signup'}> Đăng ký</Link>
-                </span> */}
             </div>
         </form>
     );
-};
+
 
 export default FormLogin;
