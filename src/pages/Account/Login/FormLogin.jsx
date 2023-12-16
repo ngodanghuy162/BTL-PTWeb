@@ -12,7 +12,6 @@ const FormLogin = () => {
     const [formData, setFormData] = useState(
         {username: '', password: ''}
     );
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -76,6 +75,6 @@ const FormLogin = () => {
             </div>
         </form>
     );
-
+    }
 
 export default FormLogin;
