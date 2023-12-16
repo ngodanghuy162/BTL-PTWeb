@@ -12,6 +12,7 @@ const FormLogin = () => {
     const [formData, setFormData] = useState(
         {username: '', password: ''}
     );
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -69,7 +70,7 @@ const FormLogin = () => {
                 Đăng nhập thất bại.
             </span>}
             <div className={styles['footerLogin']}>
-                <button type='submit' className={styles['submitLogin']} onClick={handleSubmit}>
+                <button type='submit' className={styles['submitLogin']}>
                     Đăng nhập
                 </button>
             </div>
