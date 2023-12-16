@@ -1,33 +1,50 @@
 import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import styles from "./Login.module.scss";
+import Login from "../../../api/Login";
 
 const FormLogin = () => {
+    var jwt;
     console.log("re-render login");
     const [showMess, setShowMess] = useState(false);
     const navigate = useNavigate();
     //const { handleLogin } = useAuth();
     const [formData, setFormData] = useState(
-        {email: '', password: ''}
+        {username: '', password: ''}
     );
+    
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = {
-            email: formData.email,
-            password: formData.password
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        try {
+            const data = {
+                username: formData.username,
+                password: formData.password
+            };
+    
+            Login.login(data).then(response => {
+                if (response.data && response.data.token) {
+                    jwt = response.data.token;
+                } else {
+                    console.error('Try again pls.');
+                }
+            }).catch(error => {
+                if (error.response && error.response.status === 403) {
+                    // Xử lý khi nhận được lỗi 403 (Forbidden)
+                    console.error('Access forbidden:', error.response.data);
+                    setShowMess(true); // Hiển thị thông báo hoặc thực hiện hành động khác tùy thuộc vào yêu cầu của bạn
+                } else {
+                    console.error('Error:', error);
+                    setShowMess(true);
+                }
+            });
+        } catch (error) {
+            // Xử lý lỗi khi thực hiện request
+            console.error('Error:', error);
+            setShowMess(true);
         }
-
-        login.login(data).then((res) => {
-           /* if (res === 0) {
-                setShowMess(true);
-            } else {
-                handleLogin(res);
-                navigate('/');
-            }*/
-        })
-
-    }
+    };
 
     const handleChange = (event) => {
         setShowMess(false);
@@ -40,8 +57,8 @@ const FormLogin = () => {
     return (
         <form className={styles['formGroup']} onSubmit={handleSubmit}>
             <div className={styles['formInput']}>
-                <span className={styles['headInput']}>Email của bạn là gì?</span>
-                <input type={'email'} name={'email'} className={styles['inputData']} placeholder='Nhập email của bạn.'
+                <span className={styles['headInput']}>Tên đăng nhập của bạn là gì?</span>
+                <input type={'username'} name={'username'} className={styles['inputData']} placeholder='Nhập tên đăng nhập của bạn.'
                        onChange={handleChange} required></input>
             </div>
             <div className={styles['formInput']}>
@@ -50,20 +67,15 @@ const FormLogin = () => {
                        onChange={handleChange} required></input>
             </div>
             {showMess && <span className={styles['login-status']}>
-                Đăng nhập thất bại, email hoặc mật khẩu không đúng
+                Đăng nhập thất bại.
             </span>}
             <div className={styles['footerLogin']}>
-                <span className={styles['fogotPassword']}>Bạn đã quên mật khẩu?</span>
                 <button type='submit' className={styles['submitLogin']}>
                     Đăng nhập
                 </button>
-                {/* <span className={styles['hasAccount']}>
-                        Bạn chưa có tài khoản?
-                        <Link className={styles['hasAccountLink']} to={'/signup'}> Đăng ký</Link>
-                </span> */}
             </div>
         </form>
     );
-};
+    }
 
 export default FormLogin;
