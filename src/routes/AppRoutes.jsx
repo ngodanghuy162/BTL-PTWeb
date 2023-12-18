@@ -1,18 +1,10 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import publicRoutes from "./publicRoutes";
 import { adminRoutes, employeeRoutes } from "./privateRoutes";
-
-// import LandingPage from "../pages/Landing/Landing";
-// import AdminPage from "../pages/Admin/Admin";
-// import LoginPage from "../pages/Account/Login/index";
-// import SignupPage from "../pages/Account/SignUp/index";
-// import SearchPage from "../pages/Order/index";
-// import Data from "../pages/Order/Bill/index";
-// import Employee from "../pages/Employee/Main/OrderCf/index";
-// import AddOrder from "../pages/Employee/Main/Content/Content";
+import {useAuth} from "../hooks/AuthContext";
 
 const AppRoutes = () => {
-  const isLoggedIn = false;
+  const {isLoggedIn} = useAuth();
   return (
     <Routes>
       {publicRoutes.map((router, index) => {

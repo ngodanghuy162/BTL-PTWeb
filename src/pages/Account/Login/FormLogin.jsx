@@ -1,14 +1,16 @@
 import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
+// const { handleLogin } = useAuth();
 import styles from "./Login.module.scss";
 import Login from "../../../api/Login";
+import {useAuth} from "../../../hooks/AuthContext";
 
 const FormLogin = () => {
     var jwt;
     console.log("re-render login");
     const [showMess, setShowMess] = useState(false);
     const navigate = useNavigate();
-    //const { handleLogin } = useAuth();
+    const { handleLogin } = useAuth();
     const [formData, setFormData] = useState(
         {username: '', password: ''}
     );
@@ -22,10 +24,14 @@ const FormLogin = () => {
                 username: formData.username,
                 password: formData.password
             };
-    
+
             Login.login(data).then(response => {
-                if (response.data && response.data.token) {
-                    jwt = response.data.token;
+                if (response) {
+                    // jwt = response.token;
+                    handleLogin(response);
+                    navigate('/');
+                    // console.log(response);
+                    // console.log(jwt);
                 } else {
                     console.error('Try again pls.');
                 }

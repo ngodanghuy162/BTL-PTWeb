@@ -2,14 +2,16 @@ import {createContext, useContext, useState} from "react";
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({children}) => {
+const AuthProvider = ({children}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(
         localStorage.getItem("user") !== null
     );
 
     const handleLogin = (data) => {
-        console.log(data);
-        const user = {email: data.email, id: data._id};
+        // console.log(data);
+        const user = {token: data.token,
+            //  id: data._id
+            };
         localStorage.setItem("user", JSON.stringify(user));
         setIsLoggedIn(true);
     };
@@ -32,6 +34,8 @@ export const AuthProvider = ({children}) => {
     );
 };
 
-export const useAuth = () => {
+const useAuth = () => {
     return useContext(AuthContext);
 };
+
+export {AuthProvider, useAuth};

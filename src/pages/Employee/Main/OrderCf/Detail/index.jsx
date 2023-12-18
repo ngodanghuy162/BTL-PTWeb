@@ -8,7 +8,7 @@ function OrdeCf({onClose}) {
       };
     return (
         <div className={styles['Main']}>
-            <header>
+            <header className={styles['Header']}>
                 <h5>Thông tin vận đơn</h5>
                 <IoCloseSharp   onClick={handleClose}/>
             </header>
