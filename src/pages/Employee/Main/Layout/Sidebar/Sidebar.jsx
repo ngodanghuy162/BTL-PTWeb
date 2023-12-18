@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
+import {useAuth} from "../../../../../hooks/AuthContext";
+import {useNavigate} from "react-router-dom";
 import styles from './Sidebar.module.scss';
 import { Link } from 'react-router-dom';
 import { FaClipboardList } from "react-icons/fa";
 import { FaBoxes } from "react-icons/fa";
 import { FaBox } from "react-icons/fa";
 import { FaCaretDown } from "react-icons/fa";
+import { CiLogout } from "react-icons/ci";
 
 
 function Sidebar() {
+  const {handleLogout} = useAuth();
+  const navigate = useNavigate();
+
   const [isListVisible, setListVisible] = useState(false);
   const [isListStatus, setListStatus] = useState(false);
   const [isListCf, setListCf] = useState(false);
@@ -23,6 +29,11 @@ function Sidebar() {
   const onClickListCf = () => {
     setListCf(!isListCf);
   };
+  
+  const onClickLogout = () => {
+    handleLogout();
+    navigate("/");
+}
 
   return (
     <aside className={styles['wrapper']}>
@@ -77,6 +88,7 @@ function Sidebar() {
           )}
         </li>
       </ul>
+      <CiLogout onClick={handleLogout} className={styles["IconLogout"]}/>
     </aside>
   );
 }

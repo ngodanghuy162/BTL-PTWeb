@@ -15,7 +15,7 @@ function Header() {
   return (
     <header className={styles['wrapper']}>
       <div className={styles['inner']}>
-        <img src='https://giaohangtietkiem.vn/wp-content/uploads/2015/10/logo.png' className={styles['img']} alt='logo' />
+        <img src='https://bambooship.cdn.vccloud.vn/wp-content/uploads/2021/11/shipper-1-1.png' className={styles['img']} alt='logo' />
 
         <div className={styles['SearchContent']}>
           <input type="text"  className={styles['inputSearch']} placeholder="Tra cứu đơn hàng"/>

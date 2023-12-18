@@ -46,15 +46,6 @@ const AppRoutes = () => {
           />
         );
       })}
-      {/* <Route path="/" element={<LandingPage />}></Route>
-      <Route path="/admin" element={isLogin ?<AdminPage /> : <Navigate to="/"/>}></Route>
-      <Route path="/login" element={<LoginPage />}></Route>
-      <Route path="/signup" element={<SignupPage />}></Route>
-      <Route path="/search" element={<SearchPage />}></Route>
-      <Route path="/data" element={<Data />}></Route>
-      <Route path="/employee" element={<AddOrder />}></Route>
-      <Route path="/employee/neworders" element={<Employee />}></Route> */}
-      {/* <Route path="*" element={<NotFoundPage />}></Route> */}
     </Routes>
   );
 };

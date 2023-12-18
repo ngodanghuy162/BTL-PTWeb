@@ -14,17 +14,16 @@ const AuthProvider = ({children}) => {
         const user = {token: data.token,
             authority: data.authority
             };
-        if(user.authority.includes('LEADER')) {
+        console.log(data.authority);
+        if(user.authority.includes('LEADER') || user.authority.includes('ADMINTK') || user.authority.includes('ADMINGD')) {
             localStorage.setItem("LEADER", JSON.stringify(user));
             setIsAdminLogin(true);
             setIsEmployeeLogin(false);
-            console.log("1");
         }
-        if(user.authority.includes('EMPLOYEE')) {
+        if(user.authority.includes('NVTK') || user.authority.includes('NVGD')) {
             localStorage.setItem("EMPLOYEE", JSON.stringify(user));
             setIsEmployeeLogin(true);
             setIsAdminLogin(false);
-            console.log("2");
         }
     };
 
