@@ -4,7 +4,8 @@ import { adminRoutes, employeeRoutes } from "./privateRoutes";
 import {useAuth} from "../hooks/AuthContext";
 
 const AppRoutes = () => {
-  const {isLoggedIn} = useAuth();
+  const {isAdminLogin} = useAuth();
+  const {isEmployeeLogin} = useAuth();
   return (
     <Routes>
       {publicRoutes.map((router, index) => {
@@ -23,7 +24,7 @@ const AppRoutes = () => {
           <Route
             key={index}
             path={router.path}
-            element={isLoggedIn ? (
+            element={isAdminLogin ? (
               <Page />
             ) : (
               <Navigate to="/login" />
@@ -37,7 +38,7 @@ const AppRoutes = () => {
           <Route
             key={index}
             path={router.path}
-            element={isLoggedIn ? (
+            element={isEmployeeLogin ? (
               <Page />
             ) : (
               <Navigate to="/login" />
