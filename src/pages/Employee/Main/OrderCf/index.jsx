@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 import styles from "./OrderCf.module.scss";
 import Layout from '../Layout/index';
 import Detail from './Detail/index';
+import {useAuth} from "../../../../hooks/AuthContext"
 
 function OrdeCf() {
+  const {getUser} = useAuth();
+  const user = getUser();
   const [CheckIn4, setCheckIn4] = useState(false);
   const [CheckCf, setCheckCf] = useState(false);
 
   const onClickCheck = () => {
     setCheckIn4(!CheckIn4);
+    console.log(user.token);
   }
 
   const onClickCf = () => {

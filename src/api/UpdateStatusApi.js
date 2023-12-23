@@ -1,7 +1,7 @@
 import axiosClient from "./AxiosClient";
 
-class OrderApi {
-    getDataSearch(params) {
+class StatusApi {
+    getDataStatus(params) {
         // const url = `/products`;
         
         const url = `/order/tracuu?mavandon=${params}`;
@@ -9,4 +9,4 @@ class OrderApi {
     }
 }
 
-export default new OrderApi;
+export default new StatusApi;
