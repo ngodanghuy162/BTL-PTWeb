@@ -12,7 +12,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import style from "./StandardTable.module.scss";
 
-// import * as api from "@/services/globalApi";
 import * as request from "@/utils/request";
 
 export default function StandardTable(props) {
@@ -35,7 +34,7 @@ export default function StandardTable(props) {
         const fetchEmployees = async () => {
             try {
                 const res = await request.get("/employees");
-                setRows(res.data);
+                setRows(res);
             } catch (error) {
                 if (error.response) {
                     console.log(error.response.data);

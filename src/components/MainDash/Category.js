@@ -100,7 +100,7 @@ export const subColumns = [
         align: "left",
     },
     {
-        id: "receive Date",
+        id: "receiveDate",
         label: "Receive Date",
         width: "15%",
         minWidth: 0,

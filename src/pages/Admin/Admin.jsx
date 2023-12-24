@@ -18,7 +18,7 @@ const AdminPage = () => {
             <div className={style.AppGlass}>
                 <Sidebar selected={selected} onSelected={setSelected} />
                 <MainDash selected={selected} onSelected={setSelected} />
-                <RightSide />
+                {/* <RightSide /> */}
             </div>
         </div>
     );

@@ -12,7 +12,6 @@ import TableBody from "@mui/material/TableBody";
 import TableHead from "@mui/material/TableHead";
 
 import style from "./ExpandableRow.module.scss";
-import "../ExpandableTable.css";
 
 const getStyle = (status) => {
     if (status === "da nhan") {
@@ -34,8 +33,9 @@ const getStyle = (status) => {
 };
 
 export function ExpandableRow(props) {
-    const { row, columns, subColumns } = props;
+    const { row, columns, subRows, subColumns } = props;
     const [open, setOpen] = React.useState(false);
+
     return (
         <React.Fragment>
             <TableRow
@@ -109,11 +109,27 @@ export function ExpandableRow(props) {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    <TableRow>
-                                        <TableCell>
-                                            {row.history[0].trackId}
-                                        </TableCell>
-                                    </TableRow>
+                                    {subRows.map((row) => (
+                                        <TableRow
+                                            key={row.name}
+                                            sx={{
+                                                "&:last-child td, &:last-child th":
+                                                    { border: 0 },
+                                            }}
+                                        >
+                                            {subColumns.map((column) => {
+                                                const value = row[column.id];
+                                                return (
+                                                    <TableCell
+                                                        key={column.id}
+                                                        align={column.align}
+                                                    >
+                                                        {value}
+                                                    </TableCell>
+                                                );
+                                            })}
+                                        </TableRow>
+                                    ))}
                                 </TableBody>
                             </Table>
                         </Box>

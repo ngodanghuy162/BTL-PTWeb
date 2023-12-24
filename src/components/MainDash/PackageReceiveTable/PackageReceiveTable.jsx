@@ -7,14 +7,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { ExpandableRow } from "../../ExpandableRow/ExpandableRow";
+import { ExpandableRow } from "./ExpandableRow/ExpandableRow";
 
-import "./ExpandableTable.css";
-import style from "./ExpandableTable.module.scss";
+import "./PackageReceiveTable.css";
+import style from "./PackageReceiveTable.module.scss";
 
 import * as request from "@/utils/request";
 
-export default function ExpandableTable(props) {
+export default function PackageReceiveTable(props) {
     const { columns, subColumns } = props;
 
     const [page, setPage] = useState(0);

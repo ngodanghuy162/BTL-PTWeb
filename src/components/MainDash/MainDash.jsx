@@ -17,13 +17,13 @@ const componentList = [
     </div>,
     <div key={3}>
         <h1>Package Management</h1>
-        <Cards />
+        {/* <Cards /> */}
         <ExpandableTable columns={packageColumns} subColumns={subColumns} />
     </div>,
     <div key={4}>
         <h1>Package Management</h1>
-        <Cards />
-        <ExpandableTable columns={packageColumns} />
+        {/* <Cards /> */}
+        <ExpandableTable columns={packageColumns} subColumns={subColumns} />
     </div>,
     <div key={5}>
         <h1>Location Analysis</h1>
