@@ -7,7 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { ExpandableRow } from "./ExpandableRow/ExpandableRow";
+import { ExpandableRow } from "@/components/ExpandableRow/ExpandableRow";
 
 import "./PackageReceiveTable.css";
 import style from "./PackageReceiveTable.module.scss";

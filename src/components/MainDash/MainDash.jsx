@@ -5,6 +5,7 @@ import ExpandableTable from "./ExpandableTable/ExpandableTable";
 import StandardTable from "./StandardTable/StandardTable";
 
 import { packageColumns, subColumns, employeeColumns } from "./Category";
+import PackageReceiveTable from "./PackageReceiveTable/PackageReceiveTable";
 
 const componentList = [
     <div key={1}>
@@ -23,7 +24,7 @@ const componentList = [
     <div key={4}>
         <h1>Package Management</h1>
         {/* <Cards /> */}
-        <ExpandableTable columns={packageColumns} subColumns={subColumns} />
+        <PackageReceiveTable columns={packageColumns} subColumns={subColumns} />
     </div>,
     <div key={5}>
         <h1>Location Analysis</h1>

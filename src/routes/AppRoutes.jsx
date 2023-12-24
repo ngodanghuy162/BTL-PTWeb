@@ -12,48 +12,40 @@ import { adminRoutes, employeeRoutes } from "./privateRoutes";
 // import AddOrder from "../pages/Employee/Main/Content/Content";
 
 const AppRoutes = () => {
-  const isLoggedIn = false;
-  return (
-    <Routes>
-      {publicRoutes.map((router, index) => {
-        const Page = router.component;
-        return (
-          <Route
-            key={index}
-            path={router.path}
-            element={<Page />}
-          />
-        );
-      })}
-      {adminRoutes.map((router, index) => {
-        const Page = router.component;
-        return (
-          <Route
-            key={index}
-            path={router.path}
-            element={isLoggedIn ? (
-              <Page />
-            ) : (
-              <Navigate to="/login" />
-            )}
-          />
-        );
-      })}
-      {employeeRoutes.map((router, index) => {
-        const Page = router.component;
-        return (
-          <Route
-            key={index}
-            path={router.path}
-            element={isLoggedIn ? (
-              <Page />
-            ) : (
-              <Navigate to="/login" />
-            )}
-          />
-        );
-      })}
-      {/* <Route path="/" element={<LandingPage />}></Route>
+    const isLoggedIn = true;
+    return (
+        <Routes>
+            {publicRoutes.map((router, index) => {
+                const Page = router.component;
+                return (
+                    <Route key={index} path={router.path} element={<Page />} />
+                );
+            })}
+            {adminRoutes.map((router, index) => {
+                const Page = router.component;
+                return (
+                    <Route
+                        key={index}
+                        path={router.path}
+                        element={
+                            isLoggedIn ? <Page /> : <Navigate to="/login" />
+                        }
+                    />
+                );
+            })}
+            {employeeRoutes.map((router, index) => {
+                const Page = router.component;
+                return (
+                    <Route
+                        key={index}
+                        path={router.path}
+                        element={
+                            isLoggedIn ? <Page /> : <Navigate to="/login" />
+                        }
+                    />
+                );
+            })}
+            {/* <Route path="/" element={<LandingPage />}></Route>
       <Route path="/admin" element={isLogin ?<AdminPage /> : <Navigate to="/"/>}></Route>
       <Route path="/login" element={<LoginPage />}></Route>
       <Route path="/signup" element={<SignupPage />}></Route>
@@ -61,9 +53,9 @@ const AppRoutes = () => {
       <Route path="/data" element={<Data />}></Route>
       <Route path="/employee" element={<AddOrder />}></Route>
       <Route path="/employee/neworders" element={<Employee />}></Route> */}
-      {/* <Route path="*" element={<NotFoundPage />}></Route> */}
-    </Routes>
-  );
+            {/* <Route path="*" element={<NotFoundPage />}></Route> */}
+        </Routes>
+    );
 };
 
 export default AppRoutes;
