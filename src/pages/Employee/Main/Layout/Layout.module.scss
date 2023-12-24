@@ -1,0 +1,56 @@
+:root {
+  --header-height: 60px; /* Đặt biến cho chiều cao của header */
+}
+
+.wrapper {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+.header {
+  height: var(--header-height);
+}
+
+.container {
+  // margin-top: 60px;
+  width: 100%;
+  display: flex;
+  height: calc(100% - var(--header-height));
+}
+
+.scrollbarContent {
+  /* Thiết lập chiều dài cố định cho phần tử */
+  max-height: 100%; /* Hoặc chiều dài mong muốn */
+
+  /* Thiết lập thanh cuộn khi nội dung vượt quá chiều dài cố định */
+  overflow-y: auto;
+
+  /* Thêm độ mềm mại cho thanh cuộn */
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+/* Thiết lập kiểu dáng cho thanh cuộn trên trình duyệt WebKit (như Chrome, Safari) */
+.scrollbarContent::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollbarContent::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 6px;
+}
+
+.scrollbarContent::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+  background: linear-gradient(to bottom, #84d2f6, white);
+  // height: 100000px;
+}
+

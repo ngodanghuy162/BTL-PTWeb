@@ -1,11 +1,11 @@
 import axiosClient from "./AxiosClient";
 
-const OrderApi = {
+class OrderApi {
     getDataSearch(params) {
         // const url = `/products`;
         
-        const url = `/order/tracuu?mavandon=1HWC1700386580181`;
-        return axiosClient.get(url, {params});
+        const url = `/order/tracuu?mavandon=${params}`;
+        return axiosClient.get(url);
     }
     // getDataSearch(id) {
     //     const url = `/order/tracuu?mavandon=${id}`;
@@ -13,4 +13,4 @@ const OrderApi = {
     // }
 }
 
-export default OrderApi;
+export default new OrderApi;
