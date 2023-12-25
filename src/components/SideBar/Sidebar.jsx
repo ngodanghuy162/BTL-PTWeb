@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+import {useAuth} from "../../hooks/AuthContext";
 import Logo from "@/assets/images/logo.png";
 
 import style from "./Sidebar.module.scss";
+import {useNavigate} from "react-router-dom";
 import { UilSignOutAlt } from "@iconscout/react-unicons";
 import { SidebarCategory } from "./Category";
 import classNames from "classnames";
 
 const Sidebar = ({ selected, onSelected }) => {
+    const {handleLogout} = useAuth();
+    const navigate = useNavigate();
     const sidebarVariants = {
         true: {
             left: "0",
@@ -15,6 +19,11 @@ const Sidebar = ({ selected, onSelected }) => {
             left: "-60%",
         },
     };
+
+    const onClickLogout = () => {
+        handleLogout();
+        navigate("/");
+    }
 
     return (
         <>
@@ -42,7 +51,7 @@ const Sidebar = ({ selected, onSelected }) => {
                         );
                     })}
                     <div className={style.menuItem}>
-                        <UilSignOutAlt />
+                        <UilSignOutAlt onClick={handleLogout}/>
                     </div>
                 </div>
             </div>
