@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from "../Content.module.scss"
 import myStyles from "./Receiver.module.scss"
 import { FaArrowRight } from "react-icons/fa6";
@@ -8,7 +8,24 @@ import { IoIosInformationCircle } from "react-icons/io";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
 
 
-function Receiver() {
+function Receiver({ onDataChange }) {
+  const [receiverData, setReceiverData] = useState({
+    phone: "",
+    fullName: "",
+    address: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setReceiverData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+
+    // Notify parent component about data change
+    onDataChange(receiverData);
+  };
+
   return (
     <div className={styles['Content']}>
       <header className={styles['Header']}>
@@ -25,19 +42,37 @@ function Receiver() {
       <div className={styles['MainContent']}>
         <div className={myStyles['MainContentCenter']}>
           <div className={myStyles['ListMainContent']}>
-            <label className={styles['InputContent']}>
+          <label className={styles['InputContent']}>
               <p>Điện thoại</p>
-              <input type="text" placeholder="Nhập số điện thoại người nhận"/>
+              <input
+                type="text"
+                name="phone"
+                value={receiverData.phone}
+                onChange={handleChange}
+                placeholder="Nhập số điện thoại người gửi"
+              />
             </label>
 
             <label className={styles['InputContent']}>
               <p>Họ tên</p>
-              <input type="text" placeholder="Nhập họ và tên người gửi"/>
+              <input
+                type="text"
+                name="fullName"
+                value={receiverData.fullName}
+                onChange={handleChange}
+                placeholder="Nhập họ và tên người gửi"
+              />
             </label>
 
             <label className={styles['InputContent']}>
               <p>Địa chỉ</p>
-              <input type="text" placeholder="Nhập địa chỉ(Số nhà, phường, thị trấn, thành phố)"/>
+              <input
+                type="text"
+                name="address"
+                value={receiverData.address}
+                onChange={handleChange}
+                placeholder="Nhập địa chỉ(Số nhà, phường, thị trấn, thành phố)"
+              />
             </label>
 
           </div>

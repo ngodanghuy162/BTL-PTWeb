@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from "../Content.module.scss"
 import myStyles from "./GoodsInformation.module.scss"
 import { TbUserShare } from "react-icons/tb";
@@ -7,7 +7,23 @@ import { FaAngleDown } from "react-icons/fa";
 import { FaBox } from "react-icons/fa";
 
 
-function GoodsInformation() {
+function GoodsInformation({ onDataChange }) {
+    const [goodsInformationData, setGoodsInformationData] = useState({
+        classify: "",
+        name: "",
+        weight: "",
+    });
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setGoodsInformationData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+  
+      onDataChange(goodsInformationData);
+    };
+  
     return (
         <div className={styles['Content']}>
             <header className={styles['Header']}>
@@ -26,28 +42,36 @@ function GoodsInformation() {
                         <div className={myStyles['ListMainContent']}>
                             <div className={styles['InputContent']}>
                                 <p>Loại hàng</p>
-                                <input type="text" />
+                                <input
+                                    type="text"
+                                    name="classify"
+                                    value={goodsInformationData.classify}
+                                    onChange={handleChange}
+                                    placeholder="Nhập thông tin hàng"
+                                />
                             </div>
 
                             <div className={styles['InputContent']}>
                                 <p>Tên hàng</p>
-                                <input type="text"  placeholder="Ghi chú về tên mặt hàng"/>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={goodsInformationData.name}
+                                    onChange={handleChange}
+                                    placeholder="Nhập tên hàng"
+                                />
                             </div>
 
                             <div className={styles['InputContent']}>
                                 <p>Trọng lượng</p>
-                                <input type="text"  placeholder="Gam"/>
+                                <input
+                                    type="text"
+                                    name="weight"
+                                    value={goodsInformationData.weight}
+                                    onChange={handleChange}
+                                    placeholder="Gam"
+                                />
                             </div>
-
-                            {/* <div  className={myStyles['InputContent']}>
-                                <p>Kích thước</p>
-                                <div className={myStyles['InputList']}>
-                                    <input type="text" name="" id="" />
-                                    <input type="text" name="" id="" />
-                                    <input type="text" name="" id="" />
-                                </div>
-                            </div> */}
-
                         </div>
                     </div>
                 </div>

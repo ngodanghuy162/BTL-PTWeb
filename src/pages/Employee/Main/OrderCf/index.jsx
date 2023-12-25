@@ -4,6 +4,7 @@ import styles from "./OrderCf.module.scss";
 import Layout from '../Layout/index';
 import Detail from './Detail/index';
 import {useAuth} from "../../../../hooks/AuthContext"
+import StatusApi from "../../../../api/UpdateStatusApi"
 
 function OrdeCf() {
   const {getUser} = useAuth();
@@ -16,19 +17,9 @@ function OrdeCf() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Lấy token từ nơi bạn lưu trữ nó (localStorage, Redux state, etc.)
-        const token = user.token;
-
-        const response = await axios.get('http://localhost:8080/order/thongkestatusorder/dtk?iddtk=1&type=hanggui', {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        });
-
+        const response = await StatusApi.getDataStatus(2, "hangden", user.token);
         // Lưu dữ liệu vào state
-        setData(response.data);
-        console.log(response.data);
+        setData(response);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -65,7 +56,7 @@ function OrdeCf() {
               >
                 Xác nhận
               </button>
-              {selectedOrderId === order.id && (
+              {selectedOrderId === order.id && CheckCf && (
                 <ul className={styles['ListStatus']}>
                   <li>click</li>
                   <li>click</li>
@@ -85,7 +76,7 @@ function OrdeCf() {
           {CheckIn4 && (
             <div>
               <div onClick={onClickCheck} className={styles['list-hidden_background']}></div>
-              <Detail onClose={onClickCheck}/>
+              <Detail onClose={onClickCheck} data={data}/>
             </div>
           )}
       </div>

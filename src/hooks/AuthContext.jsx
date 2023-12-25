@@ -24,7 +24,8 @@ const AuthProvider = ({children}) => {
     );
 
     const handleLogin = (data) => {
-        const user = {token: data.token,
+        const user = {
+            token: data.token,
             userInfo: {
                 id: data.userinfo.id,
                 id_work: data.userinfo.id_work,
