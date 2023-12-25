@@ -25,4 +25,11 @@ public class CorsConfig {
             }
         };
     }
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**")
+//                .allowedOrigins("http://localhost:3000/**") // accept frontend rq
+//                .allowedMethods("GET", "POST", "PUT", "DELETE") // all method
+//                .allowedHeaders("*"); // all header
+//    }
 }
