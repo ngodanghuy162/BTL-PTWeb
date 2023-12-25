@@ -1,11 +1,7 @@
-.Table {
-    td {
-        border: none !important;
-    }
-
-    &:first-child {
-        border-radius: 0.7rem !important;
-    }
+.layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 @media screen and (max-width: 1200px) {

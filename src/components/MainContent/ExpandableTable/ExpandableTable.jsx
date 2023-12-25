@@ -51,15 +51,17 @@ export default function ExpandableTable(props) {
 
     return (
         <div className={style.Table}>
-            <h3>Packages</h3>
-            <Paper sx={{ width: "100%", overflow: "hidden" }}>
+            <Paper sx={{ width: "120%", overflow: "hidden" }}>
                 <TableContainer
-                    style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
-                    sx={{ maxHeight: 440 }}
+                    style={{
+                        width: 2000,
+                        boxShadow: "0px 13px 20px 0px #80808029",
+                    }}
+                    sx={{ maxHeight: 1600 }}
                 >
                     <Table
                         stickyHeader
-                        sx={{ minWidth: 650 }}
+                        sx={{ minWidth: 200 }}
                         aria-label="sticky table"
                     >
                         <TableHead>
@@ -70,6 +72,7 @@ export default function ExpandableTable(props) {
                                         align={column.align}
                                         style={{
                                             minWidth: column.minWidth,
+                                            width: column.width,
                                         }}
                                     >
                                         {column.label}

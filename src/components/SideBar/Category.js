@@ -3,7 +3,6 @@ import {
     UilEstate,
     UilClipboardAlt,
     UilUsersAlt,
-    UilPackage,
     UilChart,
 } from "@iconscout/react-unicons";
 
@@ -11,27 +10,22 @@ import {
 export const SidebarCategory = [
     {
         icon: UilEstate,
-        heading: "Dashboard",
+        heading: "Bảng thống kê",
     },
     {
         icon: UilUsersAlt,
-        heading: "Employee",
+        heading: "Quản lý nhân viên",
+    },
+    {
+        icon: UilUsersAlt,
+        heading: "Quản lý admin",
     },
     {
         icon: UilClipboardAlt,
-        heading: "Hang den",
-    },
-
-    {
-        icon: UilPackage,
-        heading: "Hang di",
+        heading: "Quản lý đơn hàng",
     },
     {
         icon: UilChart,
-        heading: "Diem giao dich",
-    },
-    {
-        icon: UilChart,
-        heading: "Diem tap ket",
+        heading: "Quản lý địa điểm",
     },
 ];

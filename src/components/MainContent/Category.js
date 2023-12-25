@@ -1,41 +1,39 @@
 export const packageColumns = [
-    { id: "packageId", label: "Package ID", minWidth: 70, align: "left" },
+    {
+        id: "packageId",
+        label: "Package ID",
+        minWidth: 70,
+        width: "15%",
+        align: "left",
+    },
     {
         id: "senderAddress",
         label: "Sender Address",
         minWidth: 50,
+        width: "20%",
         align: "left",
     },
     {
         id: "receiverAddress",
         label: "Receiver Address",
         minWidth: 70,
-        align: "left",
-    },
-    {
-        id: "weight",
-        label: "Weight",
-        minWidth: 70,
+        width: "20%",
         align: "left",
     },
     {
         id: "type",
         label: "Type",
         minWidth: 70,
+        width: "20%",
         align: "left",
     },
     {
         id: "status",
         label: "Status",
-        minWidth: 70,
+        minWidth: 0,
+        width: "15%",
         align: "left",
         className: "status",
-    },
-    {
-        id: "cost",
-        label: "Cost",
-        minWidth: 40,
-        align: "left",
     },
 ];
 
@@ -49,16 +47,23 @@ export const employeeColumns = [
     },
     {
         id: "name",
-        label: "Employee Name",
+        label: "Full Name",
         minWidth: 50,
         width: "20%",
         align: "left",
     },
     {
         id: "email",
-        label: "Employee Email",
+        label: "Email",
         minWidth: 50,
         width: "20%",
+        align: "left",
+    },
+    {
+        id: "phonenumber",
+        label: "Phone Number",
+        minWidth: 50,
+        width: "10%",
         align: "left",
     },
     {

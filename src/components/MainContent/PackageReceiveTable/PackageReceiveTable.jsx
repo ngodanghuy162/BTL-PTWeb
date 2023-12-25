@@ -7,15 +7,16 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import IconButton from "@mui/material/IconButton";
-import EditIcon from "@mui/icons-material/Edit";
-import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
-import style from "./StandardTable.module.scss";
+import { ExpandableRow } from "@/components/ExpandableRow/ExpandableRow";
+
+import "./PackageReceiveTable.css";
+import style from "./PackageReceiveTable.module.scss";
 
 import * as request from "@/utils/request";
+import SearchForm from "../SearchForm/SearchForm";
 
-export default function StandardTable(props) {
-    const { columns } = props;
+export default function PackageReceiveTable(props) {
+    const { columns, subColumns } = props;
 
     const [page, setPage] = useState(0);
     const [rows, setRows] = useState([]);
@@ -31,9 +32,9 @@ export default function StandardTable(props) {
     };
 
     useEffect(() => {
-        const fetchEmployees = async () => {
+        const fetchPackages = async () => {
             try {
-                const res = await request.get("/employees");
+                const res = await request.get("/orders");
                 setRows(res);
             } catch (error) {
                 if (error.response) {
@@ -46,16 +47,18 @@ export default function StandardTable(props) {
             }
         };
 
-        fetchEmployees();
+        fetchPackages();
     }, []);
 
     return (
-        <div className={style.Table}>
-            <h3>Packages</h3>
-            <Paper sx={{ width: "100%", overflow: "hidden" }}>
+        <div className={style.layout}>
+            <SearchForm />
+            <Paper
+                sx={{ width: "90%", alignSelf: "center", overflow: "hidden" }}
+            >
                 <TableContainer
                     style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
-                    sx={{ maxHeight: 440 }}
+                    sx={{ maxHeight: 410 }}
                 >
                     <Table
                         stickyHeader
@@ -70,23 +73,13 @@ export default function StandardTable(props) {
                                         align={column.align}
                                         style={{
                                             minWidth: column.minWidth,
+                                            width: column.width,
                                         }}
                                     >
                                         {column.label}
                                     </TableCell>
                                 ))}
-                                <TableCell
-                                    align="left"
-                                    style={{
-                                        width: "5%",
-                                    }}
-                                ></TableCell>
-                                <TableCell
-                                    align="left"
-                                    style={{
-                                        width: "5%",
-                                    }}
-                                ></TableCell>
+                                <TableCell align="left"></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody style={{ color: "white" }}>
@@ -97,40 +90,13 @@ export default function StandardTable(props) {
                                 )
                                 .map((row) => {
                                     return (
-                                        <TableRow
-                                            hover
-                                            role="checkbox"
-                                            tabIndex={-1}
-                                            key={row.code}
-                                        >
-                                            {columns.map((column) => {
-                                                const value = row[column.id];
-                                                return (
-                                                    <TableCell
-                                                        key={column.id}
-                                                        align={column.align}
-                                                    >
-                                                        {column.format &&
-                                                        typeof value ===
-                                                            "number"
-                                                            ? column.format(
-                                                                  value
-                                                              )
-                                                            : value}
-                                                    </TableCell>
-                                                );
-                                            })}
-                                            <TableCell>
-                                                <IconButton>
-                                                    <PersonRemoveIcon />
-                                                </IconButton>
-                                            </TableCell>
-                                            <TableCell>
-                                                <IconButton>
-                                                    <EditIcon />
-                                                </IconButton>
-                                            </TableCell>
-                                        </TableRow>
+                                        <ExpandableRow
+                                            key={row.productId}
+                                            row={row}
+                                            columns={columns}
+                                            subRows={row["history"]}
+                                            subColumns={subColumns}
+                                        />
                                     );
                                 })}
                         </TableBody>

@@ -1,7 +1,7 @@
 import "@/styles/global.module.scss";
 
 import style from "./Admin.module.scss";
-import MainDash from "@/components/MainDash/MainDash";
+import MainContent from "@/components/MainContent/MainContent";
 import RightSide from "@/components/RightSide/RightSide";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import { useState } from "react";
@@ -17,8 +17,8 @@ const AdminPage = () => {
         <div className={style.App}>
             <div className={style.AppGlass}>
                 <Sidebar selected={selected} onSelected={setSelected} />
-                <MainDash selected={selected} onSelected={setSelected} />
-                {/* <RightSide /> */}
+                <MainContent selected={selected} onSelected={setSelected} />
+                {/* <RightSide selected={selected} onSelected={setSelected} /> */}
             </div>
         </div>
     );

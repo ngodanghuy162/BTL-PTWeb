@@ -32,18 +32,26 @@ const getStyle = (status) => {
     }
 };
 
+// function DetailsTable(props) {
+//     return (
+//         <div>
+//             <h1>Details</h1>
+//         </div>
+//     );
+// }
+
 export function ExpandableRow(props) {
     const { row, columns, subRows, subColumns } = props;
     const [open, setOpen] = React.useState(false);
 
     return (
-        <React.Fragment>
+        <>
             <TableRow
                 hover
                 role="checkbox"
                 tabIndex={-1}
                 key={row.packageId}
-                style={{ color: "white" }}
+                sx={{ "& > *": { borderBottom: "unset" } }}
             >
                 {columns.map((column) => {
                     const value = row[column.id];
@@ -62,11 +70,10 @@ export function ExpandableRow(props) {
                         </TableCell>
                     );
                 })}
-                <TableCell>
+                <TableCell key="subTable" align="center">
                     <IconButton
                         aria-label="expand row"
                         size="small"
-                        style={{ maxWidth: 10 }}
                         onClick={() => setOpen(!open)}
                     >
                         {open ? (
@@ -80,17 +87,18 @@ export function ExpandableRow(props) {
             <TableRow>
                 <TableCell
                     style={{ paddingBottom: 0, paddingTop: 0 }}
-                    colSpan={8}
+                    colSpan={6}
                 >
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box sx={{ margin: 1 }}>
+                            {/* <DetailsTable /> */}
                             <Typography
                                 variant="h6"
                                 gutterBottom
                                 component="div"
                                 style={{ fontWeight: "bold" }}
                             >
-                                History
+                                Tracking History
                             </Typography>
                             <Table size="small" aria-label="history">
                                 <TableHead>
@@ -110,13 +118,7 @@ export function ExpandableRow(props) {
                                 </TableHead>
                                 <TableBody>
                                     {subRows.map((row) => (
-                                        <TableRow
-                                            key={row.name}
-                                            sx={{
-                                                "&:last-child td, &:last-child th":
-                                                    { border: 0 },
-                                            }}
-                                        >
+                                        <TableRow key={row.name}>
                                             {subColumns.map((column) => {
                                                 const value = row[column.id];
                                                 return (
@@ -136,6 +138,6 @@ export function ExpandableRow(props) {
                     </Collapse>
                 </TableCell>
             </TableRow>
-        </React.Fragment>
+        </>
     );
 }
