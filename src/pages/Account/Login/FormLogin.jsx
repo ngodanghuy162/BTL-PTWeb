@@ -6,7 +6,6 @@ import Login from "../../../api/Login";
 import {useAuth} from "../../../hooks/AuthContext";
 
 const FormLogin = () => {
-    var jwt;
     console.log("re-render login");
     const [showMess, setShowMess] = useState(false);
     const navigate = useNavigate();
@@ -27,11 +26,9 @@ const FormLogin = () => {
 
             Login.login(data).then(response => {
                 if (response) {
-                    // jwt = response.token;
                     handleLogin(response);
-                    navigate('/');
-                    // console.log(response);
-                    // console.log(jwt);
+                    const path = `/${response.userinfo.role.toLowerCase()}`;
+                    navigate(path);
                 } else {
                     console.error('Try again pls.');
                 }

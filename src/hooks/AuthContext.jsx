@@ -14,7 +14,7 @@ const AuthProvider = ({children}) => {
     const [isAdminTkLogin, setIsAdminTkLogin] = useState(
         localStorage.getItem("ADMINTK") !== null
     );
-    
+
     const [isNvgdLogin, setIsNvgdLogin] = useState(
         localStorage.getItem("NVGD") !== null
     );
@@ -25,45 +25,61 @@ const AuthProvider = ({children}) => {
 
     const handleLogin = (data) => {
         const user = {token: data.token,
-            authority: data.authority
+            userInfo: {
+                id: data.userinfo.id,
+                id_work: data.userinfo.id_work,
+                name: data.userinfo.name,
+                password: data.userinfo.password,
+                phoneNumber: data.userinfo.phoneNumber,
+                role: data.userinfo.role,
+                username: data.userinfo.username,
+                workPlaceName: data.userinfo.workPlaceName,
+            }
             };
-        console.log(data.authority);
+        console.log(user);
 
+        localStorage.removeItem("LEADER");
+        localStorage.removeItem("ADMINGD");
+        localStorage.removeItem("ADMINTK");
+        localStorage.removeItem("NVGD");
+        localStorage.removeItem("NVTK");
+        localStorage.clear();
         setIsLeaderLogin(false);
         setIsAdminGdLogin(false);
         setIsAdminTkLogin(false);
         setIsNvgdLogin(false);
         setIsNvtkLogin(false);
 
-        if(user.authority.includes('LEADER')) {
+        if(user.userInfo.role.includes('LEADER')) {
             localStorage.setItem("LEADER", JSON.stringify(user));
             setIsLeaderLogin(true);
         }
 
-        if(user.authority.includes('ADMINGD')) {
+        if(user.userInfo.role.includes('ADMINGD')) {
             localStorage.setItem("ADMINGD", JSON.stringify(user));
             setIsAdminGdLogin(true);
         }
 
-        if(user.authority.includes('ADMINTK')) {
+        if(user.userInfo.role.includes('ADMINTK')) {
             localStorage.setItem("ADMINTK", JSON.stringify(user));
             setIsAdminTkLogin(true);
         }
 
-        if(user.authority.includes('NVGD')) {
+        if(user.userInfo.role.includes('NVGD')) {
             localStorage.setItem("NVGD", JSON.stringify(user));
             setIsNvgdLogin(true);
         }
 
-        if(user.authority.includes('NVTK')) {
+        if(user.userInfo.role.includes('NVTK')) {
             localStorage.setItem("NVTK", JSON.stringify(user));
             setIsNvtkLogin(true);
+            console.log(isNvtkLogin);
         }
-        console.log(isNvtkLogin);
 
     };
 
     const handleLogout = () => {
+        localStorage.clear();
         localStorage.removeItem("LEADER");
         localStorage.removeItem("ADMINGD");
         localStorage.removeItem("ADMINTK");

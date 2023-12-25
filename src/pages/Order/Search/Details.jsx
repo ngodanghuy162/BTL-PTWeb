@@ -8,9 +8,6 @@ const Detail = ({dataSearch, onClose }) => {
         onClose();
       };
 
-      
-
-
   const formatDateTime = (dateTimeString) => {
     const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
     return new Date(dateTimeString).toLocaleDateString(undefined, options);
