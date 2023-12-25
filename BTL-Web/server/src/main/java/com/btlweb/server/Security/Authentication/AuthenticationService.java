@@ -3,7 +3,6 @@ package com.btlweb.server.Security.Authentication;
 import com.btlweb.server.Security.JwtService;
 import com.btlweb.server.Security.MyUserDetailsService;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,7 +29,8 @@ public class AuthenticationService {
                 )
         );
         var user = myUserDetailsService.loadUserByUsername(request.getUsername());
+        Object userInfo = myUserDetailsService.getUserInfoByUsername(request.getUsername());
         var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder().token(jwtToken).build();
+        return AuthenticationResponse.builder().userinfo(userInfo).token(jwtToken).build();
     }
 }
