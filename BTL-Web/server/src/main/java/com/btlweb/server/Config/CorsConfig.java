@@ -38,7 +38,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class CorsConfig {
 
     @Bean
-    public CorsConfigurationSource corsFilter()  {
+    public CorsConfigurationSource corsConfigurationSource()  {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         var config = new CorsConfiguration();
         config.addAllowedOrigin("http://localhost:3000");
