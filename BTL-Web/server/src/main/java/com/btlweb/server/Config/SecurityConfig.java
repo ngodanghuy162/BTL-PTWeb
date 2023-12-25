@@ -32,8 +32,8 @@ public class SecurityConfig {
     //loc request
     @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-            http.cors().disable().csrf()
-                    .disable()
+            http.cors().and().csrf()
+                .disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/order/tracuu").permitAll()
