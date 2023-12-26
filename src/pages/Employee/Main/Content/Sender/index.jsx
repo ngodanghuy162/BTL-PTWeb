@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "../Content.module.scss";
 import myStyles from "./Sender.module.scss";
 import { TbUserShare } from "react-icons/tb";
 import { FaArrowRight } from "react-icons/fa6";
-import { FaAngleDown } from "react-icons/fa";
 
 function Sender({ onDataChange }) {
   const [senderData, setSenderData] = useState({
@@ -12,15 +11,16 @@ function Sender({ onDataChange }) {
     address: "",
   });
 
+  useEffect(() => {
+    onDataChange(senderData);
+  }, [senderData, onDataChange]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSenderData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
-
-    // Notify parent component about data change
-    onDataChange(senderData);
   };
 
   return (
@@ -67,7 +67,7 @@ function Sender({ onDataChange }) {
                 name="address"
                 value={senderData.address}
                 onChange={handleChange}
-                placeholder="Nhập địa chỉ(Số nhà, phường, thị trấn, thành phố)"
+                placeholder="Nhập địa chỉ (Số nhà, phường, thị trấn, thành phố)"
               />
             </label>
           </div>

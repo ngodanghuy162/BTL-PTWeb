@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "./Content.module.scss"
 import Layout from '../Layout/index';
 import Sender from "./Sender/index"
@@ -30,6 +30,7 @@ function Content() {
     isSenderPayShip: true,
     canSeeWhenReceive: true,
   });
+  
   const [senderData, setSenderData] = useState({
     phone: "",
     fullName: "",
@@ -48,11 +49,13 @@ function Content() {
     weight: "",
   });
   
-  // const [codData, setCodData] = useState({
-  //   phone: "",
-  //   fullName: "",
-  //   address: "",
-  // });
+  const [codData, setCodData] = useState({
+    type: "",
+    shipCost: 1,
+    cod: 1,
+    isSenderPayShip: true,
+    canSeeWhenReceive: true,
+  });
 
   const handleSenderDataChange = (data) => {
     setSenderData(data);
@@ -65,10 +68,51 @@ function Content() {
   const handleInformationDataChange = (data) => {
     setInformationData(data);
   };
+  
+  const handleCodDataChange = (data) => {
+    setCodData(data);
+  };
+
+
+
+  useEffect(() => {
+    setFullData((prevData) => ({
+      ...prevData,
+      sender: senderData.fullName,
+      phoneSender: senderData.phone,
+      diaChigui: senderData.address,
+    }));
+  }, [senderData]);
+
+  useEffect(() => {
+    setFullData((prevData) => ({
+      ...prevData,
+      phoneReceiver: receiverData.phone,
+      receiver: receiverData.fullName,
+      diaChiNhan: receiverData.address,
+    }));
+  }, [receiverData]);
+
+  useEffect(() => {
+    setFullData((prevData) => ({
+      ...prevData,
+      name: informationData.name,
+      weight: informationData.weight,
+    }));
+  }, [informationData]);
+
+  useEffect(() => {
+    setFullData((prevData) => ({
+      ...prevData,
+      type: codData.type,
+      shipCost: codData.shipCost,
+      cod: codData.cod,
+      isSenderPayShip: codData.isSenderPayShip,
+      canSeeWhenReceive: codData.canSeeWhenReceive,
+    }));
+  }, [codData]);
 
   const handleSubmit = async (e) => {
-    // console.log(fullData);
-    console.log(user);
     e.preventDefault();
     try {
       OrderApi.newOrder(fullData, user.token).then(response => {
@@ -105,7 +149,7 @@ function Content() {
         </div>
         <div className={styles['MainList']}>
           <Information onDataChange={handleInformationDataChange}/>
-          <Cod />
+          <Cod onDataChange={handleCodDataChange}/>
         </div>
 
         <button className={styles['Submit']} onClick={handleSubmit}>Submit</button>
