@@ -15,19 +15,20 @@ function Content() {
   const user = getUser();
 
   const [fullData, setFullData] = useState({
-    name: "Khanh Test",
+    name: "Test",
     sender: "ABC",
     phoneSender: "0123456",
     phoneReceiver: "0123456",
     receiver: "CBA",
-    id_diemgiaodichtao: 1,
+    id_diemgiaodichtao: 3,
     diaChigui: "Vinh Phuc",
     diaChiNhan: "Hanoi",
     weight: 2.3,
-    type: "abc",
-    shipCost: 1111110,
-    cod: 111110,
+    type: "Lay ngay",
+    shipCost: 1,
+    cod: 1,
     isSenderPayShip: true,
+    canSeeWhenReceive: true,
   });
   const [senderData, setSenderData] = useState({
     phone: "",
