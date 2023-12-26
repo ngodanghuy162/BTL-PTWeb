@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -28,6 +27,8 @@ public class CreateOrderFormat {
     private long cod;
 
     private boolean isSenderPayShip;
+
+    private boolean canSeeWhenReceive;
 
     public String getName() {
         return name;

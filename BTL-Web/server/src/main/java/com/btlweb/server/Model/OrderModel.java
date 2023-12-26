@@ -33,7 +33,7 @@ public class OrderModel {
     private long shipCost;
 
     private boolean canSeeWhenReceive;
-    boolean isSenderPayShipment;
+   private  boolean isSenderPayShipment;
 
     @ManyToOne
     @JoinColumn(name = "id_diemgdgui")
@@ -201,6 +201,7 @@ public class OrderModel {
         this.diemGiaoDichGui = null;
         this.isSenderPayShipment = createOrderFormat.isSenderPayShip();
         this.cod = createOrderFormat.getCod();
+        this.canSeeWhenReceive = createOrderFormat.isCanSeeWhenReceive();
     }
 
     private String generateOrderMavandon() {
