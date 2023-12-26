@@ -70,6 +70,7 @@ public class OrderService {
     public ResponseEntity<String> createOrderStatus(StatusDonHangModel statusOrder, String mavandon) {
         try {
             OrderModel order = orderRepository.findByMavandon(mavandon);
+            order.setStatus("Being transported");
             statusOrder.setDonhangchinh(order);
             statusOrderRepository.save(statusOrder);
             return new ResponseEntity<>("Tao don hang(status) van chuyen thanh cong cho don hang co ma van don"  + order.getMaVanDon() , HttpStatus.OK);
