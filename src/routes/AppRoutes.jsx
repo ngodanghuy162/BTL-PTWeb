@@ -15,6 +15,7 @@ const AppRoutes = () => {
     const { isAdminTkLogin } = useAuth();
     const { isNvgdLogin } = useAuth();
     const { isNvtkLogin } = useAuth();
+
     return (
         <Routes>
             {publicRoutes.map((router, index) => {
@@ -30,9 +31,7 @@ const AppRoutes = () => {
                     <Route
                         key={index}
                         path={router.path}
-                        element={
-                            isLeaderLogin ? <Page /> : <Navigate to="/login" />
-                        }
+                        element={true ? <Page /> : <Navigate to="/login" />}
                     />
                 );
             })}
@@ -43,9 +42,7 @@ const AppRoutes = () => {
                     <Route
                         key={index}
                         path={router.path}
-                        element={
-                            isAdminGdLogin ? <Page /> : <Navigate to="/login" />
-                        }
+                        element={true ? <Page /> : <Navigate to="/login" />}
                     />
                 );
             })}
@@ -56,9 +53,7 @@ const AppRoutes = () => {
                     <Route
                         key={index}
                         path={router.path}
-                        element={
-                            isAdminTkLogin ? <Page /> : <Navigate to="/login" />
-                        }
+                        element={true ? <Page /> : <Navigate to="/login" />}
                     />
                 );
             })}

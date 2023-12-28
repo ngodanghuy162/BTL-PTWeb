@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import TextField from "@mui/material/TextField";
 
-import style from "./SearchForm.module.scss";
+import style from "./PackageSearchForm.module.scss";
 import { FormLabel, FormGroup, Button, Grid } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 
@@ -132,7 +132,7 @@ const top100Films = [
     { label: "Monty Python and the Holy Grail", year: 1975 },
 ];
 
-const SearchForm = () => {
+const PackageSearchForm = () => {
     return (
         <form>
             <FormLabel>Tìm kiếm</FormLabel>
@@ -142,7 +142,7 @@ const SearchForm = () => {
                         id="packageid"
                         label="Id đơn hàng"
                         type="packageId"
-                        sx={{ width: 300 }}
+                        // sx={{ width: 200 }}
                     />
                 </Grid>
                 <Grid item>
@@ -152,7 +152,7 @@ const SearchForm = () => {
                         options={top100Films}
                         sx={{ width: 200 }}
                         renderInput={(params) => (
-                            <TextField {...params} label="Điểm tập kết" />
+                            <TextField {...params} label="Trạng thái" />
                         )}
                     />
                 </Grid>
@@ -175,4 +175,4 @@ const SearchForm = () => {
     );
 };
 
-export default SearchForm;
+export default PackageSearchForm;

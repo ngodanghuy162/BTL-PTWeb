@@ -1,31 +1,37 @@
 import React, { useState } from "react";
 import style from "./MainContent.module.scss";
 // import Cards from "./Cards/Cards";
-import ExpandableTable from "./ExpandableTable/ExpandableTable";
-import StandardTable from "./StandardTable/StandardTable";
+// import ExpandableTable from "./ExpandableTable/ExpandableTable";
+import EmployeeTable from "./EmployeeTable/EmployeeTable";
+import AdminTable from "./AdminTable/AdminTable";
 
-import { packageColumns, subColumns, employeeColumns } from "./Category";
+import {
+    packageColumns,
+    subColumns,
+    employeeColumns,
+    adminColumns,
+    deportColumns,
+    officeColumns,
+} from "./Category";
 import PackageReceiveTable from "./PackageReceiveTable/PackageReceiveTable";
-import SearchForm from "./SearchForm/SearchForm";
+import LocationTable from "./LocationTable/LocationTable";
+// import SearchForm from "./SearchForm/SearchForm";
 
 const componentListMainDash = [
-    <>
-        <h1>Magic admin</h1>
-        <h2>đăng nhập bằng tài khoản lãnh đạo</h2>
-    </>,
+    // <>
+    //     <h1>Magic admin</h1>
+    //     <h2>đăng nhập bằng tài khoản lãnh đạo</h2>
+    // </>,
+    // <>
+    //     <h1>Admin Management</h1>
+    //     <EmployeeTable
+    //         className={self.layout__main}
+    //         columns={employeeColumns}
+    //     />
+    // </>,
     <>
         <h1>Employee Management</h1>
-        <StandardTable
-            className={self.layout__main}
-            columns={employeeColumns}
-        />
-    </>,
-    <>
-        <h1>Admin Management</h1>
-        <StandardTable
-            className={self.layout__main}
-            columns={employeeColumns}
-        />
+        <EmployeeTable className={self.layout__main} columns={adminColumns} />
     </>,
     <>
         <h1>Package Management</h1>
@@ -37,6 +43,11 @@ const componentListMainDash = [
     </>,
     <>
         <h1>Location Management</h1>
+        <LocationTable
+            className={self.layout__main}
+            columns={deportColumns}
+            subColumns={officeColumns}
+        />
     </>,
 ];
 

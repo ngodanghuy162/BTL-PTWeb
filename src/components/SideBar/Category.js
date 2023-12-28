@@ -8,18 +8,18 @@ import {
 
 // Sidebar Data
 export const SidebarCategory = [
-    {
-        icon: UilEstate,
-        heading: "Bảng thống kê",
-    },
+    // {
+    //     icon: UilEstate,
+    //     heading: "Bảng thống kê",
+    // },
     {
         icon: UilUsersAlt,
         heading: "Quản lý nhân viên",
     },
-    {
-        icon: UilUsersAlt,
-        heading: "Quản lý admin",
-    },
+    // {
+    //     icon: UilUsersAlt,
+    //     heading: "Quản lý admin",
+    // },
     {
         icon: UilClipboardAlt,
         heading: "Quản lý đơn hàng",
