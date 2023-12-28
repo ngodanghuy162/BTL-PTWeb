@@ -60,5 +60,95 @@ public class PointService {
     public DiemTapKetModel getDtkById(long id) {
         return diemTapKetRepository.findById(id).get();
     }
+
+    public ResponseEntity<String> updateDtk(String address, String name, long id) {
+        try {
+            DiemTapKetModel dtk = diemTapKetRepository.findById(id).orElse(null);
+            if(dtk == null) {
+                new ResponseEntity<String>("Failed to find", HttpStatus.BAD_REQUEST);
+            }
+            dtk.setAddress(address);
+            dtk.setName(name);
+            diemTapKetRepository.saveAndFlush(dtk);
+            return new ResponseEntity<String>("Success", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<String>("Failed add giao dich", HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity<String> changeStatusDtk(boolean is_active, long id) {
+        try {
+            DiemTapKetModel dtk = diemTapKetRepository.findById(id).orElse(null);
+            if(dtk == null) {
+                new ResponseEntity<String>("Failed to find", HttpStatus.BAD_REQUEST);
+            }
+            dtk.setIs_active(is_active);
+            diemTapKetRepository.saveAndFlush(dtk);
+            return new ResponseEntity<String>("Success", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<String>("Failed add giao dich", HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity<String> deleteDtk(long id) {
+        try {
+            DiemTapKetModel dtk = diemTapKetRepository.findById(id).orElse(null);
+            if(dtk != null) {
+                diemTapKetRepository.delete(dtk);
+                new ResponseEntity<String>("Success", HttpStatus.BAD_REQUEST);
+            }
+            return new ResponseEntity<String>("Failed", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<String>("Failed delete giao dich", HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity<String> updateDgd(String address, String name, long id) {
+        try {
+            DiemGiaoDichModel dgd = diemGiaoDichRepository.findById(id).orElse(null);
+            if(dgd == null) {
+                new ResponseEntity<String>("Failed to find", HttpStatus.BAD_REQUEST);
+            }
+            dgd.setAddress(address);
+            dgd.setName(name);
+            diemGiaoDichRepository.saveAndFlush(dgd);
+            return new ResponseEntity<String>("Success", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<String>("Failed update giao dich", HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity<String> changeStatusDgd(boolean is_active, long id) {
+        try {
+            DiemGiaoDichModel dgd = diemGiaoDichRepository.findById(id).orElse(null);
+            if(dgd == null) {
+                new ResponseEntity<String>("Failed to find", HttpStatus.BAD_REQUEST);
+            }
+            dgd.setIs_active(is_active);
+            diemGiaoDichRepository.saveAndFlush(dgd);
+            return new ResponseEntity<String>("Success", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<String>("Failed update giao dich", HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity<String> deleteDgd(long id) {
+        try {
+            DiemGiaoDichModel giaoDichModel = diemGiaoDichRepository.findById(id).orElse(null);
+            if(giaoDichModel != null) {
+                diemGiaoDichRepository.delete(giaoDichModel);
+                new ResponseEntity<String>("Success", HttpStatus.BAD_REQUEST);
+            }
+            return new ResponseEntity<String>("Failed", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<String>("Failed add giao dich", HttpStatus.BAD_REQUEST);
+    }
 }
 

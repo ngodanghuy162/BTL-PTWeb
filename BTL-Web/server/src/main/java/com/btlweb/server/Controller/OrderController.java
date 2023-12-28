@@ -80,8 +80,8 @@ public class OrderController {
     @PutMapping("/updateorder/{mavandon}")
     @PreAuthorize("hasAuthority('NVTK') or hasAuthority('NVGD')")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> updateOrderStatus(@RequestBody String status, @PathVariable(required = true) String mavandon) {
-            return orderService.updateOrderStatus(status,mavandon);
+    public ResponseEntity<String> updateOrderStatus(@PathVariable(required = true) String mavandon) {
+            return orderService.updateOrderStatus(mavandon);
     }
 
     //create order, xac nhan don hang nguoi gui

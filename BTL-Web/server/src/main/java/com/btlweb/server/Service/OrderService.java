@@ -116,11 +116,11 @@ public class OrderService {
         return new ResponseEntity<>("Failed update don hang", HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<String> updateOrderStatus(String status, String mavandon) {
+    public ResponseEntity<String> updateOrderStatus(String mavandon) {
         try {
             OrderModel orderModel = orderRepository.findByMavandon(mavandon);
             orderModel.setDateReceive(new Date());
-            orderModel.setStatus(status);
+            orderModel.setStatus("Đã hoàn thành");
             orderRepository.save(orderModel);
             return new ResponseEntity<>("Cap nhat don hang " + orderModel.getMaVanDon() + " thanh cong", HttpStatus.OK);
         } catch (Exception e) {

@@ -70,4 +70,51 @@ public class PointController {
         return pointService.AddDgd(giaoDichModel,id);
     }
 
+
+    //update diem tap ket
+    @PutMapping("/dtk/update/{id}")
+    @PreAuthorize("hasAuthority('LEADER')")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<String> updateDtk(@RequestBody String address,@RequestBody String name,@PathVariable(required = true) long id) {
+        return pointService.updateDtk(address,name,id);
+    }
+
+    //disable or able dtk
+    @PutMapping("/dtk/disable/{id}")
+    @PreAuthorize("hasAuthority('LEADER')")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<String> disableDtk(@RequestBody boolean is_active,@PathVariable(required = true) long id) {
+        return pointService.changeStatusDtk(is_active,id);
+    }
+
+    //xoa dtk
+    @DeleteMapping("/dtk/delete/{id}")
+    @PreAuthorize("hasAuthority('LEADER')")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<String> deleteDtk(@PathVariable(required = true) long id) {
+        return pointService.deleteDtk(id);
+    }
+
+    @PutMapping("/dgd/update/{id}")
+    @PreAuthorize("hasAuthority('LEADER')")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<String> updateDgd(@RequestBody String address,@RequestBody String name,@PathVariable(required = true) long id) {
+        return pointService.updateDgd(address,name,id);
+    }
+
+    //disable or able dgd
+    @PutMapping("/dgd/disable/{id}")
+    @PreAuthorize("hasAuthority('LEADER')")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<String> disableDgd(@RequestBody boolean is_active,@PathVariable(required = true) long id) {
+        return pointService.changeStatusDgd(is_active,id);
+    }
+
+    //xoa dtk
+    @DeleteMapping("/dgd/delete/{id}")
+    @PreAuthorize("hasAuthority('LEADER')")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<String> deleteDgd(@PathVariable(required = true) long id) {
+        return pointService.deleteDgd(id);
+    }
 }

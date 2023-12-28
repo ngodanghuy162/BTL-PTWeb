@@ -1,9 +1,6 @@
 package com.btlweb.server.Model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -22,6 +19,32 @@ public class DiemTapKetModel {
     @Column(name = "address")
     private String address;
 
+    public DiemTapKetModel(long id, String name, String address, boolean is_active, List<DiemGiaoDichModel> diemGiaoDichModelList) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.is_active = is_active;
+        this.diemGiaoDichModelList = diemGiaoDichModelList;
+    }
+
+    @Column(name = "is_active")
+    private boolean is_active;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public boolean isIs_active() {
+        return is_active;
+    }
+
+    public void setIs_active(boolean is_active) {
+        this.is_active = is_active;
+    }
 //    @OneToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "id_leader_acc",referencedColumnName = "id")
 //    @JsonIgnore
@@ -66,12 +89,5 @@ public class DiemTapKetModel {
         this.name = name;
     }
 
-    public String getaddress() {
-        return address;
-    }
-
-    public void setaddress(String address) {
-        this.address = address;
-    }
 
 }
