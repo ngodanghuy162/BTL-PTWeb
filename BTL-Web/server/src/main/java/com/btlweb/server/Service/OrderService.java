@@ -57,14 +57,17 @@ public class OrderService {
     public ResponseEntity<String> cfStatusOrderInDtk(long idTapKet, String maVanDon) {
         try {
             StatusDonHangModel updateStatus = statusOrderRepository.findByIdReceivePlaceAndMaVanDonInDtk(idTapKet,maVanDon);
-            updateStatus.setTimeReceive(new Date());
-            updateStatus.setStatus("Đã hoàn thành");
-            statusOrderRepository.save(updateStatus);
-            return new ResponseEntity<>("Xac nhan don hang " + updateStatus.getDonhangchinh().getMaVanDon() + " thanh cong", HttpStatus.OK);
+           if(updateStatus != null) {
+               updateStatus.setTimeReceive(new Date());
+               updateStatus.setStatus("Đã hoàn thành");
+               statusOrderRepository.save(updateStatus);
+               return new ResponseEntity<>("Xac nhan don hang " + updateStatus.getDonhangchinh().getMaVanDon() + " thanh cong", HttpStatus.OK);
+           }
+            return new ResponseEntity<>("Failed", HttpStatus.EXPECTATION_FAILED);
         } catch (Exception e) {
             e.printStackTrace();
+            return new ResponseEntity<>("Failed update don hang", HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>("Failed update don hang", HttpStatus.BAD_REQUEST);
     }
 
     public ResponseEntity<String> createStatusOrderModel(StatusDonHangModel statusOrder, String mavandon) {
