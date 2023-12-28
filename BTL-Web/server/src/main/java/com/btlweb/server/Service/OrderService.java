@@ -42,8 +42,8 @@ public class OrderService {
 
     }
 
-    public List<StatusDonHangModel> getAllOrdersDtkByType(long id,String status) {
-        if(status.equals("hanggui")) {
+    public List<StatusDonHangModel> getAllOrdersDtkByType(long id,String type) {
+        if(type.equals("hanggui")) {
             return statusOrderRepository.findAllOrderDtkSendByTypeAndId(id);
         }
         return statusOrderRepository.findAllOrderDtkReceiveByTypeAndId(id);
@@ -54,11 +54,11 @@ public class OrderService {
     }
 
     @Transactional
-    public ResponseEntity<String> cfStatusOrderInDtk(long idTapKet, String maVanDon, String status) {
+    public ResponseEntity<String> cfStatusOrderInDtk(long idTapKet, String maVanDon) {
         try {
             StatusDonHangModel updateStatus = statusOrderRepository.findByIdReceivePlaceAndMaVanDonInDtk(idTapKet,maVanDon);
             updateStatus.setTimeReceive(new Date());
-            updateStatus.setStatus(status);
+            updateStatus.setStatus("Đã hoàn thành");
             statusOrderRepository.save(updateStatus);
             return new ResponseEntity<>("Xac nhan don hang " + updateStatus.getDonhangchinh().getMaVanDon() + " thanh cong", HttpStatus.OK);
         } catch (Exception e) {
@@ -67,11 +67,13 @@ public class OrderService {
         return new ResponseEntity<>("Failed update don hang", HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<String> createOrderStatus(StatusDonHangModel statusOrder, String mavandon) {
+    public ResponseEntity<String> createStatusOrderModel(StatusDonHangModel statusOrder, String mavandon) {
         try {
             OrderModel order = orderRepository.findByMavandon(mavandon);
-            order.setStatus("Being transported");
+            order.setStatus("Đang vận chuyển");
             statusOrder.setDonhangchinh(order);
+            statusOrder.setStatus("Đang vận chuyển");
+            statusOrder.setTimeSend();
             statusOrderRepository.save(statusOrder);
             return new ResponseEntity<>("Tao don hang(status) van chuyen thanh cong cho don hang co ma van don"  + order.getMaVanDon() , HttpStatus.OK);
         } catch (Exception e) {
@@ -103,11 +105,11 @@ public class OrderService {
         return new ResponseEntity<>("Xac nhan don hang khach hang that bai", HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<String> cfStatusOrderInDgd(long idGd, String maVanDon, String status) {
+    public ResponseEntity<String> cfStatusOrderInDgd(long idGd, String maVanDon) {
         try {
             StatusDonHangModel updateStatus = statusOrderRepository.findByIdReceivePlaceAndMaVanDonInDgd(idGd,maVanDon);
             updateStatus.setTimeReceive(new Date());
-            updateStatus.setStatus(status);
+            updateStatus.setStatus("Đã hoàn thành");
             statusOrderRepository.save(updateStatus);
             return new ResponseEntity<>("Xac nhan don hang " + updateStatus.getDonhangchinh().getMaVanDon() + " thanh cong", HttpStatus.OK);
         } catch (Exception e) {
@@ -116,11 +118,13 @@ public class OrderService {
         return new ResponseEntity<>("Failed update don hang", HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<String> updateOrderStatus(String mavandon) {
+    public ResponseEntity<String> updateOrderStatus(String status,String mavandon) {
         try {
             OrderModel orderModel = orderRepository.findByMavandon(mavandon);
-            orderModel.setDateReceive(new Date());
-            orderModel.setStatus("Đã hoàn thành");
+            if(status.equals("Đã hoàn thành")) {
+                orderModel.setDateReceive(new Date());
+            }
+            orderModel.setStatus(status);
             orderRepository.save(orderModel);
             return new ResponseEntity<>("Cap nhat don hang " + orderModel.getMaVanDon() + " thanh cong", HttpStatus.OK);
         } catch (Exception e) {

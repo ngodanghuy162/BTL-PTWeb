@@ -68,20 +68,20 @@ public class OrderController {
     @PostMapping("/createstatus/{mavandon}")
     @PreAuthorize("hasAuthority('NVTK') or hasAuthority('NVGD')")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> createOrderStatus(@RequestBody StatusDonHangModel statusOrder, @PathVariable(required = true) String mavandon) {
+    public ResponseEntity<String> createStatusOrderModel(@RequestBody StatusDonHangModel statusOrder, @PathVariable(required = true) String mavandon) {
        if(mavandon != null) {
-           return orderService.createOrderStatus(statusOrder,mavandon);
+           return orderService.createStatusOrderModel(statusOrder,mavandon);
        } else {
-           return orderService.createOrderStatus(statusOrder,"No");
+           return orderService.createStatusOrderModel(statusOrder,"No");
        }
     }
 
-    //cap nhat trang thai order
+    //cap nhat trang thai order ( don hang to)
     @PutMapping("/updateorder/{mavandon}")
     @PreAuthorize("hasAuthority('NVTK') or hasAuthority('NVGD')")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> updateOrderStatus(@PathVariable(required = true) String mavandon) {
-            return orderService.updateOrderStatus(mavandon);
+    public ResponseEntity<String> updateOrderStatus(@RequestBody String status,@PathVariable(required = true) String mavandon) {
+            return orderService.updateOrderStatus(status,mavandon);
     }
 
     //create order, xac nhan don hang nguoi gui
@@ -98,19 +98,17 @@ public class OrderController {
     @PreAuthorize("hasAuthority('NVTK')")
     public ResponseEntity<String> cfOrderDtk(
             @RequestParam("idtk") long idTapKet,
-            @RequestParam("mavandon") String maVanDon,
-            @RequestBody String status) {
-        return orderService.cfStatusOrderInDtk(idTapKet,maVanDon,status);
+            @RequestParam("mavandon") String maVanDon) {
+        return orderService.cfStatusOrderInDtk(idTapKet,maVanDon);
     }
 
-
+    //xac nhan don hang tai dtk
     @PutMapping("/xacnhandgd")
     @PreAuthorize("hasAuthority('NVGD')")
     public ResponseEntity<String> cfOrderDgd(
             @RequestParam("idgd") long idgd,
-            @RequestParam("mavandon") String maVanDon,
-            @RequestBody String status) {
-        return orderService.cfStatusOrderInDgd(idgd,maVanDon,status);
+            @RequestParam("mavandon") String maVanDon) {
+        return orderService.cfStatusOrderInDgd(idgd,maVanDon);
     }
 
 }

@@ -40,7 +40,6 @@ public class PointController {
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(dtk, HttpStatus.OK);
-
     }
 
     @GetMapping("/giaodich")

@@ -1,6 +1,5 @@
 package com.btlweb.server.Repository;
 
-import com.btlweb.server.Model.OrderModel;
 import com.btlweb.server.Model.StatusDonHangModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,7 +20,7 @@ public interface StatusOrderRepository extends JpaRepository<StatusDonHangModel,
     @Query("SELECT a FROM StatusDonHangModel a WHERE a.id_sendPlace = :id AND (a.type = 'TK-GD' OR a.type = 'TK-TK')")
     List<StatusDonHangModel> findAllOrderDtkSendByTypeAndId(@Param("id") long id_sendPlace);
 
-    @Query("SELECT a FROM StatusDonHangModel a WHERE a.id_receivePlace = :id AND a.type = 'TK-TK'")
+    @Query("SELECT a FROM StatusDonHangModel a WHERE a.id_receivePlace = :id AND (a.type = 'GD-TK' OR a.type = 'TK-TK')")
     List<StatusDonHangModel> findAllOrderDtkReceiveByTypeAndId(@Param("id") long id_receivePlace);
 
 

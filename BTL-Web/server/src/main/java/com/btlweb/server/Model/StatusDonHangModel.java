@@ -1,11 +1,9 @@
 package com.btlweb.server.Model;
 
-import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.transaction.Transactional;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "statusdonhang")
@@ -38,33 +36,15 @@ public class StatusDonHangModel {
 
     public StatusDonHangModel() {
     }
-    public StatusDonHangModel(long id, Date timeSend, Date timeReceive, String type, int id_sendPlace, int id_receivePlace, OrderModel donhangchinh, String status) {
-        this.id = id;
-        this.timeSend = timeSend;
-        this.timeReceive = timeReceive;
-        this.type = type;
-        this.id_sendPlace = id_sendPlace;
-        this.id_receivePlace = id_receivePlace;
-        this.donhangchinh = donhangchinh;
-        this.status = status;
-    }
 
-    public StatusDonHangModel(Date timeSend, Date timeReceive, String type, int id_sendPlace, int id_receivePlace, String status) {
-        this.timeSend = timeSend;
-        this.timeReceive = timeReceive;
-        this.type = type;
-        this.id_sendPlace = id_sendPlace;
-        this.id_receivePlace = id_receivePlace;
-        this.status = status;
-    }
 
-    public StatusDonHangModel(String type, int id_sendPlace, int id_receivePlace, String status) {
+    public StatusDonHangModel(String type, int id_sendPlace, int id_receivePlace) {
         this.timeSend = new Date();
         this.timeReceive = null;
         this.type = type;
         this.id_sendPlace = id_sendPlace;
         this.id_receivePlace = id_receivePlace;
-        this.status = status;
+        this.status = "Đang vận chuyển";
     }
 
 
@@ -123,8 +103,8 @@ public class StatusDonHangModel {
         return timeSend;
     }
 
-    public void setTimeSend(Date timeSend) {
-        this.timeSend = timeSend;
+    public void setTimeSend() {
+        this.timeSend = new Date();
     }
 
     public Date getTimeReceive() {
