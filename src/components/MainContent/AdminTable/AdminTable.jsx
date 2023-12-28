@@ -10,12 +10,12 @@ import TableRow from "@mui/material/TableRow";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
-import style from "./StandardTable.module.scss";
+import style from "./AdminTable.module.scss";
 
 import * as request from "@/utils/request";
-import SearchEmployeeForm from "../SearchEmployeeForm/SearchEmployeeForm";
+import SearchAdminForm from "../SearchAdminForm/SearchAdminForm";
 
-export default function StandardTable(props) {
+export default function AdminTable(props) {
     const { columns } = props;
 
     const [page, setPage] = useState(0);
@@ -52,8 +52,10 @@ export default function StandardTable(props) {
 
     return (
         <div className={style.layout}>
-            <SearchEmployeeForm />
-            <Paper sx={{ width: "100%", overflow: "hidden" }}>
+            <SearchAdminForm />
+            <Paper
+                sx={{ width: "90%", alignSelf: "center", overflow: "hidden" }}
+            >
                 <TableContainer
                     style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
                     sx={{ maxHeight: 440 }}

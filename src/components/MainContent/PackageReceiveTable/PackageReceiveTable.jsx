@@ -13,7 +13,7 @@ import "./PackageReceiveTable.css";
 import style from "./PackageReceiveTable.module.scss";
 
 import * as request from "@/utils/request";
-import SearchForm from "../SearchForm/SearchForm";
+import PackageSearchForm from "../PackageSearchForm/PackageSearchForm";
 
 export default function PackageReceiveTable(props) {
     const { columns, subColumns } = props;
@@ -34,8 +34,9 @@ export default function PackageReceiveTable(props) {
     useEffect(() => {
         const fetchPackages = async () => {
             try {
-                const res = await request.get("/orders");
+                const res = await request.get("/order/thongkeorder/all");
                 setRows(res);
+                console.log(res);
             } catch (error) {
                 if (error.response) {
                     console.log(error.response.data);
@@ -52,7 +53,7 @@ export default function PackageReceiveTable(props) {
 
     return (
         <div className={style.layout}>
-            <SearchForm />
+            <PackageSearchForm />
             <Paper
                 sx={{ width: "90%", alignSelf: "center", overflow: "hidden" }}
             >
@@ -91,10 +92,12 @@ export default function PackageReceiveTable(props) {
                                 .map((row) => {
                                     return (
                                         <ExpandableRow
-                                            key={row.productId}
+                                            key={row.maVanDon}
                                             row={row}
                                             columns={columns}
-                                            subRows={row["history"]}
+                                            subRows={
+                                                row["statusDonHangModelList"]
+                                            }
                                             subColumns={subColumns}
                                         />
                                     );

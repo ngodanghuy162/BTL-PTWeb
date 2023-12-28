@@ -1,35 +1,35 @@
 export const packageColumns = [
     {
-        id: "packageId",
-        label: "Package ID",
+        id: "maVanDon",
+        label: "ID đơn hàng",
         minWidth: 70,
         width: "15%",
         align: "left",
     },
     {
-        id: "senderAddress",
-        label: "Sender Address",
+        id: "diaChiGui",
+        label: "Địa chỉ người gửi",
         minWidth: 50,
         width: "20%",
         align: "left",
     },
     {
-        id: "receiverAddress",
-        label: "Receiver Address",
+        id: "diaChiNhan",
+        label: "Địa chỉ người nhận",
         minWidth: 70,
         width: "20%",
         align: "left",
     },
     {
         id: "type",
-        label: "Type",
-        minWidth: 70,
-        width: "20%",
+        label: "Loại hàng",
+        minWidth: 60,
+        width: "15%",
         align: "left",
     },
     {
         id: "status",
-        label: "Status",
+        label: "Trạng thái",
         minWidth: 0,
         width: "15%",
         align: "left",
@@ -37,10 +37,48 @@ export const packageColumns = [
     },
 ];
 
-export const employeeColumns = [
+export const subColumns = [
     {
         id: "id",
-        label: "Employee Id",
+        label: "ID theo dõi",
+        width: "15%",
+        minWidth: 0,
+        align: "left",
+    },
+    {
+        id: "sendLocation",
+        label: "Địa chỉ gửi",
+        width: "25%",
+        minWidth: 0,
+        align: "left",
+    },
+    {
+        id: "receiveLocation",
+        label: "Địa chỉ nhận",
+        width: "25%",
+        minWidth: 0,
+        align: "left",
+    },
+    {
+        id: "timeSend",
+        label: "Ngày gửi",
+        width: "17%",
+        minWidth: 0,
+        align: "left",
+    },
+    {
+        id: "timeReceive",
+        label: "Ngày nhận",
+        width: "17%",
+        minWidth: 0,
+        align: "left",
+    },
+];
+
+export const adminColumns = [
+    {
+        id: "id",
+        label: "Admin Id",
         minWidth: 70,
         width: "10%",
         align: "left",
@@ -75,39 +113,87 @@ export const employeeColumns = [
     },
 ];
 
-export const subColumns = [
+export const employeeColumns = [
     {
-        id: "trackId",
-        label: "Track Id",
+        id: "id",
+        label: "Employee Id",
+        minWidth: 70,
+        width: "10%",
+        align: "left",
+    },
+    {
+        id: "name",
+        label: "Full Name",
+        minWidth: 50,
+        width: "20%",
+        align: "left",
+    },
+    {
+        id: "username",
+        label: "Username",
+        minWidth: 50,
+        width: "20%",
+        align: "left",
+    },
+    {
+        id: "phoneNumber",
+        label: "Phone Number",
+        minWidth: 50,
+        width: "10%",
+        align: "left",
+    },
+    {
+        id: "workplace",
+        label: "Workplace",
+        minWidth: 70,
+        width: "30%",
+        align: "left",
+    },
+];
+
+export const deportColumns = [
+    {
+        id: "deportId",
+        label: "Id điểm tập kết",
+        width: "20%",
+        minWidth: 0,
+        align: "left",
+    },
+    {
+        id: "deportLocation",
+        label: "Vị trí",
+        width: "30%",
+        minWidth: 0,
+        align: "left",
+    },
+    {
+        id: "deportName",
+        label: "Tên điểm tập kết",
+        width: "40%",
+        minWidth: 0,
+        align: "left",
+    },
+];
+
+export const officeColumns = [
+    {
+        id: "officeId",
+        label: "Id điểm giao dịch",
         width: "10%",
         minWidth: 0,
         align: "left",
     },
     {
-        id: "sendLocation",
-        label: "Send Location",
-        width: "30%",
+        id: "officeLocation",
+        label: "Vị trí",
+        width: "10%",
         minWidth: 0,
         align: "left",
     },
     {
-        id: "receiveLocation",
-        label: "Receiver Location",
-        width: "30%",
-        minWidth: 0,
-        align: "left",
-    },
-    {
-        id: "sendDate",
-        label: "Send Date",
-        width: "15%",
-        minWidth: 0,
-        align: "left",
-    },
-    {
-        id: "receiveDate",
-        label: "Receive Date",
-        width: "15%",
+        id: "officeName",
+        label: "Tên điểm giao dịch",
+        width: "10%",
         minWidth: 0,
         align: "left",
     },
