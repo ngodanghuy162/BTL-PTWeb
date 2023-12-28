@@ -106,7 +106,7 @@ function Header() {
             [layout.hidden]: width < 960,
           })}
         >
-          Delivery Now
+          Đăng nhập
         </a>
       </nav>
     </header>
