@@ -56,7 +56,7 @@ function Sidebar({status}) {
                 <h5>Cập nhật Status</h5>
               </Link>
             </div>
-            <FaCaretDown className={styles["menuIcon"]} />
+            {/* <FaCaretDown className={styles["menuIcon"]} /> */}
           </div>
           {/* {isListStatus && (
             <ul className={styles["menuContentChild"]}>
@@ -81,7 +81,7 @@ function Sidebar({status}) {
             <ul className={styles["menuContentChild"]}>
             <Link to={nvgdPathNvgd}>
               <li>Đơn lẻ</li>
-              </Link>
+            </Link>
             </ul>
           )}</>}
         </li>

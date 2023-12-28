@@ -13,14 +13,29 @@ class StatusApi {
         return axiosClient.get(url, { headers });
     }
 
-    updateStatus(id, token) {
-        const headers = {
-            Authorization: `Bearer ${token}`
-        };
+    updateStatus(iddtk,mavandon, token) {
         
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      };
         // const url = `/order/tracuu?mavandon=${params}`;
-        const url = `/order/updateorder/${id}`;
-        return axiosClient.post(url, { headers });
+        const url = `http://localhost:8080/order/xacnhandtk?idtk=${iddtk}&mavandon=${mavandon}`;
+        return axiosClient.put(url, null, config);
+    }
+
+    orderForward(data, mavandon, token) {
+      
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      };
+      const url=`order/createstatus/${mavandon}`;console.log(url);
+      return axiosClient.post(url, data, config);
     }
 }
 
