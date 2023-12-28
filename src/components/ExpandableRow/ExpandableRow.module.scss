@@ -1,0 +1,18 @@
+$color_1: #00b5ff;
+
+.Details {
+    color: $color_1 !important;
+}
+
+.status {
+    padding: 8px;
+    border-radius: 9px;
+}
+
+.MuiTableRow-root>* {
+    padding: 10px;
+}
+
+.MuiTableRow-root.MuiTableRow-head>* {
+    font-weight: bold !important;
+}

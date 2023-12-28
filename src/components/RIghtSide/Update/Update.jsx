@@ -5,9 +5,9 @@ import { UpdatesData } from "./Data/Data";
 const Update = () => {
     return (
         <div className={style.Update}>
-            {UpdatesData.map((update) => {
+            {UpdatesData.map((update, index) => {
                 return (
-                    <div className={style.update}>
+                    <div className={style.update} key={index}>
                         <img src={update.img} alt="profile" />
                         <div className={style.noti}>
                             <div style={{ marginBottom: "0.5rem" }}>

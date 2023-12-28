@@ -1,0 +1,136 @@
+
+{
+    "employees": [{
+        "id": 12,
+        "name": "Ngo Dang Huy",
+        "email": "abc@email.com",
+        "workplace": "Ha Noi"
+    },
+    {
+        "id": 12,
+        "name": "Ngo Dang Huy",
+        "email": "abc@email.com",
+        "workplace": "Ha Noi"
+    },
+    {
+        "id": 12,
+        "name": "Ngo Dang Huy",
+        "email": "abc@email.com",
+        "workplace": "Ha Noi"
+    }],
+    "depots": [{
+    }],
+    "orders": [
+    {
+        "packageId": "ABC123",
+        "senderAddress": "Ha Noi",
+        "receiverAddress": "Ho Chi Minh",
+        "weight": 20,
+        "type": "hang thong thuong",
+        "status": "da nhan",
+        "cost" : 400,
+        "history": [
+            {
+                "trackId": "track100",
+                "sendLocation": "Ha Noi",
+                "receiveLocation": "San Bay Noi Bai",
+                "sendDate": "2023-11-01T12:00:00",
+                "receiveDate": "2024-01-01T12:00:00"
+            },
+            {
+                "trackId": "track100",
+                "sendLocation": "Ha Noi",
+                "receiveLocation": "San Bay Noi Bai",
+                "sendDate": "2023-11-01T12:00:00",
+                "receiveDate": "2024-01-01T12:00:00"
+            },
+            {
+                "trackId": "track100",
+                "sendLocation": "Ha Noi",
+                "receiveLocation": "San Bay Noi Bai",
+                "sendDate": "2023-11-01T12:00:00",
+                "receiveDate": "2024-01-01T12:00:00"
+            } 
+        ]
+    },
+    {
+        "packageId": "ABC123",
+        "senderAddress": "Ha Noi",
+        "receiverAddress": "Ho Chi Minh",
+        "weight": 20,
+        "type": "hang thong thuong",
+        "status": "da nhan",
+        "cost" : 400, 
+        "history": [
+            {
+                "trackId": "track100",
+                "sendLocation": "Ha Noi",
+                "receiveLocation": "San Bay Noi Bai",
+                "sendDate": "2023-11-01T12:00:00",
+                "receiveDate": "2024-01-01T12:00:00"
+            },
+            {
+                "trackId": "track100",
+                "sendLocation": "Ha Noi",
+                "receiveLocation": "San Bay Noi Bai",
+                "sendDate": "2023-11-01T12:00:00",
+                "receiveDate": "2024-01-01T12:00:00"
+            },
+            {
+                "trackId": "track100",
+                "sendLocation": "Ha Noi",
+                "receiveLocation": "San Bay Noi Bai",
+                "sendDate": "2023-11-01T12:00:00",
+                "receiveDate": "2024-01-01T12:00:00"
+            }
+        ]
+    },
+    {
+        "packageId": "ABC123",
+        "senderAddress": "Ha Noi",
+        "receiverAddress": "Ho Chi Minh",
+        "weight": 20,
+        "type": "hang thong thuong",
+        "status": "da nhan",
+        "cost" : 400,
+        "history": [
+            
+        ]
+    },
+    {
+        "packageId": "ABC123",
+        "senderAddress": "Ha Noi",
+        "receiverAddress": "Ho Chi Minh",
+        "weight": 20,
+        "type": "hang thong thuong",
+        "status": "da nhan",
+        "cost" : 400, 
+        "history": [
+            
+        ]
+    },    {
+        "packageId": "ABC123",
+        "senderAddress": "Ha Noi",
+        "receiverAddress": "Ho Chi Minh",
+        "weight": 20,
+        "type": "hang thong thuong",
+        "status": "da nhan",
+        "cost" : 400,
+        "history": [
+            
+        ]
+    },
+    {
+        "packageId": "ABC123",
+        "senderAddress": "Ha Noi",
+        "receiverAddress": "Ho Chi Minh",
+        "weight": 20,
+        "type": "hang thong thuong",
+        "status": "da nhan",
+        "cost" : 400, 
+        "history": [
+            
+        ]
+    }
+    ]
+}
