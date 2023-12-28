@@ -10,16 +10,16 @@ import { FaCaretDown } from "react-icons/fa";
 import { CiLogout } from "react-icons/ci";
 
 
-function Sidebar() {
+function Sidebar({status}) {
   const {handleLogout} = useAuth();
   const {getUser} = useAuth();
   const user = getUser();
   const navigate = useNavigate();
   // const path = `/${user.userinfo.role.toLowerCase()}`;
-  const newordersPathNvgd = '/nvgd/neworders';
   const nvgdPathNvgd = '/nvgd';
 
-  const newordersPathNvtk = '/nvtk/neworders';
+  const statusDen = '/nvtk/hangden';
+  const statusGui = '/nvtk/hanggui';
   const nvtkPathNvgd = '/nvtk';
 
   const [isListVisible, setListVisible] = useState(false);
@@ -52,18 +52,22 @@ function Sidebar() {
           {isNvtk && <><div className={styles["menu"]} onClick={onClickListStatus}>
             <div className={styles["menuContent"]}>
               <FaClipboardList className={styles["menuIcon"]} />
-              <h5>Cập nhật Status</h5>
+              <Link to={"/nvtk/status"}>
+                <h5>Cập nhật Status</h5>
+              </Link>
             </div>
             <FaCaretDown className={styles["menuIcon"]} />
           </div>
-          {isListStatus && (
+          {/* {isListStatus && (
             <ul className={styles["menuContentChild"]}>
-              <Link to={isNvgd ? newordersPathNvgd : newordersPathNvtk}>
+              <Link to={isNvgd ? statusDen : statusGui} status={"hanggui"}>
                 <li>Hàng Gửi</li>
               </Link>
+              <Link to={isNvgd ? statusGui : statusDen} status={"hanggui"}>
                 <li>Hàng Đến</li>
+              </Link>
             </ul>
-          )}</>}
+          )} */}</>}
         </li>
         <li>
          {isNvgd && <><div className={styles["menu"]} onClick={toggleList}>

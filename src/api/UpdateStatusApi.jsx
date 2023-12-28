@@ -12,6 +12,16 @@ class StatusApi {
         const url = `/order/thongkestatusorder/dtk?iddtk=${id}&type=${type}`;
         return axiosClient.get(url, { headers });
     }
+
+    updateStatus(id, token) {
+        const headers = {
+            Authorization: `Bearer ${token}`
+        };
+        
+        // const url = `/order/tracuu?mavandon=${params}`;
+        const url = `/order/updateorder/${id}`;
+        return axiosClient.post(url, { headers });
+    }
 }
 
 export default new StatusApi;

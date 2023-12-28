@@ -28,7 +28,8 @@ const NvgdRoutes = [
 const NvtkRoutes = [
     { path: '/nvtk/bill', component: Bill },
     { path: '/nvtk', component: AddOrder },
-    { path: '/nvtk/neworders', component: Employee },
+    { path: '/nvtk/status', component: Employee },
+    // { path: '/nvtk/hangden', component: Employee },
 ];
 
 export { LeaderGdRoutes, AdminGdRoutes, AdminTkRoutes, NvgdRoutes, NvtkRoutes }
