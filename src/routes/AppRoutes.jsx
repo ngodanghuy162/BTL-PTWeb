@@ -31,9 +31,7 @@ const AppRoutes = () => {
                     <Route
                         key={index}
                         path={router.path}
-                        element={
-                            isLeaderLogin ? <Page /> : <Navigate to="/login" />
-                        }
+                        element={true ? <Page /> : <Navigate to="/login" />}
                     />
                 );
             })}
@@ -44,9 +42,7 @@ const AppRoutes = () => {
                     <Route
                         key={index}
                         path={router.path}
-                        element={
-                            isAdminGdLogin ? <Page /> : <Navigate to="/login" />
-                        }
+                        element={true ? <Page /> : <Navigate to="/login" />}
                     />
                 );
             })}
@@ -57,9 +53,7 @@ const AppRoutes = () => {
                     <Route
                         key={index}
                         path={router.path}
-                        element={
-                            isAdminTkLogin ? <Page /> : <Navigate to="/login" />
-                        }
+                        element={true ? <Page /> : <Navigate to="/login" />}
                     />
                 );
             })}
