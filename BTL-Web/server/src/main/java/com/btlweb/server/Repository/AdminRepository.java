@@ -15,7 +15,7 @@ public interface AdminRepository extends JpaRepository<AdminModel,Long> {
     List<AdminModel> findAllAdminDgdByRole(String role);
 
     @Query("SELECT a FROM AdminModel a WHERE a.id_workplace = :id AND a.role = :role")
-    AdminModel findAdminByIdAndRole(@Param("id") long id, @Param("role") String role);
+    AdminModel findAdminByIdworkAndRole(@Param("id") long id, @Param("role") String role);
 
 
     AdminModel findByUsername(String username);
@@ -27,5 +27,5 @@ public interface AdminRepository extends JpaRepository<AdminModel,Long> {
 
 
     @Query("SELECT a FROM AdminModel a WHERE a.id_workplace = :id AND a.role = 'ADMINGD'")
-    AdminModel findById_workplace(@Param("id") long id);
+    AdminModel findAdmingdById_workplace(@Param("id") long id);
 }

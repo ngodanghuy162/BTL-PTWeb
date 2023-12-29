@@ -25,10 +25,11 @@ public class AdminController {
     //lay tat ca tk admin cac diem tapket
     @GetMapping("/admintk/all")
     @PreAuthorize("hasAuthority('LEADER')")
-    public ResponseEntity<List<AdminModel>> getAllAdminDtk() {
-        List<AdminModel> adminModels = adminService.getAllAdminDtk();
-        return new ResponseEntity<>(adminModels, HttpStatus.OK);
+    public List<AdminModel> getAllAdminDtk() {
+        return adminService.getAllAdminDtk();
     }
+
+
 
     // Lay tk admid dgd bang id_gd
     @GetMapping("/admingd")
@@ -46,15 +47,13 @@ public class AdminController {
         return new ResponseEntity<>(adminModel, HttpStatus.OK);
     }
 
-    //lay tat ca tk admin gaio dich bang id diem tapket
+    //lay tat ca tk admin giao dich bang id diem tapket
     @GetMapping("/admingd/all")
     @PreAuthorize("hasAuthority('LEADER')")
-    public ResponseEntity<List<AdminModel>> getAdminGDOffDTK(@RequestParam(name = "idtk") long idtk) {
+    public List<AdminModel> getAdminGDOffDTK(@RequestParam(name = "idtk") long idtk) {
         List<AdminModel> adminModels = adminService.getAllAdminGDByDTK(idtk);
-        if(adminModels.size() ==0) {
-            return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
-        }
-        return new ResponseEntity<>(adminModels, HttpStatus.OK);
+
+        return adminModels;
     }
 
 //    @GetMapping("/dtk/dgd")

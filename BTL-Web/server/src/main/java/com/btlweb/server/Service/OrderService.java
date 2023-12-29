@@ -85,9 +85,24 @@ public class OrderService {
         return new ResponseEntity<>("Failed tao don hang", HttpStatus.BAD_REQUEST);
     }
 
-    public List<OrderModel> getAllOrderByStatus(long iddgd, String status) {
+    public List<OrderModel> getAllOrderByStatus(long iddgd, int type ) {
         try {
-            return orderRepository.findAllByStatusAndIdSend(iddgd,status);
+            switch (type) {
+                case 1: {
+                    return orderRepository.findAllByStatusAndIdSend(iddgd,"Đã tạo đơn");
+                }
+                case 2:{
+                    return orderRepository.findAllByStatusAndIdSend(iddgd,"Đang vận chuyển");
+                }
+                case 3:{
+                    return orderRepository.findAllByStatusAndIdSend(iddgd,"Giao hàng thành công");
+                }
+                case 4:{
+                    return orderRepository.findAllByStatusAndIdSend(iddgd,"Giao hàng thất bại");
+                }
+                default:
+                    return null;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -134,5 +149,33 @@ public class OrderService {
             e.printStackTrace();
         }
         return new ResponseEntity<>("Failed update don hang", HttpStatus.BAD_REQUEST);
+    }
+
+    public List<StatusDonHangModel> getAllOrdersToDtkFromDgd(long idtk) {
+        try {
+            return statusOrderRepository.findAllOrderToDtkFrDgd(idtk);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public List<StatusDonHangModel> getAllOrdersToDtkFromDtk(long idtk) {
+        try {
+            return statusOrderRepository.findAllOrderToDtkFrDtk(idtk);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<StatusDonHangModel> getAllOrdersToDgdFromDtk(long idgd) {
+        try {
+            return statusOrderRepository.findAllOrderToDgdFrDtk(idgd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

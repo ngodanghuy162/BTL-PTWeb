@@ -45,11 +45,11 @@ public class AdminService {
     }
 
     public AdminModel getAdminDgd(long id) {
-        return adminRepository.findAdminByIdAndRole(id,"ADMINGD");
+        return adminRepository.findAdminByIdworkAndRole(id,"ADMINGD");
     }
 
     public AdminModel getAdminDtk(long id) {
-        return adminRepository.findAdminByIdAndRole(id,"ADMINTK");
+        return adminRepository.findAdminByIdworkAndRole(id,"ADMINTK");
     }
 
     public List<AdminModel> getAllAdminGDByDTK(long idtk) {
@@ -57,7 +57,7 @@ public class AdminService {
         List<DiemGiaoDichModel> list = diemGiaoDichRepository.findAllByDiemTapKetId(idtk);
         List<AdminModel> rs = new ArrayList<>();
         for(int i = 0; i < list.size(); i++) {
-            rs.add(adminRepository.findById_workplace(list.get(i).getId()));
+            rs.add(adminRepository.findAdmingdById_workplace(list.get(i).getId()));
         }
         return rs;
     }
@@ -106,4 +106,18 @@ public class AdminService {
     public AdminModel getAdminByUsername(String username) {
         return adminRepository.findByUsername(username);
     }
+
+//    public List<AdminModel> getAllAdminDgdByDtk(long idtk) {
+//        try {
+//            List<DiemGiaoDichModel> listGiaodich = diemTapKetRepository.findById(idtk).get().getDiemGiaoDichModelList();
+//            List<AdminModel> adminModelList;
+//            for(int i = 0; i < listGiaodich.size(); i++) {
+//                adminModelList.add(adminRepository.findAllAdminDgdByRole())
+//            }
+//            return ;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 }

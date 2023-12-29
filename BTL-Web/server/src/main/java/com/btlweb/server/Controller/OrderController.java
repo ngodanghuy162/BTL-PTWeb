@@ -38,16 +38,16 @@ public class OrderController {
         return orderService.getAllOrders();
     }
 
-    //thong ke cac don hang TAI DIEM GIAO DICH bang trang thai ( hang ma gui tai diem giao dich)
+    //thong ke cac don hang TAI DIEM GIAO DICH bang trang thai (hang ma gui tai diem giao dich)
     //nvien thong ke
     @GetMapping("/thongkeorder/dgd")
     @PreAuthorize("hasAuthority('NVGD') or hasAuthority('ADMINGD')")
-    public List<OrderModel> getAllOrderByStatus(@RequestParam(name = "iddgd") long iddgd,@RequestParam(name = "status") String status) {
-        return orderService.getAllOrderByStatus(iddgd,status);
+    public List<OrderModel> getAllOrderByStatus(@RequestParam(name = "iddgd") long iddgd,@RequestParam(name = "status") int type) {
+        return orderService.getAllOrderByStatus(iddgd,type);
     }
 
 
-    //thong ke hang den cac dtk. type la hanggui  hoac nhan(truong dtk,nvtk,ldao)
+    //thong ke hang den cac dtk. type la hanggui  hoac hangnhan(truong dtk,nvtk,ldao)
     //thong ke dua vao status order
     @GetMapping("/thongkestatusorder/dtk")
     @PreAuthorize("hasAuthority('NVTK') or hasAuthority('ADMINTK') or hasAuthority('LEADER')")
@@ -62,6 +62,28 @@ public class OrderController {
     public List<StatusDonHangModel> getAllOrdersDgdByType(@RequestParam(name = "iddgd") long id_dgd,@RequestParam(name = "type") String type) {
         return orderService.getAllOrdersDgdByType(id_dgd,type);
     }
+
+    //lay tat ca don hang den 1 diem tap ket tu cac diem giao dich gui den
+    @GetMapping("/allstatustotkfromdgd/{idtk}")
+    @PreAuthorize("hasAuthority('NVTK') or hasAuthority('ADMINTK')")
+    public List<StatusDonHangModel> getAllOrdersToDtkFromDgd(@PathVariable long idtk) {
+        return orderService.getAllOrdersToDtkFromDgd(idtk);
+    }
+
+    //lay tat ca don hang den 1 diem tap ket tu cac diem tapket gui den
+    @GetMapping("/allstatustotkfromdtk/{idtk}")
+    @PreAuthorize("hasAuthority('NVTK') or hasAuthority('ADMINTK')")
+    public List<StatusDonHangModel> getAllOrdersToDtkFromDtk(@PathVariable long idtk) {
+        return orderService.getAllOrdersToDtkFromDtk(idtk);
+    }
+
+    //lay tat ca don hang den 1 diem giao dich tu cac diem tap ket gui den
+    @GetMapping("/allstatustogdfromdtk/{idgd}")
+    @PreAuthorize("hasAuthority('NVGD') or hasAuthority('ADMINGD') or hasAuthority('ADMINTK')")
+    public List<StatusDonHangModel> getAllOrdersToDgdFromDtk(@PathVariable long idgd) {
+        return orderService.getAllOrdersToDgdFromDtk(idgd);
+    }
+
 
     //tao don hang gui di
     //staff co the tủy cap

@@ -40,4 +40,21 @@ public interface StatusOrderRepository extends JpaRepository<StatusDonHangModel,
             "AND mavandon = :mavandon " +
             "AND type = 'TK-GD'", nativeQuery = true)
     StatusDonHangModel findByIdReceivePlaceAndMaVanDonInDgd(@Param("id")long id,@Param("mavandon") String mavandon);
+
+
+    @Query(value = "SELECT * FROM statusdonhang " +
+            "WHERE id_receive_place = :id " +
+            "AND type = 'GD-TK'", nativeQuery = true)
+    List<StatusDonHangModel> findAllOrderToDtkFrDgd(@Param("id")long idtk);
+
+    @Query(value = "SELECT * FROM statusdonhang " +
+            "WHERE id_receive_place = :id " +
+            "AND type = 'TK-TK'", nativeQuery = true)
+    List<StatusDonHangModel> findAllOrderToDtkFrDtk(@Param("id")long idtk);
+
+
+    @Query(value = "SELECT * FROM statusdonhang " +
+            "WHERE id_receive_place = :id " +
+            "AND type = 'TK-GD'", nativeQuery = true)
+    List<StatusDonHangModel> findAllOrderToDgdFrDtk(@Param("id") long idgd);
 }

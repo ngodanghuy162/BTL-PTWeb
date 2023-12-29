@@ -29,6 +29,12 @@ public class StatusDonHangModel {
     @Transient
     private String mavandonNotCol;
 
+    @Transient
+    private String sendPlaceInfo;
+
+    @Transient
+    private String receivePlaceInfo;
+
     @ManyToOne
     @JoinColumn(name = "mavandon")
     @JsonIgnore
@@ -37,6 +43,25 @@ public class StatusDonHangModel {
     public StatusDonHangModel() {
     }
 
+    public void setTimeSend(Date timeSend) {
+        this.timeSend = timeSend;
+    }
+
+    public String getSendPlaceInfo() {
+        return sendPlaceInfo;
+    }
+
+    public void setSendPlaceInfo(String sendPlaceInfo) {
+        this.sendPlaceInfo = sendPlaceInfo;
+    }
+
+    public String getReceivePlaceInfo() {
+        return receivePlaceInfo;
+    }
+
+    public void setReceivePlaceInfo(String receivePlaceInfo) {
+        this.receivePlaceInfo = receivePlaceInfo;
+    }
 
     public StatusDonHangModel(String type, int id_sendPlace, int id_receivePlace) {
         this.timeSend = new Date();
