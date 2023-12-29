@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import {useAuth} from "../../hooks/AuthContext";
+import {useAuth} from "../../../hooks/AuthContext";
 import Logo from "@/assets/images/logo.png";
 
-import style from "./Sidebar.module.scss";
+import style from "./LeaderSidebar.module.scss";
 import {useNavigate} from "react-router-dom";
-import { UilSignOutAlt } from "@iconscout/react-unicons";
-import { SidebarCategory } from "./Category";
+import {SidebarContent} from "./SideBarContent";
 import classNames from "classnames";
 
-const Sidebar = ({ selected, onSelected }) => {
+const LeaderSidebar = ({ selected, onSelected }) => {
     const {handleLogout} = useAuth();
     const navigate = useNavigate();
     const sidebarVariants = {
@@ -29,14 +28,14 @@ const Sidebar = ({ selected, onSelected }) => {
         <>
             <div className={style.sidebar}>
                 <div className={style.logo}>
-                    <img src={Logo} alt="logo" />
-                    <span>
+                    <img className={style.logoImage} src={Logo}  alt="logo" />
+                    <span className={style.text}>
                         <span>Magic</span> Post
                     </span>
                 </div>
 
                 <div className={style["menu"]}>
-                    {SidebarCategory.map((item, index) => {
+                    {SidebarContent.map((item, index) => {
                         return (
                             <div
                                 className={classNames(style.menuItem, {
@@ -50,13 +49,10 @@ const Sidebar = ({ selected, onSelected }) => {
                             </div>
                         );
                     })}
-                    <div className={style.menuItem}>
-                        <UilSignOutAlt onClick={handleLogout}/>
-                    </div>
                 </div>
             </div>
         </>
     );
 };
 
-export default Sidebar;
+export default LeaderSidebar;

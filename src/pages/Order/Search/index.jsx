@@ -37,7 +37,7 @@ const formatDateTime = (dateTimeString) => {
     <div className={styles['contentSearch']}>
     <div className={styles['iconContent']}>
         <i class="fa-solid fa-clipboard-list"></i>
-        <h2 className={styles['textSearch']}>Mã bưu gửi (tra nhiều bill thêm dấu phẩy giữa các bill VD: EB125966888VN, EI125556888VN)</h2>
+        <h2 className={styles['textSearch']}>Nhập mã bưu gửi của bạn</h2>
     </div>
     
     <div className={styles['formInput']}>

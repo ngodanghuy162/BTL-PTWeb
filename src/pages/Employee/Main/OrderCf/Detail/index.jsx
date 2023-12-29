@@ -2,7 +2,7 @@ import React,  {useState} from 'react';
 import styles from "./Detail.module.scss";
 import { IoCloseSharp } from "react-icons/io5";
 
-function OrdeCf({onClose}) {
+function OrdeCf({onClose, data}) {
     const handleClose = () => {
         onClose();
       };

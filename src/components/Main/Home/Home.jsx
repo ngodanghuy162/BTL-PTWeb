@@ -26,8 +26,8 @@ function Home() {
             Receive your package at any time and we will deliver them right to
             where you are.
           </p>
-          <a href="#" className={[layout.button]}>
-            Getting Started
+          <a href="/search" className={[layout.button]}>
+              Tra cứu đơn hàng
           </a>
         </div>
       </div>
