@@ -22,6 +22,24 @@ public class DiemGiaoDichModel {
     @Transient
     private String namedtk;
 
+    @Transient
+    private long id_dtk;
+
+    public long getId_dtk() {
+        if(diemTapKet != null) {
+            return diemTapKet.getId();
+        }
+        return id_dtk;
+    }
+
+    public void setId_dtk(long id_dtk) {
+        if(this.diemTapKet != null) {
+            this.id_dtk = diemTapKet.getId();
+        } else  {
+            this.id_dtk = id_dtk;
+        }
+    }
+
     public boolean isIs_active() {
         return is_active;
     }
