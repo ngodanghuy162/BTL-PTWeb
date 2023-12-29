@@ -14,7 +14,7 @@ public class AdminModel {
     //id_role is id work place: gtk,dgd
 
     @Column(name = "id_work")
-    private int id_workplace;
+    private int id_work;
     private String name;
 
     private String username;
@@ -27,9 +27,9 @@ public class AdminModel {
     public AdminModel() {
     }
 
-    public AdminModel(long id, int id_workplace, String name, String username, String password, String role) {
+    public AdminModel(long id, int id_work, String name, String username, String password, String role) {
         this.id = id;
-        this.id_workplace = id_workplace;
+        this.id_work = id_work;
         this.name = name;
         this.username = username;
         this.password = password;
@@ -57,8 +57,8 @@ public class AdminModel {
         this.role = role;
     }
 
-    public void setId_workplace(int id_workplace) {
-        this.id_workplace = id_workplace;
+    public void setId_work(int id_work) {
+        this.id_work = id_work;
     }
 
 
@@ -82,8 +82,8 @@ public class AdminModel {
         return role;
     }
 
-    public int getId_workplace() {
-        return id_workplace;
+    public int getId_work() {
+        return id_work;
     }
 
 
