@@ -14,7 +14,7 @@ export const SidebarCategory = [
     // },
     {
         icon: UilUsersAlt,
-        heading: "Quản lý nhân viên",
+        heading: "Quản lý tài khoản",
     },
     // {
     //     icon: UilUsersAlt,
@@ -26,6 +26,6 @@ export const SidebarCategory = [
     },
     {
         icon: UilChart,
-        heading: "Quản lý địa điểm",
+        heading: "Quản lý các điểm",
     },
 ];

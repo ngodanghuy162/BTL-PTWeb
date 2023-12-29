@@ -57,7 +57,10 @@ function Header() {
   return (
     <header className={style.header} id="header">
       <nav className={classNames([style.nav], [layout.container])}>
-        <a href="#" className={style.nav__logo}>
+        {/* <a href="#" className={style.nav__logo}>
+          Magic Post
+        </a> */}
+        <a href="#" className={`${style.nav__logo} ${style.textlogo}`}>
           Magic Post
         </a>
         <div

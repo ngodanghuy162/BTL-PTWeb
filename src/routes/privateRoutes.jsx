@@ -3,9 +3,10 @@ import SignupPage from "../pages/Account/SignUp/index";
 import Bill from "../pages/Order/Bill/index";
 import Employee from "../pages/Employee/Main/OrderCf/index";
 import AddOrder from "../pages/Employee/Main/Content/Content";
+import LeaderPage from "../pages/Leader/LeaderPage";
 
 const LeaderGdRoutes = [
-    { path: '/leader', component: AdminPage },
+    { path: '/leader', component: LeaderPage },
     { path: '/leader/signup', component: SignupPage },
 ];
 
