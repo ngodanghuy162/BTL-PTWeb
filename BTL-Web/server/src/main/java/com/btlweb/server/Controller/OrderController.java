@@ -68,7 +68,7 @@ public class OrderController {
     //thong ke dua vao status order
     @GetMapping("/thongkestatusorder/dtk")
     @PreAuthorize("hasAuthority('NVTK') or hasAuthority('ADMINTK') or hasAuthority('LEADER')")
-    public List<StatusDonHangModel> getAllOrdersDtkByType(@RequestParam(name = "iddtk") long id_dtk,@RequestParam(name = "type") String type) {
+    public List<StatusDonHangModel> getAllOrdersDtkByType(@RequestParam(name = "id") long id_dtk,@RequestParam(name = "type") String type) {
         return orderService.getAllOrdersDtkByType(id_dtk,type);
     }
 
@@ -76,7 +76,7 @@ public class OrderController {
     //thong ke dua vao status order
     @GetMapping("/thongkestatusorder/dgd")
     @PreAuthorize("hasAuthority('NVGD') or hasAuthority('ADMINGD') or hasAuthority('ADMINTK')")
-    public List<StatusDonHangModel> getAllOrdersDgdByType(@RequestParam(name = "iddgd") long id_dgd,@RequestParam(name = "type") String type) {
+    public List<StatusDonHangModel> getAllOrdersDgdByType(@RequestParam(name = "id") long id_dgd,@RequestParam(name = "type") String type) {
         return orderService.getAllOrdersDgdByType(id_dgd,type);
     }
 
