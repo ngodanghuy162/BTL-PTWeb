@@ -6,6 +6,7 @@ h3 {
     width: 100%;
     display: flex;
     flex-wrap: wrap; //xuống dòng khi không đủ
+    align-items: center;
 }
 
 .MainList {
@@ -107,7 +108,19 @@ h3 {
     border: none;
     background: red;
     color: white;
-    padding: 32px 20%;
+    padding: 32px 30%;
     align-items: center;
     // background-color: #4ea8de;
+}
+
+.ThongBao {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.ThongBao p {
+    color: red;
+    margin: auto;
+    margin-top: 10px;
 }

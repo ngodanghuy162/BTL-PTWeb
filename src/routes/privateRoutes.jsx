@@ -1,9 +1,11 @@
 import AdminPage from "../pages/Admin/Admin";
 import SignupPage from "../pages/Account/SignUp/index";
 import Bill from "../pages/Order/Bill/index";
-import Employee from "../pages/Employee/Main/OrderCf/index";
+import EmployeeTk from "../pages/Employee/Main/OrderCf/index";
+import EmployeeGd from "../pages/Employee/Main/OrderCfGd/index";
 import AddOrder from "../pages/Employee/Main/Content/Content";
-import LeaderPage from "../pages/Leader/LeaderPage";
+import AllOrder from "../pages/Employee/Main/AllOrder/index";
+import GiaoHang from "../pages/Employee/Main/GiaoHang/index";
 
 const LeaderGdRoutes = [
     { path: "/leader", component: AdminPage },
@@ -21,15 +23,15 @@ const AdminTkRoutes = [
 ];
 
 const NvgdRoutes = [
-    { path: "/nvgd/bill", component: Bill },
     { path: "/nvgd", component: AddOrder },
-    { path: "/nvgd/neworders", component: Employee },
+    { path: "/nvgd/status", component: EmployeeGd },
+    { path: "/nvgd/all", component: AllOrder },
+    { path: "/nvgd/giaohang", component: GiaoHang },
 ];
 
 const NvtkRoutes = [
-    { path: "/nvtk/bill", component: Bill },
-    { path: "/nvtk", component: AddOrder },
-    { path: "/nvtk/status", component: Employee },
+    { path: "/nvtk", component: EmployeeTk },
+    // { path: '/nvtk/status', component: EmployeeTk },
     // { path: '/nvtk/hangden', component: Employee },
 ];
 

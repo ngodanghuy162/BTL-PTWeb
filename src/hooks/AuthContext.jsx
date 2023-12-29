@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
                 workPlaceName: data.userinfo.workPlaceName,
             },
         };
-        console.log(user);
+        console.log(data);
 
         localStorage.removeItem("LEADER");
         localStorage.removeItem("ADMINGD");

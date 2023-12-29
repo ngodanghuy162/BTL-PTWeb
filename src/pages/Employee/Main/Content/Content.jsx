@@ -13,6 +13,8 @@ import OrderApi from "../../../../api/OrderApi"
 function Content() {
   const {getUser} = useAuth();
   const user = getUser();
+  const [mess, setMess] = useState("");
+  const [isClick, setClick] = useState(false);
 
   const [fullData, setFullData] = useState({
     name: "Test",
@@ -20,7 +22,7 @@ function Content() {
     phoneSender: "0123456",
     phoneReceiver: "0123456",
     receiver: "CBA",
-    id_diemgiaodichtao: 3,
+    id_diemgiaodichtao: 0,
     diaChigui: "Vinh Phuc",
     diaChiNhan: "Hanoi",
     weight: 2.3,
@@ -73,11 +75,10 @@ function Content() {
     setCodData(data);
   };
 
-
-
   useEffect(() => {
     setFullData((prevData) => ({
       ...prevData,
+      id_diemgiaodichtao: user.userInfo.id_work,
       sender: senderData.fullName,
       phoneSender: senderData.phone,
       diaChigui: senderData.address,
@@ -87,6 +88,7 @@ function Content() {
   useEffect(() => {
     setFullData((prevData) => ({
       ...prevData,
+      id_diemgiaodichtao: user.userInfo.id_work,
       phoneReceiver: receiverData.phone,
       receiver: receiverData.fullName,
       diaChiNhan: receiverData.address,
@@ -96,6 +98,7 @@ function Content() {
   useEffect(() => {
     setFullData((prevData) => ({
       ...prevData,
+      id_diemgiaodichtao: user.userInfo.id_work,
       name: informationData.name,
       weight: informationData.weight,
     }));
@@ -104,6 +107,7 @@ function Content() {
   useEffect(() => {
     setFullData((prevData) => ({
       ...prevData,
+      id_diemgiaodichtao: user.userInfo.id_work,
       type: codData.type,
       shipCost: codData.shipCost,
       cod: codData.cod,
@@ -113,11 +117,13 @@ function Content() {
   }, [codData]);
 
   const handleSubmit = async (e) => {
+    setClick(true);
     e.preventDefault();
     try {
       OrderApi.newOrder(fullData, user.token).then(response => {
         if(response) {
           console.log(response);
+          setMess(response);
         }
         else {
           console.log('err');
@@ -152,7 +158,11 @@ function Content() {
           <Cod onDataChange={handleCodDataChange}/>
         </div>
 
-        <button className={styles['Submit']} onClick={handleSubmit}>Submit</button>
+        <div className={styles['ThongBao']}>
+          
+          <button className={styles['Submit']} onClick={handleSubmit}>Submit</button>
+          {isClick && <p>{mess}</p>}
+        </div>
       </div>
     </Layout>
   );

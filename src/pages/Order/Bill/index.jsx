@@ -1,7 +1,11 @@
 import React from 'react';
 import styles from './Bill.module.scss'
 
-const Export = () => {
+const Export = ({data}) => {
+    const formatDateTime = (dateTimeString) => {
+      const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+      return new Date(dateTimeString).toLocaleDateString(undefined, options);
+    };
     return (
         <div className={styles['Bill']}>
             <header className={styles['BillHeader']}>
@@ -11,13 +15,13 @@ const Export = () => {
 
             <main>
                 <table>
-                    <tbody>
+                    <tbody className={styles['BillContentBody']}>
                     <tr className={styles['BillContentFirst']}>
                         <td>
                             <div>
                                 <h4>1. Thông tin người gửi</h4>
-                                <p className={styles['BillAddress']}>abc</p>
-                                <strong><p>Số điện thoại</p></strong>
+                                <p className={styles['BillAddress']}>{data ? data.sender:""}<br/>{data ? data.diaChiGui:""}</p>
+                                <strong><p>Số điện thoại: {data ? data.phoneSender:""}</p></strong>
                                 <div className={styles['ContentNumber']}>
                                     <strong><p>Mã khách hàng</p></strong>
                                     <strong><p>Mã bưu chính</p></strong>
@@ -25,10 +29,10 @@ const Export = () => {
                             </div>
                         </td>
 
-                        <td>
+                        <td className={styles['BorderLeft']}>
                             <h4>2. Thông tin người nhận</h4>
-                            <p className={styles['BillAddress']}>abcxyz</p>
-                            <strong><p>Số điện thoại</p></strong>
+                            <p className={styles['BillAddress']}>{data ? data.receiver:""}<br/>{data ? data.diaChiNhan:""}</p>
+                            <strong><p>Số điện thoại: {data ? data.phoneReceiver:""}</p></strong>
                                 <div className={styles['ContentNumber']}>
                                     <strong><p>Mã khách hàng</p></strong>
                                     <strong><p>Mã bưu chính</p></strong>
@@ -53,7 +57,7 @@ const Export = () => {
                             </div>
                             <div className={styles['BorderTop']}>
                                 <h4>4. Nội dung trị giá bưu gửi</h4>
-                                <table className={`${styles.BorderNone} ${styles.Contenttext}`}>
+                                <table className={`${styles.BorderNone} ${styles.Contenttext} ${styles.TableChilden}`}>
                                     <tbody>
                                     <tr>
                                         <td className={styles['BorderLeftNone']}>Nội dung</td>
@@ -87,7 +91,7 @@ const Export = () => {
                                     <p>Gọi điện cho người gửi/BC gửi</p>
                                     </label>
                                     <label>
-                                    <input type="checkbox" />
+                                    <input type="checkbox" checked={true}/>
                                     <p>Huỷ</p>
                                     </label>
                                 </div>
@@ -110,15 +114,15 @@ const Export = () => {
                                 <div className={styles['List8']}>
                                     <div>
                                         <h4>8. Ngày giờ gửi:</h4>
-                                        <p>07h52/18/10/2023</p>
+                                        <p>{data?((data.dateSend ? formatDateTime(data.dateSend) : 'Not received yet')):""}</p>
                                     </div>
                                     <h4>Chữ ký người gửi</h4>
                                 </div>
                             </div>
                         </td>
 
-                        <td>
-                            <table className={styles['BorderNone']}>
+                        <td className={`${styles.BorderTop} ${styles.BorderLeft}`}>
+                            <table className={`${styles.BorderNone}`}>
                                 <tbody>
                                 <tr className={styles['BorderBottom']}>
                                 <td className={`${styles.BorderNone} ${styles.BorderRight} ${styles.Width60}`}>
@@ -130,19 +134,19 @@ const Export = () => {
                                             </div>
                                             <div className={styles['ContentNumber']}>
                                                 <p>b. Phụ phí</p>
-                                                <p>9.500</p>
+                                                <p>0</p>
                                             </div>
                                             <div className={styles['ContentNumber']}>
                                                 <p>c. Cước GTGT</p>
-                                                <p>9.500</p>
+                                                <p>0</p>
                                             </div>
                                             <div className={styles['ContentNumber']}>
                                                 <p>d. Tổng cước (gồm VAT)</p>
-                                                <p>9.500</p>
+                                                <p>0</p>
                                             </div>
                                             <div className={styles['ContentNumber']}>
                                                 <p>e. Thu khác</p>
-                                                <p>9.500</p>
+                                                <p>0</p>
                                             </div>
                                             <div className={styles['ContentNumber']}>
                                                 <strong><p>f. Tổng thu</p></strong>
@@ -170,7 +174,7 @@ const Export = () => {
                                             <h4>10. Khối lượng</h4>
                                             <div className={styles['ContentNumber']}>
                                                 <p>Khối lượng thực tế:</p>
-                                                <p>0</p>
+                                                <p>{data ? data.weight:""}</p>
                                             </div>
                                             <div className={styles['ContentNumber']}>
                                                 <p>Khối quy đổi:</p>
@@ -183,12 +187,12 @@ const Export = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td className={`${styles.BorderNone} ${styles.BorderRight} ${styles.UpContent} ${styles.Contenttext}`}>
+                                    <td className={`${styles.BorderNone} ${styles.BorderRight} ${styles.UpContent} ${styles.Contenttext} ${styles.HeightUp}`}>
                                         <h4>13. Bưu cục chấp nhận</h4>
                                     </td>
                                     <td className={`${styles.BorderNone}`}>
                                         <h4>14. Ngày giờ nhận</h4>
-                                        <strong><p>...h..../...../..../20......</p></strong>
+                                        <strong><p>{data?((data.dateReceive ? formatDateTime(data.dateReceive) : 'Not received yet')):""}</p></strong>
                                         <div className={`${styles.BorderNone} ${styles.Contenttext} ${styles.StylesSignature}`}>
                                             <p>Người nhận/Người được uỷ quyền nhận</p>
                                             <p>(Ký, ghi rõ họ tên)</p>

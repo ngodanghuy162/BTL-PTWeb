@@ -17,7 +17,7 @@ function Detail({onClose, data}) {
                 <tbody>
                     <tr>
                         <td>id: {data.userInfo.id}</td>
-                        <td>id word: {data.userInfo.id}</td>
+                        <td>id word: {data.userInfo.id_work}</td>
                     </tr>
                     <tr>
                         <td>Họ tên: {data.userInfo.name}</td>

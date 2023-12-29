@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import styles from "./OrderCf.module.scss";
+import styles from "../OrderCf/OrderCf.module.scss";
 import Layout from '../Layout/index';
 import Detail from '../../../Order/Search/Details';
 import { useAuth } from "../../../../hooks/AuthContext"
 import Edit from './Edit/Edit';
-import StatusApi from "../../../../api/UpdateStatusTkApi"
+import StatusApi from "../../../../api/UpdateStatusGdApi"
 import OrderApi from "../../../../api/OrderApi"
-import UpdateStatusApi from '../../../../api/UpdateStatusTkApi';
+import UpdateStatusApi from '../../../../api/UpdateStatusGdApi';
 
 function OrdeCf() {
-  const [selectedOption, setSelectedOption] = useState('hanggui');
+  const [selectedOption, setSelectedOption] = useState(1);
   const [selectedType, setSelectedType] = useState('');
   const [selectedPlace, setSelectedPlace] = useState('');
   const { getUser } = useAuth();
@@ -36,8 +36,14 @@ function OrdeCf() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await StatusApi.getDataStatus(user.userInfo.id_work, selectedOption, user.token);
-        setData(response);
+        var response;
+        if(selectedOption == 1)
+          response = await StatusApi.DonVeTuTk(user.userInfo.id_work, user.token);
+        if(selectedOption == 2)
+          response =  await StatusApi.DonGuiDtk(user.userInfo.id_work, user.token);
+
+        setData(response);        
+        if(response.maVanDon)
         console.log(response);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -65,7 +71,7 @@ function OrdeCf() {
     // e.preventDefault();
 
     try {
-      UpdateStatusApi.updateStatus(user.userInfo.id_work, idVanDon, user.token).then(response => {
+      UpdateStatusApi.XacNhanDonHangVe(user.userInfo.id_work, idVanDon, user.token).then(response => {
         if (response) {
           console.log(response);
         } else {
@@ -98,11 +104,6 @@ function OrdeCf() {
     onClickCheck();
   }
 
-  // useEffect(() => {
-  //   setSelectedType(selectedType);
-  //   setSelectedPlace(selectedPlace);
-  // }, [selectedType, selectedPlace])
-
   // Hàm xử lý sự kiện khi giá trị thanh lựa chọn thay đổi
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
@@ -118,6 +119,7 @@ function OrdeCf() {
 
   const onClickCf = (orderId, idDon) => {
     // setGetMvd(idDon)
+    console.log(idDon);
     handleSubmit(idDon);
     setselectedOrderStatus(orderId);
     setCheckCf(!CheckCf);
@@ -125,8 +127,6 @@ function OrdeCf() {
 
   const onClickEdit = (data) => {
     setClickEdit(!clickEdit);
-    console.log(1);
-    console.log(data);
     setDataEdit(data);
   }
 
@@ -135,8 +135,9 @@ function OrdeCf() {
       <div className={styles['Main']}>
         <div>
           <select value={selectedOption} onChange={handleSelectChange} className={styles['SelectStatus']}>
-            <option value="hanggui">Hàng Gửi</option>
-            <option value="hangnhan">Hàng Đến</option>
+            <option value="1">Xác nhận đơn hàng đến</option>
+            <option value="2">Tao don gui len DTK</option>
+            {/* <option value="3">Xac nhan giao hang</option> */}
           </select>
 
         </div>
@@ -149,8 +150,8 @@ function OrdeCf() {
         {data && data.map((order) => (
           <div key={order.id} className={styles['ListOrder']}>
             <div className={styles['ListName']}>
-              <p className={styles['ListNameId']}>thời gian gửi: {formatDateTime(parseTimeString(order.timeSend))}</p>
-              <h3>Mã vận đơn: {order.mavandonNotCol}</h3>
+              <p className={styles['ListNameId']}>thời gian gửi: {formatDateTime(parseTimeString(order.timeSend?order.timeSend:order.dateSend))}</p>
+              <h3>Mã vận đơn: {order.mavandonNotCol?order.mavandonNotCol:order.maVanDon}</h3>
               <p className={styles['ListNameStatus']}>{order.status}</p>
             </div>
             <div className={styles['ListButton']}>
@@ -158,7 +159,7 @@ function OrdeCf() {
                 {order.status === 'Đang vận chuyển' ?
                   <button
                     className={styles['button1']}
-                    onClick={() => onClickCf(order.id, order.mavandonNotCol)}
+                    onClick={() => onClickCf(order.id, order.mavandonNotCol?order.maVanDon:order.maVanDon)}
                   >
                     Xác nhận
                   </button> :
@@ -166,7 +167,7 @@ function OrdeCf() {
                     className={styles['button1']}
                     onClick={() => onClickEdit(order)}
                   >
-                    Chuyển tiếp
+                    Chuyển đơn
                   </button>
                 }
                 {clickEdit && <Edit onClose={onClickEdit} dataEdit={dataEdit} />}
@@ -177,7 +178,7 @@ function OrdeCf() {
               )} */}
               </div>}
               <button
-                value={order.mavandonNotCol}
+                value={order.maVanDon}
                 onClick={(e) => onClickCheckIn4(e.target.value)}
                 className={styles['button2']}
               >

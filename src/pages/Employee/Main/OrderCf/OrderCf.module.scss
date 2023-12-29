@@ -6,6 +6,7 @@
 .ListOrder {
     height: 45px;
     border: 1px solid black;
+    border-radius: 10px;
     margin: 10px 10px 0 10px;
     display: flex;
     justify-content: space-between;
@@ -34,7 +35,7 @@
 }
 
 .ListNameId {
-    width: 100px;
+    width: 300px;
 }
 
 .ListName h3 {
@@ -71,4 +72,16 @@
 
 .button2 {
     background-color: #cfbaf0;
+}
+
+.button3 {
+    background-color: #f1c0e8;
+}
+
+.SelectStatus {
+    padding: 5px;
+    width: 150px;
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-left: 10px;
 }
