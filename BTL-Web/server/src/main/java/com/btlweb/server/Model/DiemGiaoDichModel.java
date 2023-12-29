@@ -1,7 +1,6 @@
 package com.btlweb.server.Model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Table(name = "diemgiaodich")
@@ -83,7 +82,7 @@ public class DiemGiaoDichModel {
     @JoinColumn(name = "id_tapket")
     @ManyToOne
     //@JsonBackReference
-    @JsonIgnore
+    @JsonBackReference
     private DiemTapKetModel diemTapKet;
 
     public DiemGiaoDichModel() {

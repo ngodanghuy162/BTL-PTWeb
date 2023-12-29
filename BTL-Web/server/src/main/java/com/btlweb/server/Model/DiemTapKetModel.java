@@ -1,6 +1,5 @@
 package com.btlweb.server.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -54,7 +53,7 @@ public class DiemTapKetModel {
 
     @OneToMany(mappedBy = "diemTapKet",fetch = FetchType.LAZY)
     //JsonManagedReference
-    @JsonIgnore
+    @JsonManagedReference
     private List<DiemGiaoDichModel> diemGiaoDichModelList;
 
     public List<DiemGiaoDichModel> getDiemGiaoDichModelList() {
