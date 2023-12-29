@@ -30,7 +30,6 @@ public class AdminController {
     }
 
 
-
     // Lay tk admid dgd bang id_gd
     @GetMapping("/admingd")
     @PreAuthorize("hasAuthority('LEADER')")

@@ -183,7 +183,7 @@ public class OrderService {
     public ResponseEntity<String> cfStatusOrderInDgdToKh(long idgd, String maVanDon, int status) {
         try {
             OrderModel order = orderRepository.findByMavandon(maVanDon);
-            StatusDonHangModel statusDonHangModel = statusOrderRepository.findOrderToCustomerById(idgd);
+            StatusDonHangModel statusDonHangModel = statusOrderRepository.findOrderToCustomerById(idgd,maVanDon);
             if(status == 1) {
                 order.setDateReceive(new Date());
                 order.setStatus("Giao hàng thành công");
