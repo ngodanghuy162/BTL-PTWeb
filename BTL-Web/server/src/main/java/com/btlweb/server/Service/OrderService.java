@@ -194,4 +194,22 @@ public class OrderService {
         }
         return new ResponseEntity<>("Failed update don hang", HttpStatus.BAD_REQUEST);
     }
+
+    public List<OrderModel> getAllOrdersFail() {
+        try {
+            return orderRepository.findAllByStatus("Giao hàng thất bại");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<OrderModel> getAllOrdersSucess() {
+        try {
+            return orderRepository.findAllByStatus("Giao hàng thành công");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

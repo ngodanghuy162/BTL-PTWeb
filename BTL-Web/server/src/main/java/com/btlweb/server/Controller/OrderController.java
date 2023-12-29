@@ -30,6 +30,17 @@ public class OrderController {
         return orderService.getOrderByMaVanDon(mavandon);
     }
 
+    @GetMapping("/thongkeorder/fail/all")
+    @PreAuthorize("hasAuthority('LEADER')")
+    public List<OrderModel> getAllOrdersFail() {
+        return orderService.getAllOrdersFail();
+    }
+
+    @GetMapping("/thongkeorder/sucess/all")
+    @PreAuthorize("hasAuthority('LEADER')")
+    public List<OrderModel> getAllOrdersSucess() {
+        return orderService.getAllOrdersSucess();
+    }
 
     //thong ke tat ca cac don hang (ldao moi dc vao)
     @GetMapping("/thongkeorder/all")
