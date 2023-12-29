@@ -8,22 +8,19 @@ import {
     employeeColumns,
     deportColumns,
     officeColumns,
+    adminColumns,
 } from "./Category";
 import PackageReceiveTable from "./PackageReceiveTable/PackageReceiveTable";
 import LocationTable from "./LocationTable/LocationTable";
+import PackageAnalysis from "./PackageAnalysis/PackageAnalysis";
+
+import { useAuth } from "@/hooks/AuthContext";
+import AdminTable from "../../pages/Leader/Content/AdminTable";
 
 const componentListMainDash = [
     <>
         <h1>Magic admin</h1>
-        <h2>Thống kê</h2>
-        <h1>hello</h1>
-    </>,
-    <>
-        <h1>Admin Management</h1>
-        <EmployeeTable
-            className={self.layout__main}
-            columns={employeeColumns}
-        />
+        <PackageAnalysis key="package" className={self.layout__main} />
     </>,
     <>
         <h1>Employee Management</h1>
@@ -31,6 +28,14 @@ const componentListMainDash = [
             key="employee"
             className={self.layout__main}
             columns={employeeColumns}
+        />
+    </>,
+    <>
+        <h1>Admin Management</h1>
+        <AdminTable
+            key="employee"
+            className={self.layout__main}
+            columns={adminColumns}
         />
     </>,
     <>
@@ -53,7 +58,8 @@ const componentListMainDash = [
 ];
 
 const MainContent = ({ selected, onSelected }) => {
-    const [data, setData] = useState([]);
+    const { getUser } = useAuth();
+    const user = getUser();
 
     return (
         <div className={style.layout}>{componentListMainDash[selected]}</div>

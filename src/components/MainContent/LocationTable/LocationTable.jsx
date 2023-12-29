@@ -11,7 +11,7 @@ import { ExpandableRow } from "@/components/ExpandableRow/ExpandableRow";
 
 import style from "./LocationTable.module.scss";
 
-import * as request from "@/utils/request";
+import request from "@/utils/request";
 import SearchForm from "../PackageSearchForm/PackageSearchForm";
 
 export default function LocationTable(props) {
@@ -32,9 +32,12 @@ export default function LocationTable(props) {
 
     useEffect(() => {
         const fetchPackages = async () => {
+            const path = "/point/tapket/all";
+
             try {
-                const res = await request.get("/orders");
+                const res = await request.get(path);
                 setRows(res);
+                console.log(res);
             } catch (error) {
                 if (error.response) {
                     console.log(error.response.data);
@@ -57,7 +60,7 @@ export default function LocationTable(props) {
             >
                 <TableContainer
                     style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
-                    sx={{ maxHeight: 410 }}
+                    sx={{ maxHeight: 470 }}
                 >
                     <Table
                         stickyHeader
@@ -78,7 +81,12 @@ export default function LocationTable(props) {
                                         {column.label}
                                     </TableCell>
                                 ))}
-                                <TableCell align="left"></TableCell>
+                                <TableCell
+                                    align="left"
+                                    style={{
+                                        width: "5%",
+                                    }}
+                                ></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody style={{ color: "white" }}>
@@ -93,8 +101,13 @@ export default function LocationTable(props) {
                                             key={row.productId}
                                             row={row}
                                             columns={columns}
-                                            subRows={row["history"]}
+                                            subRows={
+                                                row["diemGiaoDichModelList"]
+                                            }
                                             subColumns={subColumns}
+                                            subTableTitle={
+                                                "Danh sách điểm giao dịch trực thuộc"
+                                            }
                                         />
                                     );
                                 })}

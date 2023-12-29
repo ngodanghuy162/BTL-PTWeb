@@ -13,31 +13,27 @@ import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import style from "./AdminTable.module.scss";
 import { useAuth } from "@/hooks/AuthContext";
 
+import TextField from "@mui/material/TextField";
+import { FormLabel, FormGroup, Button, Grid } from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
+
 import * as request from "@/utils/request";
 
-// import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-// import { useDemoData } from "@mui/x-data-grid-generator";
-
-const VISIBLE_FIELDS = ["name", "rating", "country", "dateCreated", "isAdmin"];
-
 export default function AdminTable(props) {
-    const {getUser} = useAuth();
-    var k;
+    const { getUser } = useAuth();
     const user = getUser();
-    const options = {
-        headers: {
-            "Authorization" : `Bearer ${user.token}`,
-        }
-    }
-    const {columns} = props
-    const [checkedValues, setCheckedValues] = useState(0);
+
+    const { columns } = props;
     const [page, setPage] = useState(0);
     const [rows, setRows] = useState([]);
-    const [listAdminDTK, setListAdminDTK] = useState([]);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    const [selectedPointId, setSelectedPointId] = useState(0);
-    const [data,setData] = useState([]);
+
     const [listTk, setListTk] = useState([]);
+    const [listAdminDTK, setListAdminDTK] = useState([]);
+    const [selectedPointId, setSelectedPointId] = useState(0);
+
+    const [checkedValues, setCheckedValues] = useState(0);
+
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -47,19 +43,31 @@ export default function AdminTable(props) {
         setPage(0);
     };
 
-
     const handlePointChange = (event) => {
         setSelectedPointId(event.target.value);
-    }
+    };
+
+    const handleCheckedValue = (num) => {
+        if (num === checkedValues) {
+            setCheckedValues(0);
+        } else {
+            setCheckedValues(num);
+        }
+    };
 
     useEffect(() => {
+        const options = {
+            headers: {
+                Authorization: `Bearer ${user.token}`,
+            },
+        };
         const fetchDTK = async () => {
             try {
-                    const res = await request.get("/point/tapket/all");
-                    setListTk(res);
-                    const res2 = await request.get("/admin/admintk/all",options);
-                    setListAdminDTK(res2);
-                    console.log("Da goi dong 64");
+                const res = await request.get("/point/tapket/all");
+                setListTk(res);
+
+                const res2 = await request.get("/admin/admintk/all", options);
+                setListAdminDTK(res2);
             } catch (error) {
                 if (error.response) {
                     console.log(error.response.data);
@@ -75,22 +83,32 @@ export default function AdminTable(props) {
     }, []);
 
     useEffect(() => {
+        const options = {
+            headers: {
+                Authorization: `Bearer ${user.token}`,
+            },
+        };
         const fetchAdmin = async () => {
             try {
                 if (checkedValues !== 2) {
                     setSelectedPointId("");
-                    
-                        setRows(listAdminDTK);
-                    
-                  }
-                  if(checkedValues !== 1) {
+
+                    setRows(listAdminDTK);
+                }
+                if (checkedValues !== 1) {
                     setRows([]);
-                  }
-                  if(checkedValues == 2) {
-                    if(selectedPointId != null && selectedPointId != undefined) {
-                    const res = await request.get("/admin/admingd/all?idtk="+ selectedPointId, options );
-                    setRows(res);
-                  }
+                }
+                if (checkedValues == 2) {
+                    if (
+                        selectedPointId != null &&
+                        selectedPointId != undefined
+                    ) {
+                        const res = await request.get(
+                            "/admin/admingd/all?idtk=" + selectedPointId,
+                            options
+                        );
+                        setRows(res);
+                    }
                 }
                 console.log(rows);
             } catch (error) {
@@ -102,46 +120,89 @@ export default function AdminTable(props) {
             }
         };
         fetchAdmin();
-    }, [checkedValues,selectedPointId]);
+    }, []);
 
     return (
         <div className={style.layout}>
-            <label>
-        <input
-          type="checkbox"
-          name="value1"
-          checked={checkedValues === 1}
-          onChange={() => {
-            setCheckedValues(1);
-            setRows(listAdminDTK);
-            console.log("Da goi list DTK");
-          }}
-        />
-        Tài khoản admin Điểm Tập Kết
-      </label>
+            <FormLabel>Tìm kiếm</FormLabel>
+            <Grid container className={style.grid}>
+                <Grid item>
+                    <TextField
+                        id="packageid"
+                        label="Id admin"
+                        type="packageId"
+                        sx={{ width: 300 }}
+                    />
+                </Grid>
+                <Grid item>
+                    <Autocomplete
+                        disablePortal
+                        id="combo-box-demo"
+                        options={listTk}
+                        sx={{ width: 200 }}
+                        renderInput={(params) => (
+                            <TextField {...params} label="Điểm tập kết" />
+                        )}
+                    />
+                </Grid>
+                <Grid item>
+                    <Autocomplete
+                        disablePortal
+                        id="combo-box-demo"
+                        options={listTk}
+                        sx={{ width: 200 }}
+                        renderInput={(params) => (
+                            <TextField {...params} label="Điểm giao dịch" />
+                        )}
+                    />
+                </Grid>
+                <Grid item alignItems="stretch" style={{ display: "flex" }}>
+                    <Button variant="outlined">Tìm kiếm</Button>
+                </Grid>
+            </Grid>
+            {/* <label>
+                <input
+                    type="checkbox"
+                    name="value1"
+                    checked={checkedValues === 1}
+                    onChange={() => {
+                        handleCheckedValue(1);
+                        setRows(listAdminDTK);
+                        console.log("Da goi list DTK");
+                    }}
+                />
+                Tài khoản admin Điểm Tập Kết
+            </label>
 
-      <label>
-        <input
-          type="checkbox"
-          name="value2"
-          checked={checkedValues === 2}
-          onChange={() =>setCheckedValues(2)}
-        />
-        Tài khoản admin Điểm Giao Dịch
-        <div>
-        {(checkedValues ==2) && <label>
-            Chọn điểm Tập Kết:
-            <select value={checkedValues === 2 ? selectedPointId : ""} onChange={handlePointChange}>
-              <option value="">-- Chọn --</option>
-              {listTk.map((diemtapket, index) => (
-  <option key={index} value={diemtapket.id}>
-    {diemtapket.name}
-  </option>
-))}
-            </select>
-          </label>}
-          </div>
-      </label>
+            <label>
+                <input
+                    type="checkbox"
+                    name="value2"
+                    checked={checkedValues === 2}
+                    onChange={() => handleCheckedValue(2)}
+                />
+                Tài khoản admin Điểm Giao Dịch
+                <div>
+                    {checkedValues == 2 && (
+                        <label>
+                            Chọn điểm Tập Kết:
+                            <select
+                                value={
+                                    checkedValues === 2 ? selectedPointId : ""
+                                }
+                                onChange={handlePointChange}
+                            >
+                                <option value="">-- Chọn --</option>
+                                {listTk.map((diemtapket, index) => (
+                                    <option key={index} value={diemtapket.id}>
+                                        {diemtapket.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+                    )}
+                </div>
+            </label> */}
             <Paper
                 sx={{ width: "90%", alignSelf: "center", overflow: "hidden" }}
             >
@@ -199,7 +260,9 @@ export default function AdminTable(props) {
                                                 const value = row[column.id];
                                                 return (
                                                     <TableCell
-                                                        key={column.id ?? "Null"}
+                                                        key={
+                                                            column.id ?? "Null"
+                                                        }
                                                         align={column.align}
                                                     >
                                                         {column.format &&

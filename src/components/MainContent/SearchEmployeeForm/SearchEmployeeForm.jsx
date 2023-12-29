@@ -5,6 +5,9 @@ import style from "./SearchEmployeeForm.module.scss";
 import { FormLabel, FormGroup, Button, Grid } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 
+import RegistrationDialog from "../RegistrationDialog/RegistationDialog";
+import RegistrationForm from "../../RegistrationForm/RegistrationForm";
+
 const top100Films = [
     { label: "The Shawshank Redemption", year: 1994 },
     { label: "The Godfather", year: 1972 },
@@ -135,6 +138,7 @@ const top100Films = [
 const location = [];
 
 const SearchEmployeeForm = () => {
+    const [active, setActive] = useState(false);
     return (
         <form>
             <FormLabel>Tìm kiếm</FormLabel>
@@ -170,7 +174,17 @@ const SearchEmployeeForm = () => {
                     />
                 </Grid>
                 <Grid item alignItems="stretch" style={{ display: "flex" }}>
-                    <Button variant="outlined">Tìm kiếm</Button>
+                    <RegistrationDialog
+                        key="registration"
+                        title="Tạo tài khoản nhân viên"
+                        active={active}
+                        setActive={setActive}
+                    >
+                        <RegistrationForm
+                            active={active}
+                            setActive={setActive}
+                        />
+                    </RegistrationDialog>
                 </Grid>
             </Grid>
         </form>

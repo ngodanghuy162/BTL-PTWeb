@@ -125,6 +125,7 @@ export default function PackageReceiveTable(props) {
                                                 row["statusDonHangModelList"]
                                             }
                                             subColumns={subColumns}
+                                            subTableTitle={"Lịch sử giao hàng"}
                                         />
                                     );
                                 })}

@@ -1,10 +1,11 @@
 import "@/styles/global.module.scss";
 
 import style from "./LeaderPage.module.scss";
-//import MainContent from "@/components/MainContent/MainContent";
 import ListContent from "./ListContent.jsx";
 import { useEffect, useState } from "react";
 import LeaderSidebar from "./LeaderSideBar/LeaderSideBar";
+
+import request from "@/utils/request.js";
 
 const LeaderPage = () => {
     const [deport, setDeport] = useState([]);
@@ -39,7 +40,6 @@ const LeaderPage = () => {
                     selected={selected}
                     onSelected={setSelected}
                 />
-                {/* <RightSide selected={selected} onSelected={setSelected} /> */}
             </div>
         </div>
     );

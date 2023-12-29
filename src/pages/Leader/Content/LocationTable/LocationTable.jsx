@@ -7,16 +7,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import IconButton from "@mui/material/IconButton";
-import EditIcon from "@mui/icons-material/Edit";
-import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
-import style from "./AdminTable.module.scss";
+import { ExpandableRow } from "@/components/ExpandableRow/ExpandableRow";
 
-import * as request from "@/utils/request";
-import SearchAdminForm from "../SearchAdminForm/SearchAdminForm";
+import style from "./LocationTable.module.scss";
 
-export default function AdminTable(props) {
-    const { columns } = props;
+import request from "@/utils/request";
+import SearchForm from "@/components/MainContent/PackageSearchForm/PackageSearchForm";
+
+export default function LocationTable(props) {
+    const { columns, subColumns } = props;
 
     const [page, setPage] = useState(0);
     const [rows, setRows] = useState([]);
@@ -32,10 +31,13 @@ export default function AdminTable(props) {
     };
 
     useEffect(() => {
-        const fetchEmployees = async () => {
+        const fetchPackages = async () => {
+            const path = "/point/tapket/all";
+
             try {
-                const res = await request.get("/employees");
+                const res = await request.get(path);
                 setRows(res);
+                console.log(res);
             } catch (error) {
                 if (error.response) {
                     console.log(error.response.data);
@@ -47,18 +49,18 @@ export default function AdminTable(props) {
             }
         };
 
-        fetchEmployees();
+        fetchPackages();
     }, []);
 
     return (
         <div className={style.layout}>
-            <SearchAdminForm />
+            <SearchForm />
             <Paper
                 sx={{ width: "90%", alignSelf: "center", overflow: "hidden" }}
             >
                 <TableContainer
                     style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
-                    sx={{ maxHeight: 440 }}
+                    sx={{ maxHeight: 470 }}
                 >
                     <Table
                         stickyHeader
@@ -73,17 +75,12 @@ export default function AdminTable(props) {
                                         align={column.align}
                                         style={{
                                             minWidth: column.minWidth,
+                                            width: column.width,
                                         }}
                                     >
                                         {column.label}
                                     </TableCell>
                                 ))}
-                                <TableCell
-                                    align="left"
-                                    style={{
-                                        width: "5%",
-                                    }}
-                                ></TableCell>
                                 <TableCell
                                     align="left"
                                     style={{
@@ -100,40 +97,18 @@ export default function AdminTable(props) {
                                 )
                                 .map((row) => {
                                     return (
-                                        <TableRow
-                                            hover
-                                            role="checkbox"
-                                            tabIndex={-1}
-                                            key={row.code}
-                                        >
-                                            {columns.map((column) => {
-                                                const value = row[column.id];
-                                                return (
-                                                    <TableCell
-                                                        key={column.id}
-                                                        align={column.align}
-                                                    >
-                                                        {column.format &&
-                                                        typeof value ===
-                                                            "number"
-                                                            ? column.format(
-                                                                  value
-                                                              )
-                                                            : value}
-                                                    </TableCell>
-                                                );
-                                            })}
-                                            <TableCell>
-                                                <IconButton>
-                                                    <PersonRemoveIcon />
-                                                </IconButton>
-                                            </TableCell>
-                                            <TableCell>
-                                                <IconButton>
-                                                    <EditIcon />
-                                                </IconButton>
-                                            </TableCell>
-                                        </TableRow>
+                                        <ExpandableRow
+                                            key={row.productId}
+                                            row={row}
+                                            columns={columns}
+                                            subRows={
+                                                row["diemGiaoDichModelList"]
+                                            }
+                                            subColumns={subColumns}
+                                            subTableTitle={
+                                                "Danh sách điểm giao dịch trực thuộc"
+                                            }
+                                        />
                                     );
                                 })}
                         </TableBody>

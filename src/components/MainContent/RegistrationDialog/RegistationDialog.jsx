@@ -22,10 +22,6 @@ export default function RegistrationDialog({
     active,
     setActive,
 }) {
-    // const [open, setOpen] = React.useState(false);
-
-    // const { active, setActive } = props;
-
     const handleClickOpen = () => {
         setActive(true);
     };
