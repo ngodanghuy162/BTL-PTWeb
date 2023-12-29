@@ -57,4 +57,9 @@ public interface StatusOrderRepository extends JpaRepository<StatusDonHangModel,
             "WHERE id_receive_place = :id " +
             "AND type = 'TK-GD'", nativeQuery = true)
     List<StatusDonHangModel> findAllOrderToDgdFrDtk(@Param("id") long idgd);
+
+    @Query(value = "SELECT * FROM statusdonhang " +
+            "WHERE id_send_place = :id " +
+            "AND type = 'GD-KH'", nativeQuery = true)
+    StatusDonHangModel findOrderToCustomerById(@Param("id")long idgd);
 }

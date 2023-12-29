@@ -19,11 +19,30 @@ public class DiemGiaoDichModel {
     @Column(name = "is_active")
     private boolean is_active;
 
+    @Transient
+    private String namedtk;
+
+    public boolean isIs_active() {
+        return is_active;
+    }
+
+    public String getNamedtk() {
+        if(diemTapKet != null) {
+            return diemTapKet.getName();
+        }
+        return namedtk;
+    }
+
+    public void setNamedtk(String namedtk) {
+        this.namedtk = diemTapKet.getName();
+    }
+
     public DiemGiaoDichModel(String name, String address, DiemTapKetModel diemTapKet) {
         this.name = name;
         this.address = address;
         this.is_active = true;
         this.diemTapKet = diemTapKet;
+        this.namedtk = diemTapKet.getName();
     }
 
     public String getAddress() {

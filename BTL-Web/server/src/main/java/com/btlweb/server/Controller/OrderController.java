@@ -133,4 +133,14 @@ public class OrderController {
         return orderService.cfStatusOrderInDgd(idgd,maVanDon);
     }
 
+
+    //xac nhan don hang tai giao dich xem co gui thanh cong ko den nguoi nhan
+    @PutMapping("/xacnhandgddenkh")
+    @PreAuthorize("hasAuthority('NVGD')")
+    public ResponseEntity<String> cfOrderDgdToKh(
+            @RequestParam(name = "idgd") long idgd,
+            @RequestParam(name = "mavandon") String maVanDon,@RequestBody String status) {
+        return orderService.cfStatusOrderInDgdToKh(idgd,maVanDon,status);
+    }
+
 }

@@ -74,6 +74,7 @@ public class OrderService {
         try {
             OrderModel order = orderRepository.findByMavandon(mavandon);
             order.setStatus("Đang vận chuyển");
+            orderRepository.saveAndFlush(order);
             statusOrder.setDonhangchinh(order);
             statusOrder.setStatus("Đang vận chuyển");
             statusOrder.setTimeSend();
@@ -177,5 +178,20 @@ public class OrderService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public ResponseEntity<String> cfStatusOrderInDgdToKh(long idgd, String maVanDon, String status) {
+        try {
+            OrderModel order = orderRepository.findByMavandon(maVanDon);
+            order.setStatus(status);
+            StatusDonHangModel statusDonHangModel = statusOrderRepository.findOrderToCustomerById(idgd);
+            statusDonHangModel.setStatus(status);
+            orderRepository.saveAndFlush(order);
+            statusOrderRepository.saveAndFlush(statusDonHangModel);
+            return new ResponseEntity<>("Xac nhan den khach hang thanh cong", HttpStatus.OK);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>("Failed update don hang", HttpStatus.BAD_REQUEST);
     }
 }
