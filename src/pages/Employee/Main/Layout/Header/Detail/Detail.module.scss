@@ -1,0 +1,45 @@
+.Main {
+    position: fixed;
+    z-index: 2;
+    max-width: 80%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 0 10px 0;
+    border: 1px solid rgba(49,49,49);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: #fff;
+    opacity: 1 !important;
+}
+
+.Header {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    align-items: center;
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+
+.iconClose {
+    cursor: pointer;
+}
+
+.Content tr, td, table {
+    border: none;
+}
+
+.Content {
+    max-width: 80%;
+}
+
+.Content td {
+    padding: 10px;
+    // text-align: center;
+}
+
+.Content tr {
+    align-items: center;
+}

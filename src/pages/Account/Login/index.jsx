@@ -6,8 +6,8 @@ const Login = () => {
     return (
             <div className={styles['Login']}>
                 <h1 className={styles['headingLogin']}>Magic Post</h1>
-                <SideLogin/>
-                <span className={styles['spanOr']}>hoặc</span>
+                {/* <SideLogin/> */}
+                {/* <span className={styles['spanOr']}>hoặc</span> */}
                 <FormLogin/>
         </div>
     );

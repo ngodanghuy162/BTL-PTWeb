@@ -1,22 +1,103 @@
-import { Route, Routes } from "react-router-dom";
-
-import LandingPage from "../pages/Landing/Landing";
-import AdminPage from "../pages/Admin/Admin";
-import LoginPage from "../pages/Account/Login/index";
-import SignupPage from "../pages/Account/SignUp/index";
-import SearchPage from "../pages/Order/index";
+import { Navigate, Route, Routes } from "react-router-dom";
+import publicRoutes from "./publicRoutes";
+import { LeaderGdRoutes, AdminGdRoutes, AdminTkRoutes, NvgdRoutes, NvtkRoutes } from "./privateRoutes";
+import {useAuth} from "../hooks/AuthContext";
 
 const AppRoutes = () => {
-    return (
-        <Routes>
-            <Route path="/" element={<LandingPage />}></Route>
-            <Route path="/admin" element={<AdminPage />}></Route>
-            <Route path="/login" element={<LoginPage />}></Route>
-            <Route path="/signup" element={<SignupPage />}></Route>
-            <Route path="/search" element={<SearchPage />}></Route>
-            {/* <Route path="*" element={<NotFoundPage />}></Route> */}
-        </Routes>
-    );
+  const {isLeaderLogin} = useAuth();
+  const {isAdminGdLogin} = useAuth();
+  const {isAdminTkLogin} = useAuth();
+  const {isNvgdLogin} = useAuth();
+  const {isNvtkLogin} = useAuth();
+  return (
+    <Routes>
+      {publicRoutes.map((router, index) => {
+        const Page = router.component;
+        return (
+          <Route
+            key={index}
+            path={router.path}
+            element={<Page />}
+          />
+        );
+      })}
+      
+      {LeaderGdRoutes.map((router, index) => {
+        const Page = router.component;
+        return (
+          <Route
+            key={index}
+            path={router.path}
+            element={isLeaderLogin ? (
+              <Page />
+            ) : (
+              <Navigate to="/login" />
+            )}
+          />
+        );
+      })}
+
+      {AdminGdRoutes.map((router, index) => {
+        const Page = router.component;
+        return (
+          <Route
+            key={index}
+            path={router.path}
+            element={isAdminGdLogin ? (
+              <Page />
+            ) : (
+              <Navigate to="/login" />
+            )}
+          />
+        );
+      })}
+
+      {AdminTkRoutes.map((router, index) => {
+        const Page = router.component;
+        return (
+          <Route
+            key={index}
+            path={router.path}
+            element={isAdminTkLogin ? (
+              <Page />
+            ) : (
+              <Navigate to="/login" />
+            )}
+          />
+        );
+      })}
+      
+      {NvgdRoutes.map((router, index) => {
+        const Page = router.component;
+        return (
+          <Route
+            key={index}
+            path={router.path}
+            element={isNvgdLogin ? (
+              <Page />
+            ) : (
+              <Navigate to="/login" />
+            )}
+          />
+        );
+      })}
+      
+      {NvtkRoutes.map((router, index) => {
+        const Page = router.component;
+        return (
+          <Route
+            key={index}
+            path={router.path}
+            element={isNvtkLogin ? (
+              <Page />
+            ) : (
+              <Navigate to="/login" />
+            )}
+          />
+        );
+      })}
+    </Routes>
+  );
 };
 
 export default AppRoutes;

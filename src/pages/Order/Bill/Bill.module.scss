@@ -1,0 +1,149 @@
+table {
+    margin: auto;
+    width: 100%;
+}
+
+footer {
+    text-align: center;
+}
+
+h4 {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+p {
+    margin: 0;
+}
+
+label {
+    display: flex;
+}
+
+h4, p, label {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.BillContentBody {
+    border: 1px solid black;
+}
+
+.Bill {
+    width: 800px;
+    margin: auto;
+    font-size: 12px;
+}
+
+.BillHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2% 10%;
+}
+
+.QrImg {
+    height: 100px;
+}
+
+
+.BillContent {
+}
+
+.BillContentFirst {
+    width: 50%;
+}
+
+.BillAddress {
+    padding-bottom: 20px;
+    word-wrap: break-word;
+}
+
+.TableChilden tr td tbody {
+    border: 1px solid black;
+}
+
+.BorderTop {
+    border-top: 1px solid black;
+}
+
+.BorderNone {
+    border: none;
+}
+
+.BorderLeftNone {
+    border-left: none;
+}
+
+.BorderRightNone {
+    border-right: none;
+}
+
+.BorderEdgeNone {
+    border-right: none;
+    border-left: none;
+}
+.BorderTop {
+    border-top: 1px solid black;
+}
+
+.BorderBottom {
+    border-bottom: 1px solid black;
+}
+
+.BorderRight {
+    border-right: 1px solid black;
+}
+
+.BorderLeft {
+    border-left: 1px solid black;
+}
+
+.ListInput p {
+    font-size: 9px;
+}
+
+.UpContent {
+    vertical-align: top;
+}
+
+.Width60 {
+    width: 60%;
+}
+
+.ContentNumber {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Contenttext {
+    text-align: center;
+}
+
+
+.StylesSignature {
+    height: 100px;
+}
+
+.ListInput {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.List8 {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 50px;
+    margin-bottom: 20px;
+}
+
+.Margin5 {
+    margin-bottom: 5px;
+}
+
+.HeightUp {
+    height: 162px;
+}

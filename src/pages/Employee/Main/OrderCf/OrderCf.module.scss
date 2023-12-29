@@ -1,0 +1,87 @@
+.Main {
+    width: 100%;
+    height: 100%;
+}
+
+.ListOrder {
+    height: 45px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 10px 10px 0 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ListName {
+    display: flex;
+}
+
+.list-hidden_background {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    opacity: 0.2;
+}
+
+.ListName {
+    display: flex;
+    align-items: center;
+}
+
+.ListNameId {
+    width: 300px;
+}
+
+.ListName h3 {
+    width: 280px;
+}
+
+.ListButton {
+    display: flex;
+    align-items: center;
+}
+
+.ListButton button {
+    cursor: pointer;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.button1 {
+    background-color: #98f5e1;
+}
+
+.ListStatus {
+    position: fixed;
+}
+
+.ListStatus li {
+    background-color: white;
+    border: 1px solid black;
+    width: 100px;
+    padding: 5px 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.button2 {
+    background-color: #cfbaf0;
+}
+
+.button3 {
+    background-color: #f1c0e8;
+}
+
+.SelectStatus {
+    padding: 5px;
+    width: 150px;
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
