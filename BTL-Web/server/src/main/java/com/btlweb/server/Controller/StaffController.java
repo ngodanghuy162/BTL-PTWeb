@@ -20,10 +20,10 @@ public class StaffController {
     }
 
     // xem ds nhan vien diem tap ket
-    @GetMapping("/qlnvtk/{id_tapket}")
+    @GetMapping("/qlnvtk")
     @PreAuthorize("hasAuthority('LEADER') or hasAuthority('ADMINTK')")
-    public List<StaffModel> getAllStaffDTK(@PathVariable(name = "id_tapket") long id_tapket) {
-        return staffService.getAllStaffDTK(id_tapket);
+    public List<StaffModel> getAllStaffDTK(@RequestParam(name = "idwork") long id_work) {
+        return staffService.getAllStaffDTK(id_work);
     }
 
     //LAY THONG TIN TK

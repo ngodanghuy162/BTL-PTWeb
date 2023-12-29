@@ -212,4 +212,13 @@ public class OrderService {
         }
         return null;
     }
+
+    public List<OrderModel> getAllOrderCreateAtDgd(long iddgd) {
+        try {
+            return orderRepository.findAllOrderCreatedAtDgd(iddgd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

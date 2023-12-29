@@ -11,14 +11,16 @@ public class AdminModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
     //id_role is id work place: gtk,dgd
+
+    @Column(name = "id_work")
     private int id_workplace;
     private String name;
 
     private String username;
 
     private String password;
+
 
     private String role;
 
@@ -33,6 +35,7 @@ public class AdminModel {
         this.password = password;
         this.role = role;
     }
+
 
     public void setId(long id) {
         this.id = id;

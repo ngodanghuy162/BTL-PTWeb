@@ -57,6 +57,12 @@ public class OrderController {
         return orderService.getAllOrderByStatus(iddgd,type);
     }
 
+    @GetMapping("/thongkeorder/dgd/dondatao")
+    @PreAuthorize("hasAuthority('NVGD') or hasAuthority('ADMINGD')")
+    public List<OrderModel> getAllOrderCreateAtDgd(@RequestParam(name = "iddgd") long iddgd) {
+        return orderService.getAllOrderCreateAtDgd(iddgd);
+    }
+
 
     //thong ke hang den cac dtk. type la hanggui  hoac hangnhan(truong dtk,nvtk,ldao)
     //thong ke dua vao status order
