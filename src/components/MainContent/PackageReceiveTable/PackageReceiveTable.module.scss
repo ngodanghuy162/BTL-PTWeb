@@ -11,11 +11,15 @@
 
 }
 
+@media screen and (max-width: 1280px) {
+    .layout__paper {
+        align-items: flex-start;
+        max-width: 800;
+        overflow: scroll;
+    }
 
-@media screen and (max-width: 1200px) {
-    .Table {
-        width: 170%;
-        margin-top: 2rem;
+    .table {
+        width: 400;
     }
 }
 

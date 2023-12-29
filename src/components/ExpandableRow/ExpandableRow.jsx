@@ -14,12 +14,14 @@ import TableHead from "@mui/material/TableHead";
 import style from "./ExpandableRow.module.scss";
 
 const getStyle = (status) => {
-    if (status === "da nhan") {
+    if (status === null) return;
+    status = status?.toLowerCase();
+    if (status === "received") {
         return {
             background: "rgb(145 254 159 / 47%)",
             color: "green",
         };
-    } else if (status === "huy bo") {
+    } else if (status === "failed") {
         return {
             background: "#ffadad8f",
             color: "red",
@@ -50,7 +52,7 @@ export function ExpandableRow(props) {
                 hover
                 role="checkbox"
                 tabIndex={-1}
-                key={row.packageId}
+                key={row.id}
                 sx={{ "& > *": { borderBottom: "unset" } }}
             >
                 {columns.map((column) => {
@@ -87,7 +89,7 @@ export function ExpandableRow(props) {
             <TableRow>
                 <TableCell
                     style={{ paddingBottom: 0, paddingTop: 0 }}
-                    colSpan={6}
+                    colSpan={columns.length + 1}
                 >
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box sx={{ margin: 1 }}>

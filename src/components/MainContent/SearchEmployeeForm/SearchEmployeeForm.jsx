@@ -132,6 +132,8 @@ const top100Films = [
     { label: "Monty Python and the Holy Grail", year: 1975 },
 ];
 
+const location = [];
+
 const SearchEmployeeForm = () => {
     return (
         <form>
@@ -142,7 +144,7 @@ const SearchEmployeeForm = () => {
                         id="packageid"
                         label="Id nhân viên"
                         type="packageId"
-                        sx={{ width: 300 }}
+                        sx={{ width: "auto" }}
                     />
                 </Grid>
                 <Grid item>

@@ -2,7 +2,6 @@ import "@/styles/global.module.scss";
 
 import style from "./Admin.module.scss";
 import MainContent from "@/components/MainContent/MainContent";
-import RightSide from "@/components/RightSide/RightSide";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import { useEffect, useState } from "react";
 
@@ -26,7 +25,6 @@ const AdminPage = () => {
                 }
             }
         };
-
         fetchLocations();
     }, []);
 

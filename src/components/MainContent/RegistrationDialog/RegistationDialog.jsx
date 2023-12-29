@@ -4,10 +4,8 @@ import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import Typography from "@mui/material/Typography";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     "& .MuiDialogContent-root": {
@@ -18,32 +16,44 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
 }));
 
-export default function RegistrationDialog() {
-    const [open, setOpen] = React.useState(false);
+export default function RegistrationDialog({
+    children,
+    title,
+    active,
+    setActive,
+}) {
+    // const [open, setOpen] = React.useState(false);
+
+    // const { active, setActive } = props;
 
     const handleClickOpen = () => {
-        setOpen(true);
+        setActive(true);
     };
     const handleClose = () => {
-        setOpen(false);
-    };
-
-    const handleSubmit = () => {
-        setOpen(false);
+        setActive(false);
     };
 
     return (
         <React.Fragment>
             <Button variant="outlined" onClick={handleClickOpen}>
-                Open dialog
+                Tạo tài khoản
             </Button>
             <BootstrapDialog
+                maxWidth={"lg"}
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
-                open={open}
+                open={active}
+                sx={{
+                    "& .MuiDialog-container": {
+                        "& .MuiPaper-root": {
+                            width: "40%",
+                            maxWidth: "500px", // Set your width here
+                        },
+                    },
+                }}
             >
                 <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-                    Modal title
+                    {title}
                 </DialogTitle>
                 <IconButton
                     aria-label="close"
@@ -57,30 +67,7 @@ export default function RegistrationDialog() {
                 >
                     <CloseIcon />
                 </IconButton>
-                <DialogContent dividers>
-                    <Typography gutterBottom>
-                        Cras mattis consectetur purus sit amet fermentum. Cras
-                        justo odio, dapibus ac facilisis in, egestas eget quam.
-                        Morbi leo risus, porta ac consectetur ac, vestibulum at
-                        eros.
-                    </Typography>
-                    <Typography gutterBottom>
-                        Praesent commodo cursus magna, vel scelerisque nisl
-                        consectetur et. Vivamus sagittis lacus vel augue laoreet
-                        rutrum faucibus dolor auctor.
-                    </Typography>
-                    <Typography gutterBottom>
-                        Aenean lacinia bibendum nulla sed consectetur. Praesent
-                        commodo cursus magna, vel scelerisque nisl consectetur
-                        et. Donec sed odio dui. Donec ullamcorper nulla non
-                        metus auctor fringilla.
-                    </Typography>
-                </DialogContent>
-                <DialogActions>
-                    <Button autoFocus onClick={handleSubmit}>
-                        Register
-                    </Button>
-                </DialogActions>
+                <DialogContent dividers>{children}</DialogContent>
             </BootstrapDialog>
         </React.Fragment>
     );

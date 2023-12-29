@@ -1,8 +1,8 @@
-import {createContext, useContext, useState} from "react";
+import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
     const [isLeaderLogin, setIsLeaderLogin] = useState(
         localStorage.getItem("LEADER") !== null
     );
@@ -35,8 +35,8 @@ const AuthProvider = ({children}) => {
                 role: data.userinfo.role,
                 username: data.userinfo.username,
                 workPlaceName: data.userinfo.workPlaceName,
-            }
-            };
+            },
+        };
         console.log(user);
 
         localStorage.removeItem("LEADER");
@@ -51,32 +51,31 @@ const AuthProvider = ({children}) => {
         setIsNvgdLogin(false);
         setIsNvtkLogin(false);
 
-        if(user.userInfo.role.includes('LEADER')) {
+        if (user.userInfo.role.includes("LEADER")) {
             localStorage.setItem("LEADER", JSON.stringify(user));
             setIsLeaderLogin(true);
         }
 
-        if(user.userInfo.role.includes('ADMINGD')) {
+        if (user.userInfo.role.includes("ADMINGD")) {
             localStorage.setItem("ADMINGD", JSON.stringify(user));
             setIsAdminGdLogin(true);
         }
 
-        if(user.userInfo.role.includes('ADMINTK')) {
+        if (user.userInfo.role.includes("ADMINTK")) {
             localStorage.setItem("ADMINTK", JSON.stringify(user));
             setIsAdminTkLogin(true);
         }
 
-        if(user.userInfo.role.includes('NVGD')) {
+        if (user.userInfo.role.includes("NVGD")) {
             localStorage.setItem("NVGD", JSON.stringify(user));
             setIsNvgdLogin(true);
         }
 
-        if(user.userInfo.role.includes('NVTK')) {
+        if (user.userInfo.role.includes("NVTK")) {
             localStorage.setItem("NVTK", JSON.stringify(user));
             setIsNvtkLogin(true);
             console.log(isNvtkLogin);
         }
-
     };
 
     const handleLogout = () => {
@@ -95,24 +94,33 @@ const AuthProvider = ({children}) => {
 
     const getUser = () => {
         if (localStorage.getItem("LEADER"))
-        return JSON.parse(localStorage.getItem("LEADER"));
+            return JSON.parse(localStorage.getItem("LEADER"));
 
         if (localStorage.getItem("ADMINGD"))
-        return JSON.parse(localStorage.getItem("ADMINGD"));
+            return JSON.parse(localStorage.getItem("ADMINGD"));
 
         if (localStorage.getItem("ADMINTK"))
-        return JSON.parse(localStorage.getItem("ADMINTK"));
+            return JSON.parse(localStorage.getItem("ADMINTK"));
 
         if (localStorage.getItem("NVGD"))
-        return JSON.parse(localStorage.getItem("NVGD"));
+            return JSON.parse(localStorage.getItem("NVGD"));
 
         if (localStorage.getItem("NVTK"))
-        return JSON.parse(localStorage.getItem("NVTK"));
-    }
+            return JSON.parse(localStorage.getItem("NVTK"));
+    };
 
     return (
         <AuthContext.Provider
-            value={{isLeaderLogin, isAdminGdLogin, isAdminTkLogin, isNvgdLogin, isNvtkLogin, handleLogin, handleLogout, getUser}}
+            value={{
+                isLeaderLogin,
+                isAdminGdLogin,
+                isAdminTkLogin,
+                isNvgdLogin,
+                isNvtkLogin,
+                handleLogin,
+                handleLogout,
+                getUser,
+            }}
         >
             {children}
         </AuthContext.Provider>
@@ -123,4 +131,4 @@ const useAuth = () => {
     return useContext(AuthContext);
 };
 
-export {AuthProvider, useAuth};
+export { AuthProvider, useAuth };

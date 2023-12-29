@@ -7,26 +7,46 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import IconButton from "@mui/material/IconButton";
-import EditIcon from "@mui/icons-material/Edit";
-import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
-import style from "./EmployeeTable.module.scss";
 
-import * as request from "@/utils/request";
+import style from "./EmployeeTable.module.scss";
+import request from "@/utils/request";
+
 import SearchEmployeeForm from "../SearchEmployeeForm/SearchEmployeeForm";
 import RegistrationDialog from "../RegistrationDialog/RegistationDialog";
+import RegistrationForm from "../../RegistrationForm/RegistrationForm";
 
-// import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-// import { useDemoData } from "@mui/x-data-grid-generator";
+import { useAuth } from "@/hooks/AuthContext";
+import RemoveDialog from "../../RemoveDialog/RemoveDialog";
+import ModifyDialog from "../../ModifyDialog/ModifyDialog";
 
-const VISIBLE_FIELDS = ["name", "rating", "country", "dateCreated", "isAdmin"];
+const getPath = (userInfo) => {
+    if (userInfo.role === "LEADER") {
+        return;
+    }
+
+    if (userInfo.role === "ADMINGD") {
+        return "/staff/qlnvgd";
+    }
+
+    if (userInfo.role === "ADMINTK") {
+        return "/staff/qlnvtk";
+    }
+};
 
 export default function EmployeeTable(props) {
+    const { getUser } = useAuth();
+    const user = getUser();
+
     const { columns } = props;
 
+    const [active, setActive] = useState(false);
     const [page, setPage] = useState(0);
     const [rows, setRows] = useState([]);
     const [rowsPerPage, setRowsPerPage] = useState(10);
+
+    const handleActive = () => {
+        setActive(false);
+    };
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -38,10 +58,21 @@ export default function EmployeeTable(props) {
     };
 
     useEffect(() => {
+        const path = getPath(user.userInfo);
+        const options = {
+            headers: {
+                Authorization: `Bearer ${user.token}`,
+            },
+            params: {
+                idwork: user.userInfo.id_work,
+            },
+        };
+
         const fetchEmployees = async () => {
             try {
-                const res = await request.get("/staff/qlnvtk/1");
+                const res = await request.get(path, options);
                 setRows(res);
+                // setSelectedRows(res);
             } catch (error) {
                 if (error.response) {
                     console.log(error.response.data);
@@ -58,11 +89,16 @@ export default function EmployeeTable(props) {
 
     return (
         <div className={style.layout}>
-            <SearchEmployeeForm />
-            <RegistrationDialog></RegistrationDialog>
-            <Paper
-                sx={{ width: "90%", alignSelf: "center", overflow: "hidden" }}
+            <SearchEmployeeForm key="search" />
+            <RegistrationDialog
+                key="registration"
+                title="Tạo tài khoản nhân viên"
+                active={active}
+                setActive={setActive}
             >
+                <RegistrationForm active={active} setActive={setActive} />
+            </RegistrationDialog>
+            <Paper key="main table" className={style.layout__paper}>
                 <TableContainer
                     style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
                     sx={{ maxHeight: 440 }}
@@ -80,6 +116,7 @@ export default function EmployeeTable(props) {
                                         align={column.align}
                                         style={{
                                             minWidth: column.minWidth,
+                                            width: column.width,
                                         }}
                                     >
                                         {column.label}
@@ -131,14 +168,12 @@ export default function EmployeeTable(props) {
                                                 );
                                             })}
                                             <TableCell>
-                                                <IconButton>
-                                                    <PersonRemoveIcon />
-                                                </IconButton>
+                                                <ModifyDialog />
                                             </TableCell>
                                             <TableCell>
-                                                <IconButton>
-                                                    <EditIcon />
-                                                </IconButton>
+                                                <RemoveDialog
+                                                    employeeInfo={row}
+                                                />
                                             </TableCell>
                                         </TableRow>
                                     );

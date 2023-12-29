@@ -9,13 +9,31 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { ExpandableRow } from "@/components/ExpandableRow/ExpandableRow";
 
-import "./PackageReceiveTable.css";
+import request from "@/utils/request";
+
+import { useAuth } from "@/hooks/AuthContext";
+
+import PackageSearchForm from "../PackageSearchForm/PackageSearchForm";
 import style from "./PackageReceiveTable.module.scss";
 
-import * as request from "@/utils/request";
-import PackageSearchForm from "../PackageSearchForm/PackageSearchForm";
+const getPath = (userInfo) => {
+    if (userInfo.role === "LEADER") {
+        return "/order/thongkeorder/all";
+    }
+
+    if (userInfo.role === "ADMINGD") {
+        return "/order/thongkeorder/dgd";
+    }
+
+    if (userInfo.role === "ADMINTK") {
+        return "/order/thongkestatusorder/dtk";
+    }
+};
 
 export default function PackageReceiveTable(props) {
+    const { getUser } = useAuth();
+    const user = getUser();
+
     const { columns, subColumns } = props;
 
     const [page, setPage] = useState(0);
@@ -32,9 +50,19 @@ export default function PackageReceiveTable(props) {
     };
 
     useEffect(() => {
+        const path = getPath(user.userInfo);
+        const options = {
+            headers: {
+                Authorization: `Bearer ${user.token}`,
+            },
+            params: {
+                id: user.userInfo.id_work,
+            },
+        };
+
         const fetchPackages = async () => {
             try {
-                const res = await request.get("/order/thongkeorder/all");
+                const res = await request.get(path, options);
                 setRows(res);
                 console.log(res);
             } catch (error) {
@@ -54,16 +82,14 @@ export default function PackageReceiveTable(props) {
     return (
         <div className={style.layout}>
             <PackageSearchForm />
-            <Paper
-                sx={{ width: "90%", alignSelf: "center", overflow: "hidden" }}
-            >
+            <Paper className={style.layout__paper}>
                 <TableContainer
                     style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
                     sx={{ maxHeight: 410 }}
                 >
                     <Table
                         stickyHeader
-                        sx={{ minWidth: 650 }}
+                        sx={{ minWidth: 500 }}
                         aria-label="sticky table"
                     >
                         <TableHead>
