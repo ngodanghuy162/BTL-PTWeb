@@ -11,7 +11,8 @@ import java.util.List;
 @Repository
 public interface DiemGiaoDichRepository extends JpaRepository<DiemGiaoDichModel,Long> {
 
-    @Query("SELECT d FROM DiemGiaoDichModel d WHERE d.diemTapKet.id = :idTapKet")
+  //  @Query("SELECT d FROM DiemGiaoDichModel d WHERE d.diemTapKet.id = :idTapKet")
+    @Query(value = "SELECT * FROM diemgiaodich WHERE id_tapket = :idTapKet", nativeQuery = true)
     List<DiemGiaoDichModel> findAllByDiemTapKetId(@Param("idTapKet") long idTapKet);
 
 }

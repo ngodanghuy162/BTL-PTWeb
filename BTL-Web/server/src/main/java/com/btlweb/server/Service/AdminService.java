@@ -35,13 +35,11 @@ public class AdminService {
 
 
     public List<AdminModel> getAllAdminDtk() {
-        String role ="ADMINTK";
-        return adminRepository.findAllAdminDtkByRole(role);
+        return adminRepository.findAllAdminByRole("ADMINTK");
     }
 
     public List<AdminModel> getAllAdminDgd() {
-        String role ="ADMINGD";
-        return adminRepository.findAllAdminDgdByRole(role);
+        return adminRepository.findAllAdminByRole("ADMINGD");
     }
 
     public AdminModel getAdminDgd(long id) {

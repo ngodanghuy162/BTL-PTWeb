@@ -10,9 +10,12 @@ import java.util.List;
 
 @Repository
 public interface AdminRepository extends JpaRepository<AdminModel,Long> {
-    List<AdminModel> findAllAdminDtkByRole(String role);
 
-    List<AdminModel> findAllAdminDgdByRole(String role);
+    @Query(value = "SELECT * FROM admin WHERE role = :role", nativeQuery = true)
+    List<AdminModel> findAllAdminByRole(@Param("role") String role);
+
+//    @Query("SELECT a FROM AdminModel a WHERE a.role = :role")
+//    List<AdminModel> findAllAdminDgdByRole(String role);
 
     @Query("SELECT a FROM AdminModel a WHERE a.id_work = :id AND a.role = :role")
     AdminModel findAdminByIdworkAndRole(@Param("id") long id, @Param("role") String role);

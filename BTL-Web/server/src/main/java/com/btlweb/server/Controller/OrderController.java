@@ -162,8 +162,18 @@ public class OrderController {
     @PreAuthorize("hasAuthority('NVGD')")
     public ResponseEntity<String> cfOrderDgdToKh(
             @RequestParam(name = "idgd") long idgd,
-            @RequestParam(name = "mavandon") String maVanDon,@RequestBody String status) {
+            @RequestParam(name = "mavandon") String maVanDon,@RequestParam(name = "status") int status) {
         return orderService.cfStatusOrderInDgdToKh(idgd,maVanDon,status);
     }
+
+    @GetMapping("/dontoikhachhang/all")
+    @PreAuthorize("hasAuthority('NVGD')")
+    public List<StatusDonHangModel> getAllOrderToKH(
+            @RequestParam(name = "idgd") long idgd) {
+        return orderService.getAllOrderToKH(idgd);
+    }
+
+
+
 
 }

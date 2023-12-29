@@ -180,12 +180,19 @@ public class OrderService {
         return null;
     }
 
-    public ResponseEntity<String> cfStatusOrderInDgdToKh(long idgd, String maVanDon, String status) {
+    public ResponseEntity<String> cfStatusOrderInDgdToKh(long idgd, String maVanDon, int status) {
         try {
             OrderModel order = orderRepository.findByMavandon(maVanDon);
-            order.setStatus(status);
             StatusDonHangModel statusDonHangModel = statusOrderRepository.findOrderToCustomerById(idgd);
-            statusDonHangModel.setStatus(status);
+            if(status == 1) {
+                order.setDateReceive(new Date());
+                order.setStatus("Giao hàng thành công");
+                statusDonHangModel.setTimeReceive(new Date());
+                statusDonHangModel.setStatus("Giao hàng thành công");
+            } else {
+                statusDonHangModel.setStatus("Giao hàng thất bại");
+                order.setStatus("Giao hàng thất bại");
+            }
             orderRepository.saveAndFlush(order);
             statusOrderRepository.saveAndFlush(statusDonHangModel);
             return new ResponseEntity<>("Xac nhan den khach hang thanh cong", HttpStatus.OK);
@@ -229,6 +236,15 @@ public class OrderService {
             } else {
                 return statusOrderRepository.findAllOrderAtDgdByStatus(idgd,"Giao hàng thất bại");
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<StatusDonHangModel> getAllOrderToKH(long idgd) {
+        try {
+            return statusOrderRepository.findAllOrderToCustomer(idgd);
         } catch (Exception e) {
             e.printStackTrace();
         }
