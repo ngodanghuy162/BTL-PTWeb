@@ -9,12 +9,31 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { ExpandableRow } from "@/components/ExpandableRow/ExpandableRow";
 
-import * as request from "@/utils/request";
-import PackageSearchForm from "../PackageSearchForm/PackageSearchForm";
+import request from "@/utils/request";
 
+import { useAuth } from "@/hooks/AuthContext";
+
+import PackageSearchForm from "../PackageSearchForm/PackageSearchForm";
 import style from "./PackageReceiveTable.module.scss";
 
+const getPath = (userInfo) => {
+    if (userInfo.role === "LEADER") {
+        return "/order/thongkeorder/all";
+    }
+
+    if (userInfo.role === "ADMINGD") {
+        return "/order/thongkeorder/dgd";
+    }
+
+    if (userInfo.role === "ADMINTK") {
+        return "/order/thongkestatusorder/dtk";
+    }
+};
+
 export default function PackageReceiveTable(props) {
+    const { getUser } = useAuth();
+    const user = getUser();
+
     const { columns, subColumns } = props;
 
     const [page, setPage] = useState(0);
@@ -31,11 +50,21 @@ export default function PackageReceiveTable(props) {
     };
 
     useEffect(() => {
+        const path = getPath(user.userInfo);
+        const options = {
+            headers: {
+                Authorization: `Bearer ${user.token}`,
+            },
+            params: {
+                id: user.userInfo.id_work,
+            },
+        };
+
         const fetchPackages = async () => {
             try {
-                const res = await request.get("/order/thongkeorder/all");
-                // setRows(res);
-                // console.log(res);
+                const res = await request.get(path, options);
+                setRows(res);
+                console.log(res);
             } catch (error) {
                 if (error.response) {
                     console.log(error.response.data);

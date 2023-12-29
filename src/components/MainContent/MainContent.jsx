@@ -32,6 +32,7 @@ const componentListMainDash = [
     <>
         <h1>Employee Management</h1>
         <EmployeeTable
+            key="employee"
             className={self.layout__main}
             columns={employeeColumns}
         />
@@ -39,6 +40,7 @@ const componentListMainDash = [
     <>
         <h1>Package Management</h1>
         <PackageReceiveTable
+            key="package"
             className={self.layout__main}
             columns={packageColumns}
             subColumns={subColumns}

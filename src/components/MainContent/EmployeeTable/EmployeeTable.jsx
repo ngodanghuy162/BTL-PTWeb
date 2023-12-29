@@ -20,20 +20,6 @@ import RegistrationForm from "../../RegistrationForm/RegistrationForm";
 
 import { useAuth } from "@/hooks/AuthContext";
 
-const getEmployeeRole = (userInfo) => {
-    if (userInfo.role === "LEADER") {
-        return;
-    }
-
-    if (userInfo.role === "ADMINGD") {
-        return "NVGD";
-    }
-
-    if (userInfo.role === "ADMINTK") {
-        return "NVTK";
-    }
-};
-
 const getPath = (userInfo) => {
     if (userInfo.role === "LEADER") {
         return;
@@ -69,14 +55,12 @@ export default function EmployeeTable(props) {
 
     useEffect(() => {
         const path = getPath(user.userInfo);
-        console.log(user.userInfo);
-        const idwork = user.userInfo.id_work;
         const options = {
             headers: {
                 Authorization: `Bearer ${user.token}`,
             },
             params: {
-                idwork: idwork,
+                idwork: user.userInfo.id_work,
             },
         };
 
@@ -84,7 +68,6 @@ export default function EmployeeTable(props) {
             try {
                 const res = await request.get(path, options);
                 setRows(res);
-                console.log(rows);
                 // setSelectedRows(res);
             } catch (error) {
                 if (error.response) {
@@ -102,11 +85,14 @@ export default function EmployeeTable(props) {
 
     return (
         <div className={style.layout}>
-            <SearchEmployeeForm />
-            <RegistrationDialog title="Tạo tài khoản nhân viên">
+            <SearchEmployeeForm key="search" />
+            <RegistrationDialog
+                key="registration"
+                title="Tạo tài khoản nhân viên"
+            >
                 <RegistrationForm usernameList={[]} />
             </RegistrationDialog>
-            <Paper className={style.layout__paper}>
+            <Paper key="main table" className={style.layout__paper}>
                 <TableContainer
                     style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
                     sx={{ maxHeight: 440 }}

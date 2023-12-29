@@ -123,7 +123,7 @@ const RegistrationForm = (props) => {
             console.log(user);
             const res = await axios.post(path, data, config);
             console.log(res);
-            props.resetForm();
+            // props.resetForm();
         } catch (error) {
             // Xử lý lỗi khi thực hiện request
             console.error("Error:", error);
@@ -230,7 +230,7 @@ const RegistrationForm = (props) => {
                                 variant="contained"
                                 color="primary"
                             >
-                                Tạo tài khoảng
+                                Tạo tài khoản
                             </Button>
                         </Form>
                     )}

@@ -32,7 +32,6 @@ export default function RegistrationDialog({ children, title }) {
                 Tạo tài khoản
             </Button>
             <BootstrapDialog
-                fullWidth
                 maxWidth={"lg"}
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
