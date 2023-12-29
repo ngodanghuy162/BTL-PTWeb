@@ -131,11 +131,11 @@ function OrdeCf() {
     <Layout>
       <div className={styles['Main']}>
         <div>
-          <select value={selectedOption} onChange={handleSelectChange} className={styles['SelectStatus']}>
+          {/* <select value={selectedOption} onChange={handleSelectChange} className={styles['SelectStatus']}>
             <option value="1">Đơn hàng thành công</option>
             <option value="2">Đơn hàng không thành công</option>
             <option value="3">Đơn hoàn trả</option>
-          </select>
+          </select> */}
 
         </div>
         {data && data.map((order) => (

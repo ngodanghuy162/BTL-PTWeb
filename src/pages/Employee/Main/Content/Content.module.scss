@@ -112,3 +112,15 @@ h3 {
     align-items: center;
     // background-color: #4ea8de;
 }
+
+.ThongBao {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.ThongBao p {
+    color: red;
+    margin: auto;
+    margin-top: 10px;
+}

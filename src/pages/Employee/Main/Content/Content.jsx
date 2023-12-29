@@ -13,6 +13,8 @@ import OrderApi from "../../../../api/OrderApi"
 function Content() {
   const {getUser} = useAuth();
   const user = getUser();
+  const [mess, setMess] = useState("");
+  const [isClick, setClick] = useState(false);
 
   const [fullData, setFullData] = useState({
     name: "Test",
@@ -115,11 +117,13 @@ function Content() {
   }, [codData]);
 
   const handleSubmit = async (e) => {
+    setClick(true);
     e.preventDefault();
     try {
       OrderApi.newOrder(fullData, user.token).then(response => {
         if(response) {
           console.log(response);
+          setMess(response);
         }
         else {
           console.log('err');
@@ -154,7 +158,11 @@ function Content() {
           <Cod onDataChange={handleCodDataChange}/>
         </div>
 
-        <button className={styles['Submit']} onClick={handleSubmit}>Submit</button>
+        <div className={styles['ThongBao']}>
+          
+          <button className={styles['Submit']} onClick={handleSubmit}>Submit</button>
+          {isClick && <p>{mess}</p>}
+        </div>
       </div>
     </Layout>
   );

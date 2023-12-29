@@ -1,12 +1,27 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styles from './Bill.module.scss';
 import Bill from './index'
 
-const Export = (dataBill) => {
+const Export = () => {
 
   const printBill = () => {
     // handlePrint();
   }
+
+  
+
+  const [receivedData, setReceivedData] = useState(null);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const data = {};
+    for (const [key, value] of urlParams) {
+      data[key] = value;
+    }console.log(data);
+
+    // Lưu dữ liệu vào state hoặc thực hiện các công việc khác với dữ liệu
+    setReceivedData(data);
+  }, []);
 
   const pdfRef = useRef();
 
@@ -59,7 +74,7 @@ const Export = (dataBill) => {
   return (
     <div ref={pdfRef} className={styles['Bill']}>
       {/* ... Nội dung của bạn ... */}
-      <Bill />
+      <Bill data={receivedData}/>
       <button className="print-button" onClick={handlePrint}>
         In hoặc Lưu PDF (Ctrl+P)
       </button>

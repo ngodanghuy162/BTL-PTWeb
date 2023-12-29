@@ -34,6 +34,15 @@ class OrderApi {
         const url = `order/thongkestatusorder/dgd/all?idgd=${id}&status=`;
         return axiosClient.get(url, data, { headers });
     }
+
+    GetAllOrderOk(id, isOk, token) {
+        const headers = {
+            'Authorization': `Bearer ${token}`
+        };
+        const status = isOk ? 1 : 2;
+        const url = `/order/thongkestatusorder/dgd/all?idgd=${id}&status=${status}`
+        return axiosClient.get(url, { headers });
+    }
 }
 
 export default new OrderApi;

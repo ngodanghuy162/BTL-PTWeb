@@ -73,20 +73,22 @@ function Sidebar({status}) {
           )} */}</>}
         </li>
         <li>
-         {isNvgd && <><div className={styles["menu"]} onClick={toggleList}>
+         {isNvgd && <div className={styles["menu"]} onClick={toggleList}>
             <div className={styles["menuContent"]}>
               <FaBoxes className={styles["menuIcon"]} />
-              <h5>Tạo đơn</h5>
+              <Link to={nvgdPathNvgd}>
+                <h5>Tạo đơn</h5>
+              </Link>
             </div>
-            <FaCaretDown className={styles["menuIcon"]} />
-          </div>
-          {isListVisible && (
+            {/* <FaCaretDown className={styles["menuIcon"]} /> */}
+          </div>}
+          {/* {isListVisible && (
             <ul className={styles["menuContentChild"]}>
             <Link to={nvgdPathNvgd}>
               <li>Đơn lẻ</li>
             </Link>
             </ul>
-          )}</>}
+          )}</>} */}
         </li>
         <li>
           {isNvgd && <><div className={styles["menu"]} onClick={onClickListCf} >

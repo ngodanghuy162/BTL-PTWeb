@@ -30,8 +30,8 @@ const NvgdRoutes = [
 ];
 
 const NvtkRoutes = [
-    { path: '/nvtk', component: AddOrder },
-    { path: '/nvtk/status', component: EmployeeTk },
+    { path: '/nvtk', component: EmployeeTk },
+    // { path: '/nvtk/status', component: EmployeeTk },
     // { path: '/nvtk/hangden', component: Employee },
 ];
 

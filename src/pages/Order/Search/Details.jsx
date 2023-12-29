@@ -5,6 +5,11 @@ import { IoMdPrint } from "react-icons/io";
 import orderApi from '../../../api/OrderApi';
 import Bill from '../Bill/pdf';
 const Detail = ({dataSearch, onClose }) => {
+    const dataToSend = { key: 'value' };
+    const handleClick = () => {
+        const queryString = new URLSearchParams(dataSearch).toString();
+        const newTab = window.open(`/pdf?${queryString}`, '_blank');
+    };
     const [clickPrint, setClickPrint] = useState(false);
 
     const onClickPrint = () => {
@@ -28,7 +33,7 @@ const Detail = ({dataSearch, onClose }) => {
             </div>
 
             <div className={styles['contentLogs']}>
-                {clickPrint ? <><h1>Thông tin vận đơn {dataSearch.maVanDon}</h1>
+                <h1>Thông tin vận đơn {dataSearch.maVanDon}</h1>
                     <table className={styles['BillInformation']}>
                         <thead>
                             <tr>
@@ -64,9 +69,8 @@ const Detail = ({dataSearch, onClose }) => {
                         </ul>
                         </>
                     )}
-                </> : <Bill dataBill={dataSearch}/>}
                     
-                    <button onClick={onClickPrint}><IoMdPrint />In</button>
+                    <button  onClick={handleClick}><IoMdPrint />In</button>
                 </div>
         </div>
     )

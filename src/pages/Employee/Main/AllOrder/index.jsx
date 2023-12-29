@@ -32,13 +32,13 @@ function OrdeCf() {
     return dateTime ? dateTime.toLocaleString() : "Không có dữ liệu";
   };
   
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await OrderApi.getAllOrder(user.userInfo.id_work, true, user.token);
+        const isOk = selectedOption == 1 ? true : false;
+        const response = await OrderApi.GetAllOrderOk(user.userInfo.id_work, isOk, user.token);
         setData(response);
-        console.log(selectedOption);
+        console.log(response);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -131,20 +131,20 @@ function OrdeCf() {
           <select value={selectedOption} onChange={handleSelectChange} className={styles['SelectStatus']}>
             <option value="1">Đơn hàng thành công</option>
             <option value="2">Đơn hàng không thành công</option>
-            <option value="3">Đơn hoàn trả</option>
+            {/* <option value="3">Đơn hoàn trả</option> */}
           </select>
 
         </div>
         {data && data.map((order) => (
           <div key={order.id} className={styles['ListOrder']}>
             <div className={styles['ListName']}>
-              <p className={styles['ListNameId']}>thời gian gửi: {formatDateTime(parseTimeString(order.dateSend))}</p>
-              <h3>Mã vận đơn: {order.maVanDon}</h3>
+              <p className={styles['ListNameId']}>thời gian gửi: {formatDateTime(parseTimeString(order.timeSend))}</p>
+              <h3>Mã vận đơn: {order.mavandonNotCol}</h3>
               <p className={styles['ListNameStatus']}>{order.status}</p>
             </div>
             <div className={styles['ListButton']}>
               <button
-                value={order.maVanDon}
+                value={order.mavandonNotCol}
                 onClick={(e) => onClickCheckIn4(e.target.value, order)}
                 className={styles['button2']}
               >
