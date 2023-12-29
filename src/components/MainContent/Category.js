@@ -2,7 +2,7 @@ export const packageColumns = [
     {
         id: "maVanDon",
         label: "ID đơn hàng",
-        minWidth: 50,
+        minWidth: 100,
         width: "15%",
         align: "left",
     },
@@ -19,6 +19,14 @@ export const packageColumns = [
         minWidth: 170,
         width: "20%",
         align: "left",
+    },
+    {
+        id: "status",
+        label: "Trạng thái",
+        minWidth: 170,
+        width: "15%",
+        align: "left",
+        className: "status",
     },
     {
         id: "type",
@@ -40,14 +48,6 @@ export const packageColumns = [
         minWidth: 60,
         width: "10%",
         align: "left",
-    },
-    {
-        id: "status",
-        label: "Trạng thái",
-        minWidth: 170,
-        width: "15%",
-        align: "left",
-        className: "status",
     },
 ];
 
@@ -123,14 +123,14 @@ export const adminColumns = [
 export const employeeColumns = [
     {
         id: "id",
-        label: "Employee Id",
-        minWidth: 70,
-        width: "10%",
+        label: "Id nhân viên",
+        minWidth: 50,
+        width: "15%",
         align: "left",
     },
     {
         id: "name",
-        label: "Full Name",
+        label: "Họ tên",
         minWidth: 50,
         width: "20%",
         align: "left",
@@ -142,18 +142,18 @@ export const employeeColumns = [
         width: "20%",
         align: "left",
     },
-    {
-        id: "phoneNumber",
-        label: "Phone Number",
-        minWidth: 50,
-        width: "10%",
-        align: "left",
-    },
+    // {
+    //     id: "phoneNumber",
+    //     label: "Phone Number",
+    //     minWidth: 50,
+    //     width: "10%",
+    //     align: "left",
+    // },
     {
         id: "workplace",
         label: "Workplace",
         minWidth: 70,
-        width: "30%",
+        width: "25%",
         align: "left",
     },
 ];

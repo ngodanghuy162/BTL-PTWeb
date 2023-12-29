@@ -14,8 +14,8 @@
 @media screen and (max-width: 1280px) {
     .layout__paper {
         align-items: flex-start;
-        width: 100%;
-        overflow: hidden;
+        max-width: 800;
+        overflow: scroll;
     }
 
     .table {

@@ -16,14 +16,21 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
 }));
 
-export default function RegistrationDialog({ children, title }) {
-    const [open, setOpen] = React.useState(false);
+export default function RegistrationDialog({
+    children,
+    title,
+    active,
+    setActive,
+}) {
+    // const [open, setOpen] = React.useState(false);
+
+    // const { active, setActive } = props;
 
     const handleClickOpen = () => {
-        setOpen(true);
+        setActive(true);
     };
     const handleClose = () => {
-        setOpen(false);
+        setActive(false);
     };
 
     return (
@@ -35,7 +42,7 @@ export default function RegistrationDialog({ children, title }) {
                 maxWidth={"lg"}
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
-                open={open}
+                open={active}
                 sx={{
                     "& .MuiDialog-container": {
                         "& .MuiPaper-root": {

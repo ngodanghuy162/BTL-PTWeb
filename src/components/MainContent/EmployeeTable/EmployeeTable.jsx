@@ -7,11 +7,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import IconButton from "@mui/material/IconButton";
-import EditIcon from "@mui/icons-material/Edit";
-import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
-import style from "./EmployeeTable.module.scss";
 
+import style from "./EmployeeTable.module.scss";
 import request from "@/utils/request";
 
 import SearchEmployeeForm from "../SearchEmployeeForm/SearchEmployeeForm";
@@ -19,6 +16,8 @@ import RegistrationDialog from "../RegistrationDialog/RegistationDialog";
 import RegistrationForm from "../../RegistrationForm/RegistrationForm";
 
 import { useAuth } from "@/hooks/AuthContext";
+import RemoveDialog from "../../RemoveDialog/RemoveDialog";
+import ModifyDialog from "../../ModifyDialog/ModifyDialog";
 
 const getPath = (userInfo) => {
     if (userInfo.role === "LEADER") {
@@ -40,9 +39,14 @@ export default function EmployeeTable(props) {
 
     const { columns } = props;
 
+    const [active, setActive] = useState(false);
     const [page, setPage] = useState(0);
     const [rows, setRows] = useState([]);
     const [rowsPerPage, setRowsPerPage] = useState(10);
+
+    const handleActive = () => {
+        setActive(false);
+    };
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -89,8 +93,10 @@ export default function EmployeeTable(props) {
             <RegistrationDialog
                 key="registration"
                 title="Tạo tài khoản nhân viên"
+                active={active}
+                setActive={setActive}
             >
-                <RegistrationForm usernameList={[]} />
+                <RegistrationForm active={active} setActive={setActive} />
             </RegistrationDialog>
             <Paper key="main table" className={style.layout__paper}>
                 <TableContainer
@@ -110,6 +116,7 @@ export default function EmployeeTable(props) {
                                         align={column.align}
                                         style={{
                                             minWidth: column.minWidth,
+                                            width: column.width,
                                         }}
                                     >
                                         {column.label}
@@ -161,14 +168,12 @@ export default function EmployeeTable(props) {
                                                 );
                                             })}
                                             <TableCell>
-                                                <IconButton>
-                                                    <PersonRemoveIcon />
-                                                </IconButton>
+                                                <ModifyDialog />
                                             </TableCell>
-                                            <TableCell className={style.edit}>
-                                                <IconButton>
-                                                    <EditIcon />
-                                                </IconButton>
+                                            <TableCell>
+                                                <RemoveDialog
+                                                    employeeInfo={row}
+                                                />
                                             </TableCell>
                                         </TableRow>
                                     );

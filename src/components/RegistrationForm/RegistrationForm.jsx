@@ -34,9 +34,7 @@ const getPath = (userInfo) => {
     }
 };
 
-const RegistrationForm = (props) => {
-    // const { usernameList } = props;
-
+const RegistrationForm = ({ active, setActive }) => {
     const { getUser } = useAuth();
     const user = getUser();
 
@@ -104,7 +102,6 @@ const RegistrationForm = (props) => {
     const onSubmit = async (values, props) => {
         try {
             const path = "http://localhost:8080" + getPath(user.userInfo);
-
             const data = {
                 id_work: user.userInfo.id_work,
                 name: values.name,
@@ -112,22 +109,19 @@ const RegistrationForm = (props) => {
                 password: values.password,
                 role: getEmployeeRole(user.userInfo),
             };
-
             const config = {
                 headers: {
                     Authorization: `Bearer ${user.token}`,
                     "Content-Type": "application/json",
                 },
             };
-            console.log(data);
-            console.log(user);
             const res = await axios.post(path, data, config);
-            console.log(res);
-            // props.resetForm();
+            props.resetForm();
+            setActive(false);
         } catch (error) {
             // Xử lý lỗi khi thực hiện request
             console.error("Error:", error);
-            // props.resetForm();
+            props.resetForm();
         }
     };
 
