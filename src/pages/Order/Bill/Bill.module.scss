@@ -25,6 +25,10 @@ h4, p, label {
     padding-right: 5px;
 }
 
+.BillContentBody {
+    border: 1px solid black;
+}
+
 .Bill {
     width: 800px;
     margin: auto;
@@ -56,6 +60,10 @@ h4, p, label {
     word-wrap: break-word;
 }
 
+.TableChilden tr td tbody {
+    border: 1px solid black;
+}
+
 .BorderTop {
     border-top: 1px solid black;
 }
@@ -76,6 +84,9 @@ h4, p, label {
     border-right: none;
     border-left: none;
 }
+.BorderTop {
+    border-top: 1px solid black;
+}
 
 .BorderBottom {
     border-bottom: 1px solid black;
@@ -83,6 +94,10 @@ h4, p, label {
 
 .BorderRight {
     border-right: 1px solid black;
+}
+
+.BorderLeft {
+    border-left: 1px solid black;
 }
 
 .ListInput p {
@@ -127,4 +142,8 @@ h4, p, label {
 
 .Margin5 {
     margin-bottom: 5px;
+}
+
+.HeightUp {
+    height: 162px;
 }

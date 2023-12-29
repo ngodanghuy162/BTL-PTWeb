@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import styles from "./Edit.module.scss";
 import { IoCloseSharp } from "react-icons/io5";
-import {useAuth} from "../../../../../hooks/AuthContext"
+import { useAuth } from "../../../../../hooks/AuthContext"
 import PointApi from '../../../../../api/PointApi';
 import UpdateStatusApi from '../../../../../api/UpdateStatusApi';
 
 function Edit({ onClose, dataEdit }) {
-    const {getUser} = useAuth();
+    const { getUser } = useAuth();
     const user = getUser();
     const [data, setData] = useState({});
     const [selectedType, setSelectedType] = useState('');
     const [selectedPoint, setSelectedPoint] = useState('');
+    const [dataSelect, setDataSelect] = useState('');
 
     const handleClose = () => {
         onClose();
@@ -25,21 +26,27 @@ function Edit({ onClose, dataEdit }) {
     };
 
     useEffect(() => {
+        setDataSelect(selectedType);
+    }, [selectedType])
+
+    useEffect(() => {
         const fetchData = async () => {
             var response;
             try {
-                if(dataEdit.type === "TK-TK" || dataEdit.type === "GD-TK")
-                    response = await PointApi.getDataDtk(dataEdit.id_receivePlace);
+                if (dataSelect === "TK-TK" || dataSelect === "GD-TK")
+                    response = await PointApi.getDataDtk();
                 else
-                    response = await PointApi.getDataDtk(dataEdit.id_receivePlace);
+                    response = await PointApi.getDataDgd(dataEdit.id_receivePlace);
                 setData(response);
+                console.log(response);
+                // console.log(response[3].name)
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         };
 
         fetchData();
-    }, []);
+    }, [dataSelect]);
 
     const handleConfirm = () => {
         const dataChuyenTiep = {
@@ -50,8 +57,8 @@ function Edit({ onClose, dataEdit }) {
         try {
             UpdateStatusApi.orderForward(dataChuyenTiep, dataEdit.mavandonNotCol, user.token).then(response => {
                 if (response) {
-                  console.log(response);
-                  handleClose();
+                    console.log(response);
+                    handleClose();
                 } else {
                     console.error('Try again pls.');
                 }
@@ -80,45 +87,72 @@ function Edit({ onClose, dataEdit }) {
                 <IoCloseSharp className={styles['iconClose']} onClick={handleClose} />
             </header>
             <div className={styles['boxContent']}>
-            <table className={styles['Content']}>
-                <tbody>
-                    <tr>
-                        <td>id: {dataEdit.id}</td>
-                        <td>Mã vận đơn: {dataEdit.mavandonNotCol}</td>
-                    </tr>
-                    <tr>
-                        <td>Trạng thái: {dataEdit.status}</td>
-                        <td>type: {dataEdit.type}</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <select value={selectedPoint} onChange={handlePointChange}>
-                                {data.diemGiaoDichModelList &&
-                                    data.diemGiaoDichModelList.map(diemGiaoDich => (
-                                        <option key={diemGiaoDich.id} value={diemGiaoDich.id}>
-                                            {diemGiaoDich.name}
-                                        </option>
-                                    ))}
-                            </select>
-                        </td>
-                        <td>
-                            <select value={selectedType} onChange={handleTypeChange}>
-                                {(dataEdit.type === "TK-TK" || dataEdit.type === "GD-TK") && (<>
-                                    <option value="TK-GD">TK-GD</option>
-                                    <option value="TK-TK">TK-TK</option>
-                                </>)}
-                                {dataEdit.type === "TK-GD" && (<>
-                                    <option value="GD-TK">GD-TK</option>
-                                    <option value="GD-KH">GD-KH</option>
-                                </>)}
-                            </select>
+                <table className={styles['Content']}>
+                    <tbody>
+                        <tr>
+                            <td>Mã vận đơn: {dataEdit.mavandonNotCol}</td>
+                        </tr>
+                        <tr>
+                            <td>Trạng thái: {dataEdit.status}</td>
+                            <td>type: {dataEdit.type}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {dataSelect === "TK-GD" && (
+                                    <select value={selectedPoint} onChange={handlePointChange}>
+                                        <option value="" disabled>Chọn địa chỉ</option>
+                                        {data.diemGiaoDichModelList &&
+                                            data.diemGiaoDichModelList.map((diemGiaoDich) => (
+                                                <option key={diemGiaoDich.id} value={diemGiaoDich.id}>
+                                                    {diemGiaoDich.name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                )}
 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                                {(dataSelect === "TK-TK" || dataSelect === "GD-TK") && (
+                                    <select value={selectedPoint} onChange={handlePointChange}>
+                                        <option value="" disabled>Chọn địa chỉ</option>
+                                        {data && data.length > 0 ? (
+                                            (() => {
+                                                const options = [];
+                                                for (let index = 0; index < data.length; index++) {
+                                                    const diemGiaoDich = data[index];
+                                                    options.push(
+                                                        <option key={index} value={diemGiaoDich.id}>
+                                                            {diemGiaoDich.name}
+                                                        </option>
+                                                    );
+                                                }
+                                                return options;
+                                            })()
+                                        ) : (
+                                            <option value="" disabled>
+                                                No options available
+                                            </option>
+                                        )}
+                                    </select>
+                                )}
+                            </td>
+                            <td>
+                                <select value={selectedType} onChange={handleTypeChange}>
+                                    <option value="" disabled>Chọn kiểu</option>
+                                    {(dataEdit.type === "TK-TK" || dataEdit.type === "GD-TK") && (<>
+                                        <option value="TK-GD">TK-GD</option>
+                                        <option value="TK-TK">TK-TK</option>
+                                    </>)}
+                                    {dataEdit.type === "TK-GD" && (<>
+                                        <option value="GD-TK">GD-TK</option>
+                                        <option value="GD-KH">GD-KH</option>
+                                    </>)}
+                                </select>
 
-            <button onClick={handleConfirm}>Xác nhận</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button onClick={handleConfirm}>Xác nhận</button>
 
             </div>
         </div>

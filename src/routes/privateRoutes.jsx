@@ -20,13 +20,11 @@ const AdminTkRoutes = [
 ];
 
 const NvgdRoutes = [
-    { path: '/nvgd/bill', component: Bill },
     { path: '/nvgd', component: AddOrder },
     { path: '/nvgd/neworders', component: Employee },
 ];
 
 const NvtkRoutes = [
-    { path: '/nvtk/bill', component: Bill },
     { path: '/nvtk', component: AddOrder },
     { path: '/nvtk/status', component: Employee },
     // { path: '/nvtk/hangden', component: Employee },

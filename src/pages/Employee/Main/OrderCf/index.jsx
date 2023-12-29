@@ -135,7 +135,8 @@ function OrdeCf() {
 
   const onClickEdit = (data) => {
     setClickEdit(!clickEdit);
-    // console.log(user.userInfo.id_work);
+    console.log(1);
+    console.log(data);
     setDataEdit(data);
   }
 
@@ -164,21 +165,6 @@ function OrdeCf() {
             </div>
             <div className={styles['ListButton']}>
               {order.status === "Đang vận chuyển" && selectedOption === "hanggui" ? <></> : <div>
-                {
-                  // order.status === "Đã hoàn thành" && (<>
-                  //   <select value={selectedType} onChange={handleSelectType}>
-                  //     {/* <option value="" disabled hidden>chọn kiểu</option> */}
-                  //     <option value="TK-GD">TK-GD</option>
-                  //     <option value="TK-TK">TK-TK</option>
-                  //     <option value="GD-TK">GD-TK</option>
-                  //     <option value="GD-KH">GD-KH</option>
-                  //   </select>
-                  //   <select value={selectedPlace} onChange={handleSelectPlace}>
-                  //     <option value="1">Ba đình</option>
-                  //     <option value="2">Cầu Giấy</option>
-                  //   </select>
-                  // </>)
-                }
                 {order.status === 'Đang vận chuyển' ?
                   <button
                     className={styles['button1']}
@@ -213,7 +199,7 @@ function OrdeCf() {
         {CheckIn4 && dataOrder && user && (
           <div>
             <div onClick={onClickCheck} className={styles['list-hidden_background']}></div>
-            <Detail onClose={onClickCheck} dataSearch={dataOrder} user={user} />
+            <Detail onClose={onClickCheck} dataSearch={data} />
           </div>
         )}
       </div>

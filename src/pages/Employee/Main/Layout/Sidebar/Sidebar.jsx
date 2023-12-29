@@ -53,7 +53,7 @@ function Sidebar({status}) {
             <div className={styles["menuContent"]}>
               <FaClipboardList className={styles["menuIcon"]} />
               <Link to={"/nvtk/status"}>
-                <h5>Cập nhật Status</h5>
+                <h5>Xác nhận đơn hàng</h5>
               </Link>
             </div>
             {/* <FaCaretDown className={styles["menuIcon"]} /> */}
@@ -86,7 +86,7 @@ function Sidebar({status}) {
           )}</>}
         </li>
         <li>
-          <div className={styles["menu"]} onClick={onClickListCf} >
+          {isNvgd && <><div className={styles["menu"]} onClick={onClickListCf} >
             <div className={styles["menuContent"]} >
               <FaBox className={styles["menuIcon"]} />
               <h5>Xác nhận đơn hàng</h5>
@@ -99,7 +99,7 @@ function Sidebar({status}) {
               <li>Đơn trung chuyển</li>
               <li>Đơn giao</li>
             </ul>
-          )}
+          )}</>}
         </li>
       </ul>
       <CiLogout onClick={handleLogout} className={styles["IconLogout"]}/>

@@ -26,7 +26,8 @@ function Layout({children}) {
   }, []);
 
   return (
-    <div className={styles['wrapper']}>
+    <div>
+      <div className={styles['wrapper']}>
       {isMobile ? (
         <div className={styles['menuIcon']}>
           <MiniHeader />
@@ -47,6 +48,8 @@ function Layout({children}) {
         </div>
       </div>
     </div>
+    </div>
+    
   );
 }
 

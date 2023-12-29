@@ -1,6 +1,7 @@
 import styles from './Search.module.scss'
 import React, { useState, useEffect } from 'react';
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import { IoMdPrint } from "react-icons/io";
 import orderApi from '../../../api/OrderApi';
 const Detail = ({dataSearch, onClose }) => {
 
@@ -57,6 +58,7 @@ const Detail = ({dataSearch, onClose }) => {
                         </ul>
                         </>
                     )}
+                    <button><IoMdPrint />In</button>
                 </div>
         </div>
     )

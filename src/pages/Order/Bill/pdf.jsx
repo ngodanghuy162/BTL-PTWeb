@@ -3,6 +3,11 @@ import styles from './Bill.module.scss';
 import Bill from './index'
 
 const Export = () => {
+
+  const printBill = () => {
+    // handlePrint();
+  }
+
   const pdfRef = useRef();
 
   const handlePrint = () => {

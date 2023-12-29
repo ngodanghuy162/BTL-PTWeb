@@ -11,7 +11,7 @@ const Export = () => {
 
             <main>
                 <table>
-                    <tbody>
+                    <tbody className={styles['BillContentBody']}>
                     <tr className={styles['BillContentFirst']}>
                         <td>
                             <div>
@@ -25,7 +25,7 @@ const Export = () => {
                             </div>
                         </td>
 
-                        <td>
+                        <td className={styles['BorderLeft']}>
                             <h4>2. Thông tin người nhận</h4>
                             <p className={styles['BillAddress']}>abcxyz</p>
                             <strong><p>Số điện thoại</p></strong>
@@ -53,7 +53,7 @@ const Export = () => {
                             </div>
                             <div className={styles['BorderTop']}>
                                 <h4>4. Nội dung trị giá bưu gửi</h4>
-                                <table className={`${styles.BorderNone} ${styles.Contenttext}`}>
+                                <table className={`${styles.BorderNone} ${styles.Contenttext} ${styles.TableChilden}`}>
                                     <tbody>
                                     <tr>
                                         <td className={styles['BorderLeftNone']}>Nội dung</td>
@@ -117,8 +117,8 @@ const Export = () => {
                             </div>
                         </td>
 
-                        <td>
-                            <table className={styles['BorderNone']}>
+                        <td className={`${styles.BorderTop} ${styles.BorderLeft}`}>
+                            <table className={`${styles.BorderNone}`}>
                                 <tbody>
                                 <tr className={styles['BorderBottom']}>
                                 <td className={`${styles.BorderNone} ${styles.BorderRight} ${styles.Width60}`}>
@@ -183,7 +183,7 @@ const Export = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td className={`${styles.BorderNone} ${styles.BorderRight} ${styles.UpContent} ${styles.Contenttext}`}>
+                                    <td className={`${styles.BorderNone} ${styles.BorderRight} ${styles.UpContent} ${styles.Contenttext} ${styles.HeightUp}`}>
                                         <h4>13. Bưu cục chấp nhận</h4>
                                     </td>
                                     <td className={`${styles.BorderNone}`}>
