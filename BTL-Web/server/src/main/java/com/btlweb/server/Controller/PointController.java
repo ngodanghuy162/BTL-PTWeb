@@ -43,7 +43,7 @@ public class PointController {
     }
 
     @GetMapping("/giaodich")
-    public ResponseEntity<DiemGiaoDichModel> getDgdById(@RequestParam(name = "o") long id) {
+    public ResponseEntity<DiemGiaoDichModel> getDgdById(@RequestParam(name = "idgd") long id) {
         DiemGiaoDichModel diemGiaoDichModel = pointService.getDgdById(id);
         if(diemGiaoDichModel == null) {
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
