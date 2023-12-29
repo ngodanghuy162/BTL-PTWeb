@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import styles from "./OrderCf.module.scss";
+import styles from "../OrderCf/OrderCf.module.scss";
 import Layout from '../Layout/index';
 import Detail from '../../../Order/Search/Details';
 import { useAuth } from "../../../../hooks/AuthContext"
-import Edit from './Edit/Edit';
-import StatusApi from "../../../../api/UpdateStatusTkApi"
+import StatusApi from "../../../../api/UpdateStatusGdApi"
 import OrderApi from "../../../../api/OrderApi"
-import UpdateStatusApi from '../../../../api/UpdateStatusTkApi';
+import UpdateStatusApi from '../../../../api/UpdateStatusGdApi';
 
 function OrdeCf() {
-  const [selectedOption, setSelectedOption] = useState('hanggui');
+  const [selectedOption, setSelectedOption] = useState(1);
   const [selectedType, setSelectedType] = useState('');
   const [selectedPlace, setSelectedPlace] = useState('');
   const { getUser } = useAuth();
@@ -23,6 +21,7 @@ function OrdeCf() {
   const [selectedOrderStatus, setselectedOrderStatus] = useState(null);
   const [clickEdit, setClickEdit] = useState(false);
   const [dataEdit, setDataEdit] = useState({});
+  const [dataDetail, setDataDetail] = useState({});
 
   const parseTimeString = (timeString) => {
     return timeString ? new Date(timeString) : null;
@@ -32,13 +31,14 @@ function OrdeCf() {
   const formatDateTime = (dateTime) => {
     return dateTime ? dateTime.toLocaleString() : "Không có dữ liệu";
   };
+  
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await StatusApi.getDataStatus(user.userInfo.id_work, selectedOption, user.token);
+        const response = await OrderApi.getAllOrder(user.userInfo.id_work, true, user.token);
         setData(response);
-        console.log(response);
+        console.log(selectedOption);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -93,15 +93,11 @@ function OrdeCf() {
     setCheckIn4(!CheckIn4);
   }
 
-  const onClickCheckIn4 = (id) => {
+  const onClickCheckIn4 = (id, data) => {
     setMvd(id);
+    setDataDetail(data)
     onClickCheck();
   }
-
-  // useEffect(() => {
-  //   setSelectedType(selectedType);
-  //   setSelectedPlace(selectedPlace);
-  // }, [selectedType, selectedPlace])
 
   // Hàm xử lý sự kiện khi giá trị thanh lựa chọn thay đổi
   const handleSelectChange = (event) => {
@@ -125,8 +121,6 @@ function OrdeCf() {
 
   const onClickEdit = (data) => {
     setClickEdit(!clickEdit);
-    console.log(1);
-    console.log(data);
     setDataEdit(data);
   }
 
@@ -135,50 +129,23 @@ function OrdeCf() {
       <div className={styles['Main']}>
         <div>
           <select value={selectedOption} onChange={handleSelectChange} className={styles['SelectStatus']}>
-            <option value="hanggui">Hàng Gửi</option>
-            <option value="hangnhan">Hàng Đến</option>
+            <option value="1">Đơn hàng thành công</option>
+            <option value="2">Đơn hàng không thành công</option>
+            <option value="3">Đơn hoàn trả</option>
           </select>
 
         </div>
-        {/* <div className={styles['ListOrder']}>
-          <div className={styles['ListName']}>
-            <p className={styles['ListNameId']}>Thời gian gửi</p>
-            <h3>Mã vận đơn</h3>
-          </div>
-        </div> */}
         {data && data.map((order) => (
           <div key={order.id} className={styles['ListOrder']}>
             <div className={styles['ListName']}>
-              <p className={styles['ListNameId']}>thời gian gửi: {formatDateTime(parseTimeString(order.timeSend))}</p>
-              <h3>Mã vận đơn: {order.mavandonNotCol}</h3>
+              <p className={styles['ListNameId']}>thời gian gửi: {formatDateTime(parseTimeString(order.dateSend))}</p>
+              <h3>Mã vận đơn: {order.maVanDon}</h3>
               <p className={styles['ListNameStatus']}>{order.status}</p>
             </div>
             <div className={styles['ListButton']}>
-              {order.status === "Đang vận chuyển" && selectedOption === "hanggui" ? <></> : <div>
-                {order.status === 'Đang vận chuyển' ?
-                  <button
-                    className={styles['button1']}
-                    onClick={() => onClickCf(order.id, order.mavandonNotCol)}
-                  >
-                    Xác nhận
-                  </button> :
-                  <button
-                    className={styles['button1']}
-                    onClick={() => onClickEdit(order)}
-                  >
-                    Chuyển tiếp
-                  </button>
-                }
-                {clickEdit && <Edit onClose={onClickEdit} dataEdit={dataEdit} />}
-                {/* {selectedOrderStatus === order.id && CheckCf && (
-                <ul className={styles['ListStatus']}>
-                  {order.status === 'Đang vận chuyển' ? (<li>Xác nhận đơn</li>):(<li>Chuyển tiếp</li>)}
-                </ul>
-              )} */}
-              </div>}
               <button
-                value={order.mavandonNotCol}
-                onClick={(e) => onClickCheckIn4(e.target.value)}
+                value={order.maVanDon}
+                onClick={(e) => onClickCheckIn4(e.target.value, order)}
                 className={styles['button2']}
               >
                 Thông tin
@@ -189,7 +156,7 @@ function OrdeCf() {
         {CheckIn4 && dataOrder && user && (
           <div>
             <div onClick={onClickCheck} className={styles['list-hidden_background']}></div>
-            <Detail onClose={onClickCheck} dataSearch={data} />
+            <Detail onClose={onClickCheck} dataSearch={dataDetail} />
           </div>
         )}
       </div>

@@ -34,7 +34,7 @@ class StatusApi {
           'Authorization': `Bearer ${token}`
         }
       };
-      const url=`order/createstatus/${mavandon}`;console.log(url);
+      const url=`order/createstatus/${mavandon}`;
       return axiosClient.post(url, data, config);
     }
 }

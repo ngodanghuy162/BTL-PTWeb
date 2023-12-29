@@ -8,12 +8,31 @@ class OrderApi {
         return axiosClient.get(url);
     }
 
+    getAllOrder(params, token) {
+        const headers = {
+            'Authorization': `Bearer ${token}`
+        };
+        const url = `/order/thongkeorder/dgd/dondatao?iddgd=${params}`
+        return axiosClient.get(url, { headers });
+    }
+
     newOrder(data, token) {
         const headers = {
             'Authorization': `Bearer ${token}`
         };
         const url = `/order/createorder`;
         return axiosClient.post(url, data, { headers });
+    }
+
+    ThongKeThanhCong(id, isOk, token) {
+        const headers = {
+            'Authorization': `Bearer ${token}`
+        };
+        
+        const data = isOk ? "Giao hàng thành công" : "Giao hàng thất bại";
+        
+        const url = `order/thongkestatusorder/dgd/all?idgd=${id}&status=`;
+        return axiosClient.get(url, data, { headers });
     }
 }
 

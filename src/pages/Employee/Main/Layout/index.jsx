@@ -26,7 +26,7 @@ function Layout({children}) {
   }, []);
 
   return (
-    <div>
+    <div className={styles['background']}>
       <div className={styles['wrapper']}>
       {isMobile ? (
         <div className={styles['menuIcon']}>

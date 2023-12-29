@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import styles from './Bill.module.scss';
 import Bill from './index'
 
-const Export = () => {
+const Export = (dataBill) => {
 
   const printBill = () => {
     // handlePrint();

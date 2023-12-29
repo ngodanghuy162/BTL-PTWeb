@@ -9,7 +9,12 @@ class PointApi {
 
     getDataDgd(params) {
         // const url = `/products`;
-        const url = `point/tapket?idtk=${params}`;
+        const url = `/point/tapket?idtk=${params}`;
+        return axiosClient.get(url);
+    }
+
+    getDgdToDtk(params) {
+        const url = `/point/giaodich?idgd=${params}`;
         return axiosClient.get(url);
     }
 }

@@ -3,8 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { IoMdPrint } from "react-icons/io";
 import orderApi from '../../../api/OrderApi';
+import Bill from '../Bill/pdf';
 const Detail = ({dataSearch, onClose }) => {
+    const [clickPrint, setClickPrint] = useState(false);
 
+    const onClickPrint = () => {
+        setClickPrint(!clickPrint);
+        console.log(clickPrint);
+    }
     const handleClose = () => {
         onClose();
       };
@@ -22,7 +28,7 @@ const Detail = ({dataSearch, onClose }) => {
             </div>
 
             <div className={styles['contentLogs']}>
-                <h1>Thông tin vận đơn {dataSearch.maVanDon}</h1>
+                {clickPrint ? <><h1>Thông tin vận đơn {dataSearch.maVanDon}</h1>
                     <table className={styles['BillInformation']}>
                         <thead>
                             <tr>
@@ -58,7 +64,9 @@ const Detail = ({dataSearch, onClose }) => {
                         </ul>
                         </>
                     )}
-                    <button><IoMdPrint />In</button>
+                </> : <Bill dataBill={dataSearch}/>}
+                    
+                    <button onClick={onClickPrint}><IoMdPrint />In</button>
                 </div>
         </div>
     )

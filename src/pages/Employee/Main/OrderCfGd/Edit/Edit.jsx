@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import styles from "./Edit.module.scss";
+import styles from "../../OrderCf/Edit/Edit.module.scss";
 import { IoCloseSharp } from "react-icons/io5";
 import { useAuth } from "../../../../../hooks/AuthContext"
 import PointApi from '../../../../../api/PointApi';
-import UpdateStatusApi from '../../../../../api/UpdateStatusTkApi';
+import UpdateStatusGdApi from '../../../../../api/UpdateStatusGdApi';
 
 function Edit({ onClose, dataEdit }) {
     const { getUser } = useAuth();
@@ -12,6 +12,7 @@ function Edit({ onClose, dataEdit }) {
     const [selectedType, setSelectedType] = useState('');
     const [selectedPoint, setSelectedPoint] = useState('');
     const [dataSelect, setDataSelect] = useState('');
+    const [diemTk, setDiemTk] = useState(null);
 
     const handleClose = () => {
         onClose();
@@ -26,6 +27,20 @@ function Edit({ onClose, dataEdit }) {
     };
 
     useEffect(() => {
+        const fetchDataDiemTk = async () => {
+            try {
+            const data = await PointApi.getDgdToDtk(user.userInfo.id_work);
+            console.log(data);
+            setDiemTk(data);
+                // console.log(response[3].name)
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchDataDiemTk();
+    }, [selectedType])
+
+    useEffect(() => {
         setDataSelect(selectedType);
     }, [selectedType])
 
@@ -38,7 +53,6 @@ function Edit({ onClose, dataEdit }) {
                 else
                     response = await PointApi.getDataDgd(dataEdit.id_receivePlace);
                 setData(response);
-                console.log(response);
                 // console.log(response[3].name)
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -49,13 +63,20 @@ function Edit({ onClose, dataEdit }) {
     }, [dataSelect]);
 
     const handleConfirm = () => {
-        const dataChuyenTiep = {
-            type: selectedType,
-            id_sendPlace: user.userInfo.id_work,
-            id_receivePlace: selectedPoint,
+        var dataDiemDen = selectedType === "TK-GD" ? diemTk.id_dtk : null;
+        var dataType = selectedType;
+        if(dataEdit.type === "") {
+            dataType = "GD-TK";
+            dataDiemDen = diemTk.id_dtk;
         }
+        const dataChuyenTiep = {
+            type: dataType,
+            id_sendPlace: user.userInfo.id_work,
+            id_receivePlace: dataDiemDen,
+        }
+        // console.log(dataChuyenTiep);
         try {
-            UpdateStatusApi.orderForward(dataChuyenTiep, dataEdit.mavandonNotCol, user.token).then(response => {
+            UpdateStatusGdApi.orderForward(dataChuyenTiep, dataEdit.mavandonNotCol?dataEdit.mavandonNotCol:dataEdit.maVanDon, user.token).then(response => {
                 if (response) {
                     console.log(response);
                     handleClose();
@@ -90,11 +111,11 @@ function Edit({ onClose, dataEdit }) {
                 <table className={styles['Content']}>
                     <tbody>
                         <tr>
-                            <td>Mã vận đơn: {dataEdit.mavandonNotCol}</td>
+                            <td>Mã vận đơn: {dataEdit.mavandonNotCol?dataEdit.mavandonNotCol:dataEdit.maVanDon}</td>
                         </tr>
                         <tr>
-                            <td>Trạng thái: {dataEdit.status}</td>
-                            <td>type: {dataEdit.type}</td>
+                            {/* <td>Trạng thái: {dataEdit.status}</td> */}
+                            {/* <td>type: {dataEdit.type}</td> */}
                         </tr>
                         <tr>
                             <td>
@@ -127,9 +148,7 @@ function Edit({ onClose, dataEdit }) {
                                                 return options;
                                             })()
                                         ) : (
-                                            <option value="" disabled>
-                                                No options available
-                                            </option>
+                                            <></>
                                         )}
                                     </select>
                                 )}
@@ -142,7 +161,6 @@ function Edit({ onClose, dataEdit }) {
                                         <option value="TK-TK">TK-TK</option>
                                     </>)}
                                     {dataEdit.type === "TK-GD" && (<>
-                                        <option value="GD-TK">GD-TK</option>
                                         <option value="GD-KH">GD-KH</option>
                                     </>)}
                                 </select>
