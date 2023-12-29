@@ -202,7 +202,7 @@ public class OrderModel {
         this.isSenderPayShipment = createOrderFormat.isSenderPayShip();
         this.cod = createOrderFormat.getCod();
         this.canSeeWhenReceive = createOrderFormat.isCanSeeWhenReceive();
-        this.status = "Confirmed";
+        this.status = "Đã tạo đơn";
     }
 
     private String generateOrderMavandon() {

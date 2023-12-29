@@ -42,6 +42,13 @@ public class OrderController {
         return orderService.getAllOrdersSucess();
     }
 
+    //thong ke cac don hang thanh cong hoac that bai tai diem tap ket
+    @GetMapping("/thongkestatusorder/dgd/all")
+    @PreAuthorize("hasAuthority('NVGD') or hasAuthority('ADMINGD')")
+    public List<StatusDonHangModel> getAllOrdersByStatusAtDgd(@RequestParam(name = "idgd") long idgd,@RequestParam(name = "status") int status) {
+        return orderService.getAllOrdersByStatusAtDgd(idgd,status);
+    }
+
     //thong ke tat ca cac don hang (ldao moi dc vao)
     @GetMapping("/thongkeorder/all")
     @PreAuthorize("hasAuthority('LEADER')")
@@ -100,7 +107,6 @@ public class OrderController {
     public List<StatusDonHangModel> getAllOrdersToDgdFromDtk(@PathVariable long idgd) {
         return orderService.getAllOrdersToDgdFromDtk(idgd);
     }
-
 
     //tao don hang gui di
     //staff co the tủy cap

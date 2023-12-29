@@ -54,10 +54,14 @@ public class AdminService {
 
     public List<AdminModel> getAllAdminGDByDTK(long idtk) {
         String role ="ADMINGD";
-        List<DiemGiaoDichModel> list = diemGiaoDichRepository.findAllByDiemTapKetId(idtk);
+        int intValue = (int) idtk;
+        List<DiemGiaoDichModel> list = diemTapKetRepository.findById(intValue).get().getDiemGiaoDichModelList();
         List<AdminModel> rs = new ArrayList<>();
         for(int i = 0; i < list.size(); i++) {
-            rs.add(adminRepository.findAdmingdById_workplace(list.get(i).getId()));
+            AdminModel admin = adminRepository.findAdmingdById_workplace(list.get(i).getId());
+            if(admin!=null) {
+                rs.add(admin);
+            }
         }
         return rs;
     }

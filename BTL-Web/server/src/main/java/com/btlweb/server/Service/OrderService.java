@@ -221,4 +221,17 @@ public class OrderService {
         }
         return null;
     }
+
+    public List<StatusDonHangModel> getAllOrdersByStatusAtDgd(long idgd,int status) {
+        try {
+            if(status ==1) {
+               return statusOrderRepository.findAllOrderAtDgdByStatus(idgd,"Giao hàng thành công");
+            } else {
+                return statusOrderRepository.findAllOrderAtDgdByStatus(idgd,"Giao hàng thất bại");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
