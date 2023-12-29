@@ -12,22 +12,21 @@ const AdminPage = () => {
     const [selected, setSelected] = useState(0);
 
     useEffect(() => {
-        const fetchLocations = async () => {
-            try {
-                const res = await request.get("point/tapket/all");
-                setDeport(res);
-            } catch (error) {
-                if (error.response) {
-                    console.log(error.response.data);
-                    console.log(error.response.status);
-                    console.log(error.response.headers);
-                } else {
-                    console.log(`Error: ${error}`);
-                }
-            }
-        };
-
-        fetchLocations();
+        // const fetchLocations = async () => {
+        //     try {
+        //         const res = await request.get("point/tapket/all");
+        //         setDeport(res);
+        //     } catch (error) {
+        //         if (error.response) {
+        //             console.log(error.response.data);
+        //             console.log(error.response.status);
+        //             console.log(error.response.headers);
+        //         } else {
+        //             console.log(`Error: ${error}`);
+        //         }
+        //     }
+        // };
+        // fetchLocations();
     }, []);
 
     return (

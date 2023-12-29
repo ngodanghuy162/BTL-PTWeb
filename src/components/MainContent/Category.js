@@ -2,21 +2,21 @@ export const packageColumns = [
     {
         id: "maVanDon",
         label: "ID đơn hàng",
-        minWidth: 70,
+        minWidth: 50,
         width: "15%",
         align: "left",
     },
     {
         id: "diaChiGui",
         label: "Địa chỉ người gửi",
-        minWidth: 50,
+        minWidth: 170,
         width: "20%",
         align: "left",
     },
     {
         id: "diaChiNhan",
         label: "Địa chỉ người nhận",
-        minWidth: 70,
+        minWidth: 170,
         width: "20%",
         align: "left",
     },
@@ -24,13 +24,27 @@ export const packageColumns = [
         id: "type",
         label: "Loại hàng",
         minWidth: 60,
-        width: "15%",
+        width: "10%",
+        align: "left",
+    },
+    {
+        id: "cost",
+        label: "Phí cước",
+        minWidth: 60,
+        width: "10%",
+        align: "left",
+    },
+    {
+        id: "weight",
+        label: "Trọng lượng",
+        minWidth: 60,
+        width: "10%",
         align: "left",
     },
     {
         id: "status",
         label: "Trạng thái",
-        minWidth: 0,
+        minWidth: 170,
         width: "15%",
         align: "left",
         className: "status",
@@ -38,13 +52,6 @@ export const packageColumns = [
 ];
 
 export const subColumns = [
-    {
-        id: "id",
-        label: "ID theo dõi",
-        width: "15%",
-        minWidth: 0,
-        align: "left",
-    },
     {
         id: "sendLocation",
         label: "Địa chỉ gửi",

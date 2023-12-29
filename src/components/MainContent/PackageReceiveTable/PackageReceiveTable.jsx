@@ -9,11 +9,10 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { ExpandableRow } from "@/components/ExpandableRow/ExpandableRow";
 
-import "./PackageReceiveTable.css";
-import style from "./PackageReceiveTable.module.scss";
-
 import * as request from "@/utils/request";
 import PackageSearchForm from "../PackageSearchForm/PackageSearchForm";
+
+import style from "./PackageReceiveTable.module.scss";
 
 export default function PackageReceiveTable(props) {
     const { columns, subColumns } = props;
@@ -35,8 +34,8 @@ export default function PackageReceiveTable(props) {
         const fetchPackages = async () => {
             try {
                 const res = await request.get("/order/thongkeorder/all");
-                setRows(res);
-                console.log(res);
+                // setRows(res);
+                // console.log(res);
             } catch (error) {
                 if (error.response) {
                     console.log(error.response.data);
@@ -54,16 +53,14 @@ export default function PackageReceiveTable(props) {
     return (
         <div className={style.layout}>
             <PackageSearchForm />
-            <Paper
-                sx={{ width: "90%", alignSelf: "center", overflow: "hidden" }}
-            >
+            <Paper className={style.layout__paper}>
                 <TableContainer
                     style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
                     sx={{ maxHeight: 410 }}
                 >
                     <Table
                         stickyHeader
-                        sx={{ minWidth: 650 }}
+                        sx={{ minWidth: 500 }}
                         aria-label="sticky table"
                     >
                         <TableHead>

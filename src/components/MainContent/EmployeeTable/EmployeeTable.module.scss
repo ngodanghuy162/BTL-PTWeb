@@ -2,4 +2,27 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    &__paper {
+        width: 90%;
+        align-self: center;
+        overflow: hidden;
+    }
+
+}
+
+@media screen and (max-width: 1280px) {
+    .table {
+        width: 400;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Table {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 23rem;
+    }
 }

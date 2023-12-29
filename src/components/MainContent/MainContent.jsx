@@ -18,10 +18,10 @@ import LocationTable from "./LocationTable/LocationTable";
 // import SearchForm from "./SearchForm/SearchForm";
 
 const componentListMainDash = [
-    // <>
-    //     <h1>Magic admin</h1>
-    //     <h2>đăng nhập bằng tài khoản lãnh đạo</h2>
-    // </>,
+    <>
+        <h1>Magic admin</h1>
+        <h2>Thống kê</h2>
+    </>,
     // <>
     //     <h1>Admin Management</h1>
     //     <EmployeeTable
@@ -31,7 +31,10 @@ const componentListMainDash = [
     // </>,
     <>
         <h1>Employee Management</h1>
-        <EmployeeTable className={self.layout__main} columns={adminColumns} />
+        <EmployeeTable
+            className={self.layout__main}
+            columns={employeeColumns}
+        />
     </>,
     <>
         <h1>Package Management</h1>

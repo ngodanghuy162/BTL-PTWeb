@@ -17,7 +17,7 @@ export const getPackages = async () => {
 
 export const getEmployees = async () => {
     try {
-        const res = await request.get("/employees");
+        const res = await request.get("/staff/qlnvtk/1");
         return res.data;
     } catch (error) {
         if (error.response) {

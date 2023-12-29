@@ -12,16 +12,46 @@ import EditIcon from "@mui/icons-material/Edit";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import style from "./EmployeeTable.module.scss";
 
-import * as request from "@/utils/request";
+import request from "@/utils/request";
+
 import SearchEmployeeForm from "../SearchEmployeeForm/SearchEmployeeForm";
 import RegistrationDialog from "../RegistrationDialog/RegistationDialog";
+import RegistrationForm from "../../RegistrationForm/RegistrationForm";
 
-// import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-// import { useDemoData } from "@mui/x-data-grid-generator";
+import { useAuth } from "@/hooks/AuthContext";
 
-const VISIBLE_FIELDS = ["name", "rating", "country", "dateCreated", "isAdmin"];
+const getEmployeeRole = (userInfo) => {
+    if (userInfo.role === "LEADER") {
+        return;
+    }
+
+    if (userInfo.role === "ADMINGD") {
+        return "NVGD";
+    }
+
+    if (userInfo.role === "ADMINTK") {
+        return "NVTK";
+    }
+};
+
+const getPath = (userInfo) => {
+    if (userInfo.role === "LEADER") {
+        return;
+    }
+
+    if (userInfo.role === "ADMINGD") {
+        return "/staff/qlnvgd";
+    }
+
+    if (userInfo.role === "ADMINTK") {
+        return "/staff/qlnvtk";
+    }
+};
 
 export default function EmployeeTable(props) {
+    const { getUser } = useAuth();
+    const user = getUser();
+
     const { columns } = props;
 
     const [page, setPage] = useState(0);
@@ -38,10 +68,24 @@ export default function EmployeeTable(props) {
     };
 
     useEffect(() => {
+        const path = getPath(user.userInfo);
+        console.log(user.userInfo);
+        const idwork = user.userInfo.id_work;
+        const options = {
+            headers: {
+                Authorization: `Bearer ${user.token}`,
+            },
+            params: {
+                idwork: idwork,
+            },
+        };
+
         const fetchEmployees = async () => {
             try {
-                const res = await request.get("/staff/qlnvtk/1");
+                const res = await request.get(path, options);
                 setRows(res);
+                console.log(rows);
+                // setSelectedRows(res);
             } catch (error) {
                 if (error.response) {
                     console.log(error.response.data);
@@ -59,10 +103,10 @@ export default function EmployeeTable(props) {
     return (
         <div className={style.layout}>
             <SearchEmployeeForm />
-            <RegistrationDialog></RegistrationDialog>
-            <Paper
-                sx={{ width: "90%", alignSelf: "center", overflow: "hidden" }}
-            >
+            <RegistrationDialog title="Tạo tài khoản nhân viên">
+                <RegistrationForm usernameList={[]} />
+            </RegistrationDialog>
+            <Paper className={style.layout__paper}>
                 <TableContainer
                     style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
                     sx={{ maxHeight: 440 }}
@@ -135,7 +179,7 @@ export default function EmployeeTable(props) {
                                                     <PersonRemoveIcon />
                                                 </IconButton>
                                             </TableCell>
-                                            <TableCell>
+                                            <TableCell className={style.edit}>
                                                 <IconButton>
                                                     <EditIcon />
                                                 </IconButton>
