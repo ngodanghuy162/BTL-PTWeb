@@ -83,17 +83,17 @@ function Header() {
                         </li>
                         <li className={style.nav__item}>
                             <a href="#about" className={style.nav__link}>
-                                About
+                                Về chúng tôi
                             </a>
                         </li>
                         <li className={style.nav__item}>
                             <a href="#services" className={style.nav__link}>
-                                Services
+                            Dịch vụ
                             </a>
                         </li>
                         <li className={style.nav__item}>
                             <a href="#contacts" className={style.nav__link}>
-                                Contact
+                            Liên hệ
                             </a>
                         </li>
                         <ThemeChanger />

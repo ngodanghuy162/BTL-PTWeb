@@ -23,8 +23,7 @@ function Home() {
         <div className={[style.home__data]}>
           <h1 className={[style.home__title]}>Magic Post</h1>
           <p className={[style.home__description]}>
-            Receive your package at any time and we will deliver them right to
-            where you are.
+            Bất cứ đâu, bất cứ lúc nào, chúng tôi sẽ giao đến nơi bạn ở.
           </p>
           <a href="/search" className={[layout.button]}>
               Tra cứu đơn hàng

@@ -12,11 +12,10 @@ function InfoApp() {
       <div className={classNames([style.app__container], [layout.grid])}>
         <div className={[style.app__data]}>
           <h2 className={[layout["section__title-center"]]}>
-            Watch Your Delivery At Any Time
+            Kiểm tra đơn hàng của bạn bất cứ lúc nào
           </h2>
           <p className={[style.app__description]}>
-            With our app you can view the route of your order, from our local
-            headquarters to the place where you are. Look for the app now!
+            Sử dụng ứng dụng của chúng tôi, bạn có thể cập nhật và xem lộ trình đơn hàng của mình.
           </p>
           <div className={[style.app__buttons]}>
             <a

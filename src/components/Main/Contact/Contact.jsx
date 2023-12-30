@@ -15,17 +15,16 @@ function Contact() {
       <div className={classNames([style.contact__container], [layout.grid])}>
         <div className={[style.contact__content]}>
           <h2 className={[layout["section__title-center"]]}>
-            Contact Us From Here
+          Liên hệ với chúng tôi
           </h2>
           <p className={[style.contact__description]}>
-            You can contact us from here, you can write to us, call us or visit
-            our service center, we will gladly assist you.
+            Liên hệ với chúng tôi bất cứ lúc nào, chúng tôi sẽ luôn đợi liên hệ từ bạn.
           </p>
         </div>
 
         <ul className={classNames([style.contact__content], [layout.grid])}>
           <li className={[style.contact__address]}>
-            Telephone:
+            số điện thoại:
             <a
               href="/"
               target="_blank"
@@ -45,7 +44,7 @@ function Contact() {
               title="email"
               className={[style.contact__information]}
             >
-              smth@email.com
+              abc@email.com
             </a>
           </li>
           <li className={[style.contact__address]}>
@@ -57,13 +56,13 @@ function Contact() {
               title="address"
               className={[style.contact__information]}
             >
-              Earth
+              VNU
             </a>
           </li>
         </ul>
         <div className={style.contact__content}>
           <a href="#contact" className={layout.button}>
-            Contact Us
+            Liên hệ với chúng tôi
           </a>
         </div>
       </div>
