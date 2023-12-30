@@ -94,7 +94,6 @@ function Edit({ onClose, dataEdit }) {
                         </tr>
                         <tr>
                             <td>Trạng thái: {dataEdit.status}</td>
-                            <td>type: {dataEdit.type}</td>
                         </tr>
                         <tr>
                             <td>
@@ -136,14 +135,14 @@ function Edit({ onClose, dataEdit }) {
                             </td>
                             <td>
                                 <select value={selectedType} onChange={handleTypeChange}>
-                                    <option value="" disabled>Chọn kiểu</option>
+                                    <option value="" disabled>Chọn điểm đến</option>
                                     {(dataEdit.type === "TK-TK" || dataEdit.type === "GD-TK") && (<>
-                                        <option value="TK-GD">TK-GD</option>
-                                        <option value="TK-TK">TK-TK</option>
+                                        <option value="TK-GD">Điểm giao dịch</option>
+                                        <option value="TK-TK">Điểm tập kết</option>
                                     </>)}
                                     {dataEdit.type === "TK-GD" && (<>
-                                        <option value="GD-TK">GD-TK</option>
-                                        <option value="GD-KH">GD-KH</option>
+                                        <option value="GD-TK">Điểm tập kết</option>
+                                        <option value="GD-KH">Khách hàng</option>
                                     </>)}
                                 </select>
 
