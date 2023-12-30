@@ -23,6 +23,7 @@ function OrdeCf() {
   const [selectedOrderStatus, setselectedOrderStatus] = useState(null);
   const [clickEdit, setClickEdit] = useState(false);
   const [dataEdit, setDataEdit] = useState({});
+  const [dataSize, setDataSize] = useState(0);
 
   const parseTimeString = (timeString) => {
     return timeString ? new Date(timeString) : null;
@@ -38,7 +39,8 @@ function OrdeCf() {
       try {
         const response = await StatusApi.getDataStatus(user.userInfo.id_work, selectedOption, user.token);
         setData(response);
-        console.log(response);
+        setDataSize(response.length);
+        console.log(dataSize);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -133,12 +135,13 @@ function OrdeCf() {
   return (
     <Layout>
       <div className={styles['Main']}>
-        <div>
+        <div className={styles['boxSelect']}>
           <select value={selectedOption} onChange={handleSelectChange} className={styles['SelectStatus']}>
             <option value="hanggui">Hàng Gửi</option>
             <option value="hangnhan">Hàng Đến</option>
           </select>
 
+          <h3>Số đơn hiện tại: {dataSize}</h3>
         </div>
         {/* <div className={styles['ListOrder']}>
           <div className={styles['ListName']}>

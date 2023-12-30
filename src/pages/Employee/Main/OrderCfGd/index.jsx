@@ -24,6 +24,7 @@ function OrdeCf() {
   const [clickEdit, setClickEdit] = useState(false);
   const [dataEdit, setDataEdit] = useState({});
   const [clickButton, setClickButton] = useState(false);
+  const [dataSize, setDataSize] = useState(0);
 
   const parseTimeString = (timeString) => {
     return timeString ? new Date(timeString) : null;
@@ -43,7 +44,8 @@ function OrdeCf() {
         if(selectedOption == 2)
           response =  await StatusApi.DonGuiDtk(user.userInfo.id_work, user.token);
 
-        setData(response);        
+        setData(response);     
+        setDataSize(response.length);   
         if(response.maVanDon)
         console.log(response);
       } catch (error) {
@@ -138,13 +140,14 @@ function OrdeCf() {
   return (
     <Layout>
       <div className={styles['Main']}>
-        <div>
+        <div className={styles['boxSelect']}>
           <select value={selectedOption} onChange={handleSelectChange} className={styles['SelectStatus']}>
             <option value="1">Xác nhận đơn hàng đến</option>
             <option value="2">Tao don gui len DTK</option>
             {/* <option value="3">Xac nhan giao hang</option> */}
           </select>
 
+          <h3>Số đơn hiện tại: {dataSize}</h3>
         </div>
         {/* <div className={styles['ListOrder']}>
           <div className={styles['ListName']}>

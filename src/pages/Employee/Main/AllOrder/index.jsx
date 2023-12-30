@@ -22,6 +22,7 @@ function OrdeCf() {
   const [clickEdit, setClickEdit] = useState(false);
   const [dataEdit, setDataEdit] = useState({});
   const [dataDetail, setDataDetail] = useState({});
+  const [dataSize, setDataSize] = useState(0);
 
   const parseTimeString = (timeString) => {
     return timeString ? new Date(timeString) : null;
@@ -38,6 +39,7 @@ function OrdeCf() {
         const isOk = selectedOption == 1 ? true : false;
         const response = await OrderApi.GetAllOrderOk(user.userInfo.id_work, isOk, user.token);
         setData(response);
+        setDataSize(response.length);
         console.log(response);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -127,13 +129,14 @@ function OrdeCf() {
   return (
     <Layout>
       <div className={styles['Main']}>
-        <div>
+        <div className={styles['boxSelect']}>
           <select value={selectedOption} onChange={handleSelectChange} className={styles['SelectStatus']}>
             <option value="1">Đơn hàng thành công</option>
             <option value="2">Đơn hàng không thành công</option>
             {/* <option value="3">Đơn hoàn trả</option> */}
           </select>
 
+          <h3>Số đơn hiện tại: {dataSize}</h3>
         </div>
         {data && data.map((order) => (
           <div key={order.id} className={styles['ListOrder']}>
