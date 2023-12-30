@@ -12,7 +12,7 @@ function InfoApp() {
       <div className={classNames([style.app__container], [layout.grid])}>
         <div className={[style.app__data]}>
           <h2 className={[layout["section__title-center"]]}>
-            Theo dõi hàng mọi lúc
+            Kiểm tra đơn hàng của bạn bất cứ lúc nào
           </h2>
           <p className={[style.app__description]}>
           Với ứng dụng của chúng tôi, bạn có thể xem lộ trình đặt hàng của mình, từ địa phương của chúng tôi

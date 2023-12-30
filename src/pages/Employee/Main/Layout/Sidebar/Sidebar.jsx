@@ -17,6 +17,9 @@ function Sidebar({status}) {
   const navigate = useNavigate();
   // const path = `/${user.userinfo.role.toLowerCase()}`;
   const nvgdPathNvgd = '/nvgd';
+  const nvgdPathStatus = '/nvgd/status';
+  const nvgdGiaoHang = '/nvgd/giaohang';
+  const nvgdAll = '/nvgd/all';
 
   const statusDen = '/nvtk/hangden';
   const statusGui = '/nvtk/hanggui';
@@ -52,11 +55,11 @@ function Sidebar({status}) {
           {isNvtk && <><div className={styles["menu"]} onClick={onClickListStatus}>
             <div className={styles["menuContent"]}>
               <FaClipboardList className={styles["menuIcon"]} />
-              <Link to={"/nvtk/status"}>
-                <h5>Cập nhật Status</h5>
+              <Link to={"/nvtk"}>
+                <h5>Xác nhận đơn hàng</h5>
               </Link>
             </div>
-            <FaCaretDown className={styles["menuIcon"]} />
+            {/* <FaCaretDown className={styles["menuIcon"]} /> */}
           </div>
           {/* {isListStatus && (
             <ul className={styles["menuContentChild"]}>
@@ -70,36 +73,67 @@ function Sidebar({status}) {
           )} */}</>}
         </li>
         <li>
-         {isNvgd && <><div className={styles["menu"]} onClick={toggleList}>
+         {isNvgd && <div className={styles["menu"]} onClick={toggleList}>
             <div className={styles["menuContent"]}>
               <FaBoxes className={styles["menuIcon"]} />
-              <h5>Tạo đơn</h5>
+              <Link to={nvgdPathNvgd}>
+                <h5>Tạo đơn</h5>
+              </Link>
             </div>
-            <FaCaretDown className={styles["menuIcon"]} />
-          </div>
-          {isListVisible && (
+            {/* <FaCaretDown className={styles["menuIcon"]} /> */}
+          </div>}
+          {/* {isListVisible && (
             <ul className={styles["menuContentChild"]}>
             <Link to={nvgdPathNvgd}>
               <li>Đơn lẻ</li>
-              </Link>
+            </Link>
             </ul>
-          )}</>}
+          )}</>} */}
         </li>
         <li>
-          <div className={styles["menu"]} onClick={onClickListCf} >
+          {isNvgd && <><div className={styles["menu"]} onClick={onClickListCf} >
             <div className={styles["menuContent"]} >
               <FaBox className={styles["menuIcon"]} />
-              <h5>Xác nhận đơn hàng</h5>
-              {/* list 2 loại đơn xác nhận gồm đơn trung chuyển và đơn giao đến người nhận */}
+              <Link to={nvgdPathStatus}>
+                <h5>Quản lý đơn hàng</h5>
+              </Link>
             </div>
-            <FaCaretDown className={styles["menuIcon"]} />
+            {/* <FaCaretDown className={styles["menuIcon"]} /> */}
           </div>
-          {isListCf && (
+          {/* {isListCf && (
             <ul className={styles["menuContentChild"]}>
-              <li>Đơn trung chuyển</li>
-              <li>Đơn giao</li>
+              <li>Xác nhận đơn hàng đến</li>
+              <li>Tao don gui len DTK</li>
+              <li>Tao don gui den khach hang</li>
+              <li>Xac nhan giao hang</li>
             </ul>
-          )}
+          )} */}
+          </>
+          }
+        </li>
+        <li>
+          {isNvgd && <><div className={styles["menu"]} onClick={onClickListCf} >
+              <div className={styles["menuContent"]} >
+                <FaBox className={styles["menuIcon"]} />
+                <Link to={nvgdGiaoHang}>
+                  <h5>Xác nhận giao hàng</h5>
+                </Link>
+              </div>
+            </div>
+            </>
+            }
+        </li>
+        <li>
+          {isNvgd && <><div className={styles["menu"]} onClick={onClickListCf} >
+              <div className={styles["menuContent"]} >
+                <FaBox className={styles["menuIcon"]} />
+                <Link to={nvgdAll}>
+                  <h5>Thống kê</h5>
+                </Link>
+              </div>
+            </div>
+            </>
+            }
         </li>
       </ul>
       <CiLogout onClick={handleLogout} className={styles["IconLogout"]}/>

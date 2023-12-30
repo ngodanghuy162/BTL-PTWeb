@@ -15,10 +15,10 @@ function Services() {
       )}
       id="services"
     >
-      <h2 className={[layout.section__title]}>Dịch vụ cung cấp</h2>
+      <h2 className={[layout.section__title]}>Chúng tôi cung cấp những gì</h2>
       <div className={classNames([style.services__container], [layout.grid])}>
         <div className={[style.services__data]}>
-          <h3 className={[style.services__subtitle]}>Thanh toán tiện lợi</h3>
+          <h3 className={[style.services__subtitle]}>Dịch vụ thanh toán</h3>
           <ServImg1
             className={classNames(
               [layout.svg__color],
@@ -27,17 +27,17 @@ function Services() {
             )}
           />
           <p className={[style.services__description]}>
-            Thanh toán VISA
+          Thanh toán bằng thẻ Visa hoặc PayPal mà không gặp nhiều khó khăn.
           </p>
           <a
             href="#"
             className={classNames([layout.button], [layout["button--link"]])}
           >
-            Thêm thông tin
+            Tìm hiểu thêm
           </a>
         </div>
         <div className={[style.services__data]}>
-          <h3 className={[style.services__subtitle]}>Theo dõi hàng</h3>
+          <h3 className={[style.services__subtitle]}>Theo dõi đơn hàng của bạn</h3>
           <ServImg2
             className={classNames(
               [layout.svg__color],
@@ -46,17 +46,17 @@ function Services() {
             )}
           />
           <p className={[style.services__description]}>
-            Theo dõi đơn hàng thường xuyên và liên tục cập nhật
+          Chúng tôi cung cấp dịch vụ theo dõi gói hàng trực tuyến.
           </p>
           <a
             href="#"
             className={classNames([layout.button], [layout["button--link"]])}
           >
-            Thêm thông tin
+            Tìm hiểu thêm
           </a>
         </div>
         <div className={[style.services__data]}>
-          <h3 className={[style.services__subtitle]}>Vận chuyển tin cậy</h3>
+          <h3 className={[style.services__subtitle]}>Giao hàng đáng tin cậy</h3>
           <ServImg3
             className={classNames(
               [layout.svg__color],
@@ -65,13 +65,13 @@ function Services() {
             )}
           />
           <p className={[style.services__description]}>
-            Vận chuyển nhanh chóng và an toàn
+            Đơn hàng sẽ nhanh chóng giao đến bạn một cách an toàn.
           </p>
           <a
             href="#"
             className={classNames([layout.button], [layout["button--link"]])}
           >
-            Thêm thông tin
+            Tìm hiểu thêm
           </a>
         </div>
       </div>

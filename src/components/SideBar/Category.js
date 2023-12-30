@@ -14,12 +14,12 @@ export const SidebarCategory = [
     },
     {
         icon: UilUsersAlt,
-        heading: "Quản lý tài khoản",
+        heading: "Quản lý nhân viên",
     },
-    // {
-    //     icon: UilUsersAlt,
-    //     heading: "Quản lý admin",
-    // },
+    {
+        icon: UilUsersAlt,
+        heading: "Quản lý admin",
+    },
     {
         icon: UilClipboardAlt,
         heading: "Quản lý đơn hàng",

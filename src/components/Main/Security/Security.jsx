@@ -16,7 +16,7 @@ function Security() {
       <div className={classNames([style.security__container], [layout.grid])}>
         <div className={style.security__data}>
           <h2 className={layout["section__title-center"]}>
-            An toàn là trên hết
+            Sự an toàn của bạn được đặt lên hàng đầu
           </h2>
           <p className={style.security__description}>
           Khi đơn đặt hàng của bạn đến tay bạn, chúng tôi có các quy trình an toàn sức khỏe, vì vậy

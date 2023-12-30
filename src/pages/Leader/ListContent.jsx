@@ -15,14 +15,13 @@ import {
 } from "./Category.js";
 import AdminTable from "./Content/AdminTable.jsx";
 // import PackageReceiveTable from "./PackageReceiveTable/PackageReceiveTable";
-// import LocationTable from "./LocationTable/LocationTable";
+import LocationTable from "./Content/LocationTable/LocationTable";
 // import SearchForm from "./SearchForm/SearchForm";
 
 const componentListMainDash = [
-
     <>
         <h1>Quản lí tài khoản trưởng điểm</h1>
-        {<AdminTable className={style.admintable} columns ={adminColumns}/>}
+        {<AdminTable className={style.admintable} columns={adminColumns} />}
     </>,
     <>
         <h1>Thống kê đơn hàng</h1>
@@ -34,11 +33,11 @@ const componentListMainDash = [
     </>,
     <>
         <h1>Quản lí các điểm vận chuyển</h1>
-        {/* <LocationTable
+        <LocationTable
             className={self.layout__main}
             columns={deportColumns}
             subColumns={officeColumns}
-        /> */}
+        />
     </>,
 ];
 

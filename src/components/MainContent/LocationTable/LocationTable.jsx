@@ -11,7 +11,7 @@ import { ExpandableRow } from "@/components/ExpandableRow/ExpandableRow";
 
 import style from "./LocationTable.module.scss";
 
-import * as request from "@/utils/request";
+import request from "@/utils/request";
 import SearchForm from "../PackageSearchForm/PackageSearchForm";
 
 export default function LocationTable(props) {
@@ -32,9 +32,17 @@ export default function LocationTable(props) {
 
     useEffect(() => {
         const fetchPackages = async () => {
+            const path = "/point/tapket/all";
+            const options = {
+                headers: {
+                    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZWFkZXIiLCJpYXQiOjE3MDM5MDM0MTIsImV4cCI6MTcwNDQyMTgxMn0.V7JZfaMrGxzb9qEjPWAy_Djz7ONYDE73RoNc-2MV2Qc`,
+                },
+                
+            }
             try {
-                const res = await request.get("/orders");
+                const res = await request.get(path, options);
                 setRows(res);
+                console.log(res);
             } catch (error) {
                 if (error.response) {
                     console.log(error.response.data);
@@ -51,13 +59,13 @@ export default function LocationTable(props) {
 
     return (
         <div className={style.layout}>
-            <SearchForm />
+            {/* <SearchForm /> */}
             <Paper
                 sx={{ width: "90%", alignSelf: "center", overflow: "hidden" }}
             >
                 <TableContainer
                     style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
-                    sx={{ maxHeight: 410 }}
+                    sx={{ maxHeight: 470 }}
                 >
                     <Table
                         stickyHeader
@@ -78,7 +86,12 @@ export default function LocationTable(props) {
                                         {column.label}
                                     </TableCell>
                                 ))}
-                                <TableCell align="left"></TableCell>
+                                <TableCell
+                                    align="left"
+                                    style={{
+                                        width: "5%",
+                                    }}
+                                ></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody style={{ color: "white" }}>
@@ -93,8 +106,13 @@ export default function LocationTable(props) {
                                             key={row.productId}
                                             row={row}
                                             columns={columns}
-                                            subRows={row["history"]}
+                                            subRows={
+                                                row["diemGiaoDichModelList"] == undefined ? [] : row["diemGiaoDichModelList"]
+                                            }
                                             subColumns={subColumns}
+                                            subTableTitle={
+                                                "Danh sách điểm tập kết trực thuộc"
+                                            }
                                         />
                                     );
                                 })}

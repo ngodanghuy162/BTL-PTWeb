@@ -20,31 +20,31 @@ function Footer() {
             Magic Post
           </a>
           <p className={style.footer__description}>
-            Order products Faster <br />
-            Easier
+          Đặt mua sản phẩm nhanh hơn <br />
+            Dễ dàng hơn
           </p>
         </div>
         <div className={style.footer__content}>
-          <h3 className={style.footer__title}>Services</h3>
+          <h3 className={style.footer__title}>Dịch vụ</h3>
           <ul className={style.footer__links}>
             <li>
               <a href="#" className={style.footer__link}>
-                Pricing
+              Định giá
               </a>
             </li>
             <li>
               <a href="#" className={style.footer__link}>
-                Discounts
+              Giảm giá
               </a>
             </li>
             <li>
               <a href="#" className={style.footer__link}>
-                Report a bug
+              Báo lỗi
               </a>
             </li>
             <li>
               <a href="#" className={style.footer__link}>
-                Term of Services
+              Điều khoản dịch vụ
               </a>
             </li>
           </ul>
@@ -59,12 +59,12 @@ function Footer() {
             </li>
             <li>
               <a href="#" className={style.footer__link}>
-                Our mission
+                Sứ mệnh
               </a>
             </li>
             <li>
               <a href="#" className={style.footer__link}>
-                Get in touch
+                Liên hệ với chúng tôi
               </a>
             </li>
           </ul>
@@ -74,17 +74,17 @@ function Footer() {
           <ul className={style.footer__links}>
             <li>
               <a href="#" className={style.footer__link}>
-                Support
+                Hỗ trợ
               </a>
             </li>
             <li>
               <a href="#" className={style.footer__link}>
-                Questions
+              Câu hỏi
               </a>
             </li>
             <li>
               <a href="#" className={style.footer__link}>
-                Help
+                Trợ giúp
               </a>
             </li>
           </ul>

@@ -12,8 +12,6 @@ import style from "./EmployeeTable.module.scss";
 import request from "@/utils/request";
 
 import SearchEmployeeForm from "../SearchEmployeeForm/SearchEmployeeForm";
-import RegistrationDialog from "../RegistrationDialog/RegistationDialog";
-import RegistrationForm from "../../RegistrationForm/RegistrationForm";
 
 import { useAuth } from "@/hooks/AuthContext";
 import RemoveDialog from "../../RemoveDialog/RemoveDialog";
@@ -90,18 +88,10 @@ export default function EmployeeTable(props) {
     return (
         <div className={style.layout}>
             <SearchEmployeeForm key="search" />
-            <RegistrationDialog
-                key="registration"
-                title="Tạo tài khoản nhân viên"
-                active={active}
-                setActive={setActive}
-            >
-                <RegistrationForm active={active} setActive={setActive} />
-            </RegistrationDialog>
             <Paper key="main table" className={style.layout__paper}>
                 <TableContainer
                     style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
-                    sx={{ maxHeight: 440 }}
+                    sx={{ maxHeight: 470 }}
                 >
                     <Table
                         stickyHeader

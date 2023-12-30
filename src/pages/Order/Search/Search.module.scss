@@ -126,6 +126,7 @@
     color: white;
     font-size: 20px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .contentName {
@@ -186,5 +187,17 @@ table, td, th {
 
 .Log li {
     border:  1px solid rgba(49,49,49);
+}
+
+.Print {
+    padding: 10px 50px;
+    background-color: #007200;
+    color: white;
+    border: none;
+    font-size: 20px;
+}
+
+.iconPrint {
+    margin-right: 10px;
 }
 

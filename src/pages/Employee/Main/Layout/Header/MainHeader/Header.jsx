@@ -7,9 +7,12 @@ import { LuBellRing } from "react-icons/lu";
 import { FaCircleUser } from "react-icons/fa6";
 import ProfileApi from "../../../../../../api/ProfileNvtkApi"
 import Detail from "../Detail/index"
+import Logo from "@/assets/images/logo.png";
+import style from "../../../../../../components/Header/Header.module.scss"
+
 
 function Header() {
-  const {getUser} = useAuth();
+  const { getUser } = useAuth();
   const user = getUser();
   const { handleLogout } = useAuth();
   const navigate = useNavigate();
@@ -18,7 +21,7 @@ function Header() {
   const [clickIconUser, setClickIconUser] = useState(false);
   const [clickIconBell, setClickIconBell] = useState(false);
   const [clickProfile, setClickProfile] = useState(false);
-  // const [data, setData] = useState(null);
+  const [data, setData] = useState(null);
 
   const onClickCheck = () => {
     setCheckNotification(!checkNotification);
@@ -58,16 +61,22 @@ function Header() {
     };
 
     fetchData();
-  }, []); 
+  }, []);
 
   return (
     <header className={styles['wrapper']}>
       <div className={styles['inner']}>
-        <img onClick={onClickLogo} src='https://bambooship.cdn.vccloud.vn/wp-content/uploads/2021/11/shipper-1-1.png' className={styles['img']} alt='logo' />
+        <div className={styles['boxLogo']}>
+          <img onClick={onClickLogo} src={Logo} alt="logo" className={styles['img']} />
+
+                <a href="#" className={`${style.nav__logo} ${style.textlogo}`}>
+                    Magic Post
+                </a>
+        </div>
 
         <div className={styles['SearchContent']}>
-          <input type="text" className={styles['inputSearch']} placeholder="Tra cứu đơn hàng" />
-          <IoMdSearch onClick={onClickCheck} className={`${styles.iconHeader} ${styles.iconSearch}`} />
+          {/* <input type="text" className={styles['inputSearch']} placeholder="Tra cứu đơn hàng" />
+          <IoMdSearch onClick={onClickCheck} className={`${styles.iconHeader} ${styles.iconSearch}`} /> */}
           {checkNotification && (
             <ul>
               <li>Tin chuẩn</li>
@@ -78,7 +87,7 @@ function Header() {
         </div>
 
         <div className={styles['UserAction']}>
-          <p>Thông báo</p>
+          {/* <p>Thông báo</p>
           <div>
             <LuBellRing onClick={onClickIconBell} className={styles['iconHeader']} />
             {clickIconBell && (
@@ -88,7 +97,7 @@ function Header() {
                 <li>Thông báo 3</li>
               </ul>
             )}
-          </div>
+          </div> */}
           <strong><p>{user.userInfo.name}</p></strong>
           <div className={styles['ListUser']}>
             <FaCircleUser onClick={onClickIconUser} className={styles['iconHeader']} />
@@ -98,7 +107,7 @@ function Header() {
                 <li onClick={handleLogout}>Đăng xuất</li>
               </ul>
             )}
-            {clickProfile && <Detail onClose={onClickProfile} data={user}/>}
+            {clickProfile && <Detail onClose={onClickProfile} data={user} />}
 
           </div>
         </div>

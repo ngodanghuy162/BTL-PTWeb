@@ -34,16 +34,12 @@ const getStyle = (status) => {
     }
 };
 
-// function DetailsTable(props) {
-//     return (
-//         <div>
-//             <h1>Details</h1>
-//         </div>
-//     );
-// }
+const getStatus = (value) => {
+    return value === 0 ? "Đóng cửa" : "Hoạt động";
+};
 
 export function ExpandableRow(props) {
-    const { row, columns, subRows, subColumns } = props;
+    const { row, columns, subRows, subColumns, subTableTitle } = props;
     const [open, setOpen] = React.useState(false);
 
     return (
@@ -93,14 +89,13 @@ export function ExpandableRow(props) {
                 >
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box sx={{ margin: 1 }}>
-                            {/* <DetailsTable /> */}
                             <Typography
                                 variant="h6"
                                 gutterBottom
                                 component="div"
                                 style={{ fontWeight: "bold" }}
                             >
-                                Lịch sử giao hàng
+                                {subTableTitle}
                             </Typography>
                             <Table size="small" aria-label="history">
                                 <TableHead>
@@ -128,7 +123,10 @@ export function ExpandableRow(props) {
                                                         key={column.id}
                                                         align={column.align}
                                                     >
-                                                        {value}
+                                                        {column.id ===
+                                                        "is_active"
+                                                            ? getStatus(value)
+                                                            : value}
                                                     </TableCell>
                                                 );
                                             })}

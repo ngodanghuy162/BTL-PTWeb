@@ -36,7 +36,7 @@ export const packageColumns = [
         align: "left",
     },
     {
-        id: "cost",
+        id: "shipCost",
         label: "Phí cước",
         minWidth: 60,
         width: "10%",
@@ -160,23 +160,30 @@ export const employeeColumns = [
 
 export const deportColumns = [
     {
-        id: "deportId",
+        id: "id",
         label: "Id điểm tập kết",
         width: "20%",
         minWidth: 0,
         align: "left",
     },
     {
-        id: "deportLocation",
-        label: "Vị trí",
+        id: "name",
+        label: "Tên điểm tập kết",
         width: "30%",
         minWidth: 0,
         align: "left",
     },
     {
-        id: "deportName",
-        label: "Tên điểm tập kết",
+        id: "address",
+        label: "Vị trí",
         width: "40%",
+        minWidth: 0,
+        align: "left",
+    },
+    {
+        id: "is_active",
+        label: "Trạng thái",
+        width: "10%",
         minWidth: 0,
         align: "left",
     },
@@ -184,22 +191,29 @@ export const deportColumns = [
 
 export const officeColumns = [
     {
-        id: "officeId",
+        id: "id",
         label: "Id điểm giao dịch",
         width: "10%",
         minWidth: 0,
         align: "left",
     },
     {
-        id: "officeLocation",
-        label: "Vị trí",
-        width: "10%",
+        id: "name",
+        label: "Tên điểm giao dịch",
+        width: "25%",
         minWidth: 0,
         align: "left",
     },
     {
-        id: "officeName",
-        label: "Tên điểm giao dịch",
+        id: "address",
+        label: "Vị trí",
+        width: "50%",
+        minWidth: 0,
+        align: "left",
+    },
+    {
+        id: "is_active",
+        label: "Trạng thái",
         width: "10%",
         minWidth: 0,
         align: "left",

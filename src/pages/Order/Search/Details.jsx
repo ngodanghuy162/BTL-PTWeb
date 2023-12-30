@@ -1,9 +1,21 @@
 import styles from './Search.module.scss'
 import React, { useState, useEffect } from 'react';
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import { IoMdPrint } from "react-icons/io";
 import orderApi from '../../../api/OrderApi';
+import Bill from '../Bill/pdf';
 const Detail = ({dataSearch, onClose }) => {
+    const dataToSend = { key: 'value' };
+    const handleClick = () => {
+        const queryString = new URLSearchParams(dataSearch).toString();
+        const newTab = window.open(`/pdf?${queryString}`, '_blank');
+    };
+    const [clickPrint, setClickPrint] = useState(false);
 
+    const onClickPrint = () => {
+        setClickPrint(!clickPrint);
+        console.log(clickPrint);
+    }
     const handleClose = () => {
         onClose();
       };
@@ -57,6 +69,8 @@ const Detail = ({dataSearch, onClose }) => {
                         </ul>
                         </>
                     )}
+                    
+                    <button className={styles['Print']} onClick={handleClick}><IoMdPrint  className={styles['iconPrint']}/>In</button>
                 </div>
         </div>
     )

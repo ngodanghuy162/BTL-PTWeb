@@ -15,17 +15,16 @@ function Contact() {
       <div className={classNames([style.contact__container], [layout.grid])}>
         <div className={[style.contact__content]}>
           <h2 className={[layout["section__title-center"]]}>
-            Hãy liên lạc chúng tôi
+          Liên hệ với chúng tôi
           </h2>
           <p className={[style.contact__description]}>
-          Bạn có thể liên hệ với chúng tôi từ đây, bạn có thể viết thư cho chúng tôi, gọi cho chúng tôi hoặc ghé thăm
-             trung tâm dịch vụ của chúng tôi, chúng tôi sẽ sẵn lòng hỗ trợ bạn.
+            Liên hệ với chúng tôi bất cứ lúc nào, chúng tôi sẽ luôn đợi liên hệ từ bạn.
           </p>
         </div>
 
         <ul className={classNames([style.contact__content], [layout.grid])}>
           <li className={[style.contact__address]}>
-            Telephone:
+            số điện thoại:
             <a
               href="/"
               target="_blank"
