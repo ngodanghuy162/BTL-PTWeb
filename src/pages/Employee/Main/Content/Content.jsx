@@ -8,6 +8,7 @@ import Discount from "./Discount/index"
 import Cod from "./COD/index"
 import {useAuth} from "../../../../hooks/AuthContext"
 import OrderApi from "../../../../api/OrderApi"
+import { IoMdPrint } from "react-icons/io";
 
 
 function Content() {
@@ -15,6 +16,14 @@ function Content() {
   const user = getUser();
   const [mess, setMess] = useState("");
   const [isClick, setClick] = useState(false);
+  
+  const [dataSearch, setDataSearch] = useState();
+  const handleClick = () => {
+      const queryString = new URLSearchParams(fullData).toString();
+      console.log(fullData);
+      const newTab = window.open(`/pdf?${queryString}`, '_blank');
+  };
+
 
   const [fullData, setFullData] = useState({
     name: "Test",
@@ -162,6 +171,8 @@ function Content() {
           
           <button className={styles['Submit']} onClick={handleSubmit}>Submit</button>
           {isClick && <p>{mess}</p>}
+          {isClick && 
+                    <button className={styles['Print']} onClick={handleClick}><IoMdPrint  className={styles['iconPrint']}/>In</button>}
         </div>
       </div>
     </Layout>
