@@ -114,66 +114,6 @@ function Header() {
       </nav>
     </header>
   );
-    return (
-        <header className={style.header} id="header">
-            <nav className={classNames([style.nav], [layout.container])}>
-                <a href="#" className={style.nav__logo}>
-                    Magic Post
-                </a>
-                <div
-                    className={classNames({
-                        [style.nav__menu]: true,
-                        [style["menu-show"]]: toggle || width >= 767,
-                    })}
-                >
-                    <ul className={style.nav__list} onClick={clickHandler}>
-                        <li className={style.nav__item}>
-                            <a
-                                href="#home"
-                                className={classNames(
-                                    [style.nav__link],
-                                    style["nav__link--active"]
-                                )}
-                            >
-                                Home
-                            </a>
-                        </li>
-                        <li className={style.nav__item}>
-                            <a href="#about" className={style.nav__link}>
-                                About
-                            </a>
-                        </li>
-                        <li className={style.nav__item}>
-                            <a href="#services" className={style.nav__link}>
-                                Services
-                            </a>
-                        </li>
-                        <li className={style.nav__item}>
-                            <a href="#contacts" className={style.nav__link}>
-                                Contact
-                            </a>
-                        </li>
-                        {/* <ThemeChanger /> */}
-                        <ColorChanger />
-                    </ul>
-                </div>
-                <div
-                    className={style.nav__toggle}
-                    onClick={() => setToggle(!toggle)}
-                >
-                    <i className="bx bx-grid-alt" />
-                </div>
-                <a
-                    href="/admin"
-                    className={classNames([layout.button], {
-                        [layout.hidden]: width < 960,
-                    })}
-                >
-                    Delivery Now
-                </a>
-            </nav>
-        </header>
-    );
 }
 
 export default Header;

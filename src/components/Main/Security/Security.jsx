@@ -16,12 +16,12 @@ function Security() {
       <div className={classNames([style.security__container], [layout.grid])}>
         <div className={style.security__data}>
           <h2 className={layout["section__title-center"]}>
-            Your Safety Is Important
+            An toàn là trên hết
           </h2>
           <p className={style.security__description}>
-            When your order reaches you, we have the health safety protocols, so
-            that you are protected from any disease. Watch the video of how the
-            delivery is made.
+          Khi đơn đặt hàng của bạn đến tay bạn, chúng tôi có các quy trình an toàn sức khỏe, vì vậy
+             rằng bạn được bảo vệ khỏi mọi bệnh tật. Hãy xem video cách thực hiện
+             giao hàng được thực hiện.
           </p>
         </div>
         <SecImg

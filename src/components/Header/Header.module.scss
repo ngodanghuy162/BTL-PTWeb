@@ -139,7 +139,6 @@
   font-size: 3em;
   display: flex;
   flex-direction: column;
-  color: rgb(60, 119, 100);
  
 }
 
@@ -150,9 +149,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #ec7bc6, #6fc5ed); 
+  background: linear-gradient(45deg, #e0ec85, #6fc5ed); 
   z-index: -1;
-  clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
 }
 
 

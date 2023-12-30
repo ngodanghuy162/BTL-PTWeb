@@ -15,11 +15,11 @@ function Contact() {
       <div className={classNames([style.contact__container], [layout.grid])}>
         <div className={[style.contact__content]}>
           <h2 className={[layout["section__title-center"]]}>
-            Contact Us From Here
+            Hãy liên lạc chúng tôi
           </h2>
           <p className={[style.contact__description]}>
-            You can contact us from here, you can write to us, call us or visit
-            our service center, we will gladly assist you.
+          Bạn có thể liên hệ với chúng tôi từ đây, bạn có thể viết thư cho chúng tôi, gọi cho chúng tôi hoặc ghé thăm
+             trung tâm dịch vụ của chúng tôi, chúng tôi sẽ sẵn lòng hỗ trợ bạn.
           </p>
         </div>
 
@@ -33,7 +33,7 @@ function Contact() {
               title="phone"
               className={[style.contact__information]}
             >
-              123 - 456 - 789
+              6666668888
             </a>
           </li>
           <li className={[style.contact__address]}>
@@ -45,7 +45,7 @@ function Contact() {
               title="email"
               className={[style.contact__information]}
             >
-              smth@email.com
+              huyngo@gmail.com
             </a>
           </li>
           <li className={[style.contact__address]}>
@@ -57,13 +57,13 @@ function Contact() {
               title="address"
               className={[style.contact__information]}
             >
-              Earth
+              Tu ma hải
             </a>
           </li>
         </ul>
         <div className={style.contact__content}>
           <a href="#contact" className={layout.button}>
-            Contact Us
+            Liên hệ ngay
           </a>
         </div>
       </div>

@@ -16,12 +16,10 @@ function About() {
       <div className={classNames([style.about__container], [layout.grid])}>
         <div className={style.about__data}>
           <h2 className={[layout["section__title-center"]]}>
-            Find Out A Little More About Us
+           Thêm thông tin về chúng tôi
           </h2>
           <p className={style.about__description}>
-            We are a company dedicated to the distribution of products by
-            delivery to your home or to the place where you are, with the best
-            quality of delivery.
+          Chúng tôi là công ty chuyên giao hàng tận nhà hoặc tận nơi với chất lượng giao hàng tốt nhất.
           </p>
         </div>
 

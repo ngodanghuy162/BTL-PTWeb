@@ -15,10 +15,10 @@ function Services() {
       )}
       id="services"
     >
-      <h2 className={[layout.section__title]}>Services that we offer</h2>
+      <h2 className={[layout.section__title]}>Dịch vụ cung cấp</h2>
       <div className={classNames([style.services__container], [layout.grid])}>
         <div className={[style.services__data]}>
-          <h3 className={[style.services__subtitle]}>Payment Done</h3>
+          <h3 className={[style.services__subtitle]}>Thanh toán tiện lợi</h3>
           <ServImg1
             className={classNames(
               [layout.svg__color],
@@ -27,17 +27,17 @@ function Services() {
             )}
           />
           <p className={[style.services__description]}>
-            Pay with a Visa or PayPal card and without much ado.
+            Thanh toán VISA
           </p>
           <a
             href="#"
             className={classNames([layout.button], [layout["button--link"]])}
           >
-            Learn More
+            Thêm thông tin
           </a>
         </div>
         <div className={[style.services__data]}>
-          <h3 className={[style.services__subtitle]}>Track Your Package</h3>
+          <h3 className={[style.services__subtitle]}>Theo dõi hàng</h3>
           <ServImg2
             className={classNames(
               [layout.svg__color],
@@ -46,17 +46,17 @@ function Services() {
             )}
           />
           <p className={[style.services__description]}>
-            We offer tracking of package through the Internet.
+            Theo dõi đơn hàng thường xuyên và liên tục cập nhật
           </p>
           <a
             href="#"
             className={classNames([layout.button], [layout["button--link"]])}
           >
-            Learn More
+            Thêm thông tin
           </a>
         </div>
         <div className={[style.services__data]}>
-          <h3 className={[style.services__subtitle]}>Reliable delivery</h3>
+          <h3 className={[style.services__subtitle]}>Vận chuyển tin cậy</h3>
           <ServImg3
             className={classNames(
               [layout.svg__color],
@@ -65,13 +65,13 @@ function Services() {
             )}
           />
           <p className={[style.services__description]}>
-            Fast and secured packages delivered straight to your door.
+            Vận chuyển nhanh chóng và an toàn
           </p>
           <a
             href="#"
             className={classNames([layout.button], [layout["button--link"]])}
           >
-            Learn more
+            Thêm thông tin
           </a>
         </div>
       </div>

@@ -5,6 +5,7 @@ import style from "./LeaderPage.module.scss";
 import ListContent from "./ListContent.jsx";
 import { useEffect, useState } from "react";
 import LeaderSidebar from "./LeaderSideBar/LeaderSideBar";
+import * as request from "@/utils/request";
 
 const LeaderPage = () => {
     const [deport, setDeport] = useState([]);

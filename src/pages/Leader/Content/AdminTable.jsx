@@ -22,7 +22,6 @@ const VISIBLE_FIELDS = ["name", "rating", "country", "dateCreated", "isAdmin"];
 
 export default function AdminTable(props) {
     const {getUser} = useAuth();
-    var k;
     const user = getUser();
     const options = {
         headers: {
@@ -36,7 +35,6 @@ export default function AdminTable(props) {
     const [listAdminDTK, setListAdminDTK] = useState([]);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [selectedPointId, setSelectedPointId] = useState(0);
-    const [data,setData] = useState([]);
     const [listTk, setListTk] = useState([]);
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -55,11 +53,15 @@ export default function AdminTable(props) {
     useEffect(() => {
         const fetchDTK = async () => {
             try {
-                    const res = await request.get("/point/tapket/all");
+                    const res = await fetch("http://localhost:8080/point/tapket/all");
+                    console.log(res);
                     setListTk(res);
-                    const res2 = await request.get("/admin/admintk/all",options);
-                    setListAdminDTK(res2);
+                    // // const res2 = await request.get("/admin/admintk/all",options);
+                    // // console.log(res2);
+                    // setListAdminDTK(res2);
+                    // // setRows(res2);
                     console.log("Da goi dong 64");
+                    // console.log(res2);
             } catch (error) {
                 if (error.response) {
                     console.log(error.response.data);
@@ -77,18 +79,16 @@ export default function AdminTable(props) {
     useEffect(() => {
         const fetchAdmin = async () => {
             try {
-                if (checkedValues !== 2) {
+                if (checkedValues == 1) {
                     setSelectedPointId("");
-                    
                         setRows(listAdminDTK);
-                    
-                  }
-                  if(checkedValues !== 1) {
-                    setRows([]);
-                  }
+                }
+                //   if(checkedValues !== 1 ) {
+                //     setRows([]);
+                //   }
                   if(checkedValues == 2) {
                     if(selectedPointId != null && selectedPointId != undefined) {
-                    const res = await request.get("/admin/admingd/all?idtk="+ selectedPointId, options );
+                    const res = await request.get("/admin/admingd/all?idtk=1", options );
                     setRows(res);
                   }
                 }
@@ -182,49 +182,52 @@ export default function AdminTable(props) {
                             </TableRow>
                         </TableHead>
                         <TableBody style={{ color: "white" }}>
-                            {rows
-                                .slice(
+                        {rows && rows.length > 0 ? (
+                                rows
+                                    .slice(
                                     page * rowsPerPage,
                                     page * rowsPerPage + rowsPerPage
-                                )
-                                .map((row) => {
-                                    return (
-                                        <TableRow
-                                            hover
-                                            role="checkbox"
-                                            tabIndex={-1}
-                                            key={row.code}
-                                        >
-                                            {columns.map((column) => {
-                                                const value = row[column.id];
-                                                return (
-                                                    <TableCell
-                                                        key={column.id ?? "Null"}
-                                                        align={column.align}
-                                                    >
-                                                        {column.format &&
-                                                        typeof value ===
-                                                            "number"
-                                                            ? column.format(
-                                                                  value
-                                                              )
-                                                            : value}
-                                                    </TableCell>
-                                                );
-                                            })}
-                                            <TableCell>
-                                                <IconButton>
-                                                    <PersonRemoveIcon />
-                                                </IconButton>
+                                    )
+                                    .map((row) => (
+                                    <TableRow
+                                        hover
+                                        role="checkbox"
+                                        tabIndex={-1}
+                                        key={row.code}
+                                    >
+                                        {columns.map((column) => {
+                                        const value = row[column.id];
+                                        return (
+                                            <TableCell
+                                            key={column.id ?? "Null"}
+                                            align={column.align}
+                                            >
+                                            {column.format &&
+                                            typeof value === "number"
+                                                ? column.format(value)
+                                                : value}
                                             </TableCell>
-                                            <TableCell>
-                                                <IconButton>
-                                                    <EditIcon />
-                                                </IconButton>
-                                            </TableCell>
-                                        </TableRow>
-                                    );
-                                })}
+                                        );
+                                        })}
+                                        <TableCell>
+                                        <IconButton>
+                                            <PersonRemoveIcon />
+                                        </IconButton>
+                                        </TableCell>
+                                        <TableCell>
+                                        <IconButton>
+                                            <EditIcon />
+                                        </IconButton>
+                                        </TableCell>
+                                    </TableRow>
+                                    ))
+) : (
+  <TableRow>
+    <TableCell colSpan={columns.length + 2} align="center">
+      No data available
+    </TableCell>
+  </TableRow>
+)}
                         </TableBody>
                     </Table>
                 </TableContainer>
