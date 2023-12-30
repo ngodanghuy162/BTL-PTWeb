@@ -8,6 +8,7 @@ import { FaCircleUser } from "react-icons/fa6";
 import ProfileApi from "../../../../../../api/ProfileNvtkApi"
 import Detail from "../Detail/index"
 import Logo from "@/assets/images/logo.png";
+import style from "../../../../../../components/Header/Header.module.scss"
 
 
 function Header() {
@@ -67,9 +68,10 @@ function Header() {
       <div className={styles['inner']}>
         <div className={styles['boxLogo']}>
           <img onClick={onClickLogo} src={Logo} alt="logo" className={styles['img']} />
-          <div>
-            <strong><p className={styles['logoText']}>Magic</p><p>Post</p></strong>
-          </div>
+
+                <a href="#" className={`${style.nav__logo} ${style.textlogo}`}>
+                    Magic Post
+                </a>
         </div>
 
         <div className={styles['SearchContent']}>
