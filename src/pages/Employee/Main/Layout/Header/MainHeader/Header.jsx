@@ -9,8 +9,9 @@ import ProfileApi from "../../../../../../api/ProfileNvtkApi"
 import Detail from "../Detail/index"
 import Logo from "@/assets/images/logo.png";
 
+
 function Header() {
-  const {getUser} = useAuth();
+  const { getUser } = useAuth();
   const user = getUser();
   const { handleLogout } = useAuth();
   const navigate = useNavigate();
@@ -59,14 +60,16 @@ function Header() {
     };
 
     fetchData();
-  }, []); 
+  }, []);
 
   return (
     <header className={styles['wrapper']}>
       <div className={styles['inner']}>
-        <div>
-        <img onClick={onClickLogo} src={Logo} alt="logo" className={styles['img']} />
-        <span><span>Magic</span>Post</span>
+        <div className={styles['boxLogo']}>
+          <img onClick={onClickLogo} src={Logo} alt="logo" className={styles['img']} />
+          <div>
+            <strong><p className={styles['logoText']}>Magic</p><p>Post</p></strong>
+          </div>
         </div>
 
         <div className={styles['SearchContent']}>
@@ -102,7 +105,7 @@ function Header() {
                 <li onClick={handleLogout}>Đăng xuất</li>
               </ul>
             )}
-            {clickProfile && <Detail onClose={onClickProfile} data={user}/>}
+            {clickProfile && <Detail onClose={onClickProfile} data={user} />}
 
           </div>
         </div>
