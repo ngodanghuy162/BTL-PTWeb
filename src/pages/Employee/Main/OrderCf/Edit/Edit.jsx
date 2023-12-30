@@ -38,7 +38,7 @@ function Edit({ onClose, dataEdit }) {
                 else
                     response = await PointApi.getDataDgd(dataEdit.id_receivePlace);
                 setData(response);
-                console.log(response);
+                console.log(dataEdit.id_receivePlace);
                 // console.log(response[3].name)
             } catch (error) {
                 console.error('Error fetching data:', error);

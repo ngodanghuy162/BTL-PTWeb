@@ -9,7 +9,7 @@ class StatusApi {
         };
         
         // const url = `/order/tracuu?mavandon=${params}`;
-        const url = `/order/thongkestatusorder/dtk?iddtk=${id}&type=${type}`;
+        const url = `/order/thongkestatusorder/dtk?id=${id}&type=${type}`;
         return axiosClient.get(url, { headers });
     }
 

@@ -33,9 +33,14 @@ export default function LocationTable(props) {
     useEffect(() => {
         const fetchPackages = async () => {
             const path = "/point/tapket/all";
-
+            const options = {
+                headers: {
+                    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZWFkZXIiLCJpYXQiOjE3MDM5MDM0MTIsImV4cCI6MTcwNDQyMTgxMn0.V7JZfaMrGxzb9qEjPWAy_Djz7ONYDE73RoNc-2MV2Qc`,
+                },
+                
+            }
             try {
-                const res = await request.get(path);
+                const res = await request.get(path, options);
                 setRows(res);
                 console.log(res);
             } catch (error) {
@@ -54,7 +59,7 @@ export default function LocationTable(props) {
 
     return (
         <div className={style.layout}>
-            <SearchForm />
+            {/* <SearchForm /> */}
             <Paper
                 sx={{ width: "90%", alignSelf: "center", overflow: "hidden" }}
             >
@@ -102,11 +107,11 @@ export default function LocationTable(props) {
                                             row={row}
                                             columns={columns}
                                             subRows={
-                                                row["diemGiaoDichModelList"]
+                                                row["diemGiaoDichModelList"] == undefined ? [] : row["diemGiaoDichModelList"]
                                             }
                                             subColumns={subColumns}
                                             subTableTitle={
-                                                "Danh sách điểm giao dịch trực thuộc"
+                                                "Danh sách điểm tập kết trực thuộc"
                                             }
                                         />
                                     );

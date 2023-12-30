@@ -58,7 +58,7 @@ export default function AdminTable(props) {
     useEffect(() => {
         const options = {
             headers: {
-                Authorization: `Bearer ${user.token}`,
+                Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZWFkZXIiLCJpYXQiOjE3MDM5MDM0MTIsImV4cCI6MTcwNDQyMTgxMn0.V7JZfaMrGxzb9qEjPWAy_Djz7ONYDE73RoNc-2MV2Qc`,
             },
         };
         const fetchDTK = async () => {
@@ -124,7 +124,6 @@ export default function AdminTable(props) {
 
     return (
         <div className={style.layout}>
-            <FormLabel>Tìm kiếm</FormLabel>
             <Grid container className={style.grid}>
                 <Grid item>
                     <TextField

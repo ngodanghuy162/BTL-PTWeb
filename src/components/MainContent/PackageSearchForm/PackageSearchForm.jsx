@@ -16,7 +16,6 @@ const statusList = ["delivering", "failed"];
 const PackageSearchForm = () => {
     return (
         <>
-            <FormLabel>Tìm kiếm</FormLabel>
             <Grid container className={style.grid}>
                 <Grid item>
                     <TextField

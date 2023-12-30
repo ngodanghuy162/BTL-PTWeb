@@ -20,7 +20,7 @@ import AdminTable from "../../pages/Leader/Content/AdminTable";
 const componentListMainDash = [
     <>
         <h1>Magic admin</h1>
-        <PackageAnalysis key="package" className={self.layout__main} />
+        <PackageAnalysis key="package" className={self.layout__main} /> 
     </>,
     <>
         <h1>Employee Management</h1>
@@ -62,7 +62,7 @@ const MainContent = ({ selected, onSelected }) => {
     const user = getUser();
 
     return (
-        <div className={style.layout}>{componentListMainDash[selected]}</div>
+        <div className={style.layout}>{ componentListMainDash[selected]}</div>
     );
 };
 

@@ -70,7 +70,7 @@ const Detail = ({dataSearch, onClose }) => {
                         </>
                     )}
                     
-                    <button  onClick={handleClick}><IoMdPrint />In</button>
+                    <button className={styles['Print']} onClick={handleClick}><IoMdPrint  className={styles['iconPrint']}/>In</button>
                 </div>
         </div>
     )

@@ -17,6 +17,7 @@ function OrdeCf() {
   const [mvd, setMvd] = useState(null);
   const [clickEdit, setClickEdit] = useState(false);
   const [dataDetail, setDataDetail] = useState({});
+  const [clickButton, setClickButton] = useState(false);
 
   const parseTimeString = (timeString) => {
     return timeString ? new Date(timeString) : null;
@@ -40,7 +41,7 @@ function OrdeCf() {
     };
 
     fetchData();
-  }, [selectedOption]);
+  }, [selectedOption, clickButton]);
 
   useEffect(() => {
     const fetchDataOrder = async () => {
@@ -89,16 +90,19 @@ function OrdeCf() {
   }
 
   const onClickCheckIn4 = (id, data) => {
+    setClickButton(!clickButton);
     setMvd(id);
     setDataDetail(data)
     onClickCheck();
   }
 
   const onClickOk = (mavandon) => {
+    setClickButton(!clickButton);
     handleSubmit(mavandon, true);
   };
 
   const onClickNotOk = (mavandon) => {
+    setClickButton(!clickButton);
     handleSubmit(mavandon, false);
   };
 

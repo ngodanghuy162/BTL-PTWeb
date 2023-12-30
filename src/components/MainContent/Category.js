@@ -36,7 +36,7 @@ export const packageColumns = [
         align: "left",
     },
     {
-        id: "cost",
+        id: "shipCost",
         label: "Phí cước",
         minWidth: 60,
         width: "10%",

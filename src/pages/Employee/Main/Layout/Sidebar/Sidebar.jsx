@@ -55,7 +55,7 @@ function Sidebar({status}) {
           {isNvtk && <><div className={styles["menu"]} onClick={onClickListStatus}>
             <div className={styles["menuContent"]}>
               <FaClipboardList className={styles["menuIcon"]} />
-              <Link to={"/nvtk/status"}>
+              <Link to={"/nvtk"}>
                 <h5>Xác nhận đơn hàng</h5>
               </Link>
             </div>

@@ -37,11 +37,7 @@ const formatDateTime = (dateTimeString) => {
     <div className={styles['contentSearch']}>
     <div className={styles['iconContent']}>
         <i class="fa-solid fa-clipboard-list"></i>
-<<<<<<< HEAD
         <h2 className={styles['textSearch']}>Nhập mã bưu gửi của bạn</h2>
-=======
-        <h2 className={styles['textSearch']}>Mã bưu gửi</h2>
->>>>>>> refs/remotes/origin/front-end
     </div>
     
     <div className={styles['formInput']}>

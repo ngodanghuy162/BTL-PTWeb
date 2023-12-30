@@ -162,12 +162,14 @@ function OrdeCf() {
                   >
                     Xác nhận
                   </button> :
-                  <button
+                  <>
+                  {selectedOption === "hanggui" ? <></>:<button
                     className={styles['button1']}
                     onClick={() => onClickEdit(order)}
                   >
                     Chuyển tiếp
-                  </button>
+                  </button>}
+                  </>
                 }
                 {clickEdit && <Edit onClose={onClickEdit} dataEdit={dataEdit} />}
                 {/* {selectedOrderStatus === order.id && CheckCf && (

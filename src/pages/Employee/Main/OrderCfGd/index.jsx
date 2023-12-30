@@ -23,6 +23,7 @@ function OrdeCf() {
   const [selectedOrderStatus, setselectedOrderStatus] = useState(null);
   const [clickEdit, setClickEdit] = useState(false);
   const [dataEdit, setDataEdit] = useState({});
+  const [clickButton, setClickButton] = useState(false);
 
   const parseTimeString = (timeString) => {
     return timeString ? new Date(timeString) : null;
@@ -51,7 +52,7 @@ function OrdeCf() {
     };
 
     fetchData();
-  }, [selectedOption]);
+  }, [selectedOption, clickButton]);
 
   useEffect(() => {
     const fetchDataOrder = async () => {
@@ -72,6 +73,7 @@ function OrdeCf() {
 
     try {
       UpdateStatusApi.XacNhanDonHangVe(user.userInfo.id_work, idVanDon, user.token).then(response => {
+        setClickButton(!clickButton);
         if (response) {
           console.log(response);
         } else {
@@ -100,6 +102,7 @@ function OrdeCf() {
   }
 
   const onClickCheckIn4 = (id) => {
+    setClickButton(!clickButton);
     setMvd(id);
     onClickCheck();
   }
@@ -119,6 +122,7 @@ function OrdeCf() {
 
   const onClickCf = (orderId, idDon) => {
     // setGetMvd(idDon)
+    setClickButton(!clickButton);
     console.log(idDon);
     handleSubmit(idDon);
     setselectedOrderStatus(orderId);
@@ -126,6 +130,7 @@ function OrdeCf() {
   }
 
   const onClickEdit = (data) => {
+    setClickButton(!clickButton);
     setClickEdit(!clickEdit);
     setDataEdit(data);
   }

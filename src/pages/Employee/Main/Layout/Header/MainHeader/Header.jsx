@@ -19,7 +19,7 @@ function Header() {
   const [clickIconUser, setClickIconUser] = useState(false);
   const [clickIconBell, setClickIconBell] = useState(false);
   const [clickProfile, setClickProfile] = useState(false);
-  // const [data, setData] = useState(null);
+  const [data, setData] = useState(null);
 
   const onClickCheck = () => {
     setCheckNotification(!checkNotification);

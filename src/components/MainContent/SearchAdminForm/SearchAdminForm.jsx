@@ -135,7 +135,6 @@ const top100Films = [
 const SearchAdminForm = () => {
     return (
         <form>
-            <FormLabel>Tìm kiếm</FormLabel>
             <Grid container className={style.grid}>
                 <Grid item>
                     <TextField

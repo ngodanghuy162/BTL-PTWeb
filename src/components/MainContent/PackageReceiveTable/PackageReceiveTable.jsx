@@ -22,11 +22,11 @@ const getPath = (userInfo) => {
     }
 
     if (userInfo.role === "ADMINGD") {
-        return "/order/thongkeorder/dgd";
+        return "/order/thongkeorder/all";
     }
 
     if (userInfo.role === "ADMINTK") {
-        return "/order/thongkestatusorder/dtk";
+        return "/order/thongkeorder/all";
     }
 };
 
@@ -53,13 +53,13 @@ export default function PackageReceiveTable(props) {
         const path = getPath(user.userInfo);
         const options = {
             headers: {
-                Authorization: `Bearer ${user.token}`,
+                Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZWFkZXIiLCJpYXQiOjE3MDM5MDM0MTIsImV4cCI6MTcwNDQyMTgxMn0.V7JZfaMrGxzb9qEjPWAy_Djz7ONYDE73RoNc-2MV2Qc`,
             },
             params: {
-                id: user.userInfo.id_work,
+                iddtk: 1,
             },
         };
-
+        console.log(user.token);
         const fetchPackages = async () => {
             try {
                 const res = await request.get(path, options);
@@ -122,7 +122,7 @@ export default function PackageReceiveTable(props) {
                                             row={row}
                                             columns={columns}
                                             subRows={
-                                                row["statusDonHangModelList"]
+                                                row["statusDonHangModelList"] === undefined ? [] : row["statusDonHangModelList"]
                                             }
                                             subColumns={subColumns}
                                             subTableTitle={"Lịch sử giao hàng"}
